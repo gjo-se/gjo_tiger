@@ -1,0 +1,40 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Default"/>
+
+    <f:section name="main">
+
+        <f:if condition="{productGroup}">
+            <div class="product-overview overview-margin">
+                <f:link.page pageUid="{productGroup.pages.uid}">
+                    <f:for each="{productGroup.image}" as="image" iteration="iteration">
+                        <f:if condition="{iteration.cycle} == '1' ">
+                        <f:image src="{image.uid}"
+                                 treatIdAsReference="1"
+                                 alt="{productGroup.header}"
+                                 width="700"
+                        />
+                        </f:if>
+                    </f:for>
+
+                    <div class="product-info">
+
+                        <div class="product-margin">
+                            <h2>
+                                <div>{productGroup.header}</div>
+                            </h2>
+                            <h3>
+                                <div>{productGroup.subHeader}</div>
+                            </h3>
+                            <f:format.html><f:format.crop maxCharacters="150">{productGroup.description}</f:format.crop></f:format.html>
+                        </div>
+                    </div>
+                </f:link.page>
+            </div>
+        </f:if>
+
+    </f:section>
+
+</div>

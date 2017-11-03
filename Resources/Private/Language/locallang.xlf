@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="25.09.17T10:10Z" product-name="gjo_tiger">
+		<header/>
+		<body>
+            <trans-unit id="productSetVariantGroup.article_number" >
+                <source>ArticleNumber</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.variants" >
+                <source>Variants</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots" >
+                <source>Technical Nots</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.accessoryKit" >
+                <source>Accessory Kits</source>
+            </trans-unit>
+
+
+            <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorWeight" >
+                <source>Maximales Türgewicht</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.height" >
+                <source>Aufbauhöhe</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.doorLeafThickness" >
+                <source>Türblattstärke</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidth" >
+                <source>Minimale Türbreite</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidthSoftClose" >
+                <source>Minimale Türbreite einseitig gedämpft, kurz</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidthSoftCloseLong" >
+                <source>Minimale Türbreite einseitig gedämpft, lang</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidthSoftCloseBoth" >
+                <source>Minimale Türbreite beidseitig gedämpft</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorWidth" >
+                <source>Maximale Türbreite</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.voltage" >
+                <source>Betriebsspannung</source>
+            </trans-unit>
+
+            <trans-unit id="productSetVariantGroup.din.useCategorie" >
+                <source>Nutzungskategorie</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.durability" >
+                <source>Dauer der Funktionsfähigkeit</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.doorWeight" >
+                <source>Türmasse</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.fireResistance" >
+                <source>Feuerbeständigkeit</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.safety" >
+                <source>Sicherheit</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.corrosionResistance" >
+                <source>Korrosionsverhalten</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.security" >
+                <source>Schutz</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.doorType" >
+                <source>Türart</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.initialFriction" >
+                <source>Anfangsreibung</source>
+            </trans-unit>
+
+            <trans-unit id="productSetVariantGroup.downloads" >
+                <source>Downloads</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.downloads.productInformation" >
+                <source>Produktinformation</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.downloads.downloadEngineeringDrawing" >
+                <source>Technische Zeichnungen</source>
+            </trans-unit>
+
+            <trans-unit id="productSetVariantGroup.productGroupLinks" >
+                <source>Weitere Modellvarianten</source>
+            </trans-unit>
+
+
+		</body>
+	</file>
+</xliff>

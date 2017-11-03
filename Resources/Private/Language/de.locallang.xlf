@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="25.09.17T10:10Z" product-name="gjo_tiger">
+		<header/>
+		<body>
+            <trans-unit id="productSetVariantGroup.article_number" >
+                <source>ContactForm</source>
+                <target>Artikelnummer</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.variants" >
+                <source>Variants</source>
+                <target>Varianten</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots" >
+                <source>Technical Nots</source>
+                <target>Technische Informationen</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.accessoryKit" >
+                <source>Accessory Kits</source>
+                <target>Ergänzungs Sets</target>
+            </trans-unit>
+
+
+		</body>
+	</file>
+</xliff>

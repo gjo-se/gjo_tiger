@@ -1,0 +1,25 @@
+plugin.tx_gjotiger {
+    view {
+        templateRootPath = {$filepaths.templateRootPath}
+        partialRootPath = {$filepaths.partialRootPath}
+        layoutRootPath = {$filepaths.layoutRootPath}
+    }
+
+    settings {
+
+    }
+
+    persistence {
+ 
+
+
+    }
+}
+
+config.tx_extbase {
+    objects {
+
+    }
+}
+
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:gjo_tiger/Configuration/TypoScript/_autocomplete.ts">

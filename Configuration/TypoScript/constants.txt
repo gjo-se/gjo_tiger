@@ -1,0 +1,5 @@
+filepaths {
+    templateRootPath = EXT:gjo_tiger/Resources/Private/Templates/
+    layoutRootPath = EXT:gjo_tiger/Resources/Private/Layouts/
+    partialRootPath = EXT:gjo_tiger/Resources/Private/Partials/
+}

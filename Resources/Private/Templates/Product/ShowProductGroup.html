@@ -1,0 +1,72 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Default"/>
+
+    <f:section name="main">
+
+        <div class="head-image">
+            <f:for each="{productGroup.image}" as="image" iteration="iteration">
+                <f:if condition="{iteration.cycle} == '2' ">
+                    <f:image src="{image.uid}"
+                             treatIdAsReference="1"
+                             alt="{productGroup.header}"
+                             width="1104"
+                    />
+                </f:if>
+            </f:for>
+        </div>
+
+        <div class="section-header-three">
+            <h2>{productGroup.header}</h2>
+            <h3>{productGroup.subheader}</h3>
+            <f:format.html>{productGroup.description}</f:format.html>
+        </div>
+
+        <div class="anchor-buttons">
+            <div class="neos-contentcollection">
+                <div class="">
+                    <div><h3>Sofort zum richtigen Produkt:<br></h3></div>
+                </div>
+
+                <div class="row">
+                    <f:for each="{productGroup.productSetTypes}" as="productSetType">
+                        <div class="col-lg-6 orange-tick">
+                            <h4>{productSetType.name}</h4>
+                            <ul>
+                                <f:for each="{productSetType.productSets}" as="productSet">
+                                    <li>
+                                        <f:link.page pageUid="{productSet.pages.uid}">{productSet.name}</f:link.page>
+                                    </li>
+                                </f:for>
+                            </ul>
+                        </div>
+                    </f:for>
+                </div>
+            </div>
+        </div>
+
+        <div class="grey-box">
+            <div class="gbox-text-and-image">
+                <div class="gbox-text">
+                    <div class="orange-tick">
+                        <h2>{productGroup.teaserHeader}</h2>
+                        <f:format.html>{productGroup.teaserDescription}</f:format.html>
+                    </div>
+                </div>
+
+                <div class="gbox-image">
+                    <f:for each="{productGroup.teaserImage}" as="image">
+                        <f:image src="{image.uid}"
+                                 treatIdAsReference="1"
+                        />
+                    </f:for>
+                </div>
+
+            </div>
+        </div>
+
+    </f:section>
+
+</div>
