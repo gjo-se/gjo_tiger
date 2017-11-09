@@ -5,6 +5,7 @@ CREATE TABLE tx_gjotiger_domain_model_productset (
 
   name VARCHAR(150) NOT NULL DEFAULT '',
   is_accessory_kit TINYINT(4) NOT NULL DEFAULT '0',
+  is_featured TINYINT(4) NOT NULL DEFAULT '0',
   description TEXT NULL,
   image int(11) unsigned NOT NULL default '0',
   icon int(11) unsigned NOT NULL default '0',
@@ -32,6 +33,8 @@ CREATE TABLE tx_gjotiger_domain_model_productset (
   download int(11) unsigned NOT NULL default '0',
   download_engineering_drawing int(11) unsigned NOT NULL default '0',
   image_engineering_drawing int(11) unsigned NOT NULL default '0',
+  filter_material_wood TINYINT(4) NOT NULL DEFAULT '0',
+  filter_material_glas TINYINT(4) NOT NULL DEFAULT '0',
 
   product_set_variant_groups int(11) unsigned NOT NULL default '0',
   products int(11) unsigned NOT NULL default '0',

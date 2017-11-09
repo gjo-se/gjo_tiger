@@ -1,0 +1,112 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Default"/>
+
+    <f:section name="main">
+        <f:render section="list" arguments="{_all}"/>
+        <f:render section="javaScript" arguments="{_all}" />
+    </f:section>
+
+    <f:section name="javaScript">
+        <script type="text/javascript">
+            var ajaxListProductsCount = parseInt('{productSetsCount}');
+        </script>
+    </f:section>
+
+    <f:section name="list">
+        <f:for each="{productSets}" as="productSet" iteration="iteration">
+            <f:render section="listItem" arguments="{_all}"/>
+        </f:for>
+    </f:section>
+
+    <f:section name="listItem">
+        <f:link.page pageUid="15">
+            <div class="border-tiger-orange">
+
+                <div class="row">
+                    <div class="col-3">
+                        <f:render partial="Utilities/Image"
+                                  section="main"
+                                  arguments="{
+                                      width: '175',
+                                      height: '175'
+                                      }"/>
+                    </div>
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="col-12">
+                                <f:render partial="Utilities/Headline"
+                                          section="h3"
+                                          arguments="{
+                                              content: '{productSet.name}'
+                                              }"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4"> <!-- Eigenschaften -->
+                                <f:render partial="Utilities/Headline"
+                                          section="h4"
+                                          arguments="{
+                                              content: '',
+                                              length: '15'
+                                              }"/>
+                                <ul>
+                                    <li>Material</li>
+                                    <li>Anzahl Flügel</li>
+                                    <li>Breite / Höhe</li>
+                                    <li>Gewicht</li>
+                                    <li>Verblendung</li>
+                                </ul>
+                            </div>
+                            <div class="col-4"> <!--Zusatz-Ausstattungen-->
+                                <f:render partial="Utilities/Headline"
+                                          section="h4"
+                                          arguments="{
+                                              length: '15',
+                                              content: ''
+                                              }"/>
+                                <ul>
+                                    <li>Dämpfung</li>
+                                    <li>Automatik</li>
+                                    <li>Syncron</li>
+                                    <li>Teleskop</li>
+                                    <li>Raumspartür T-FOLD</li>
+                                </ul>
+                            </div>
+                            <div class="col-4"> <!--Montagemöglichkeiten-->
+                                <f:render partial="Utilities/Headline"
+                                          section="h4"
+                                          arguments="{
+                                              length: '15',
+                                              content: ''
+                                              }"/>
+                                <ul>
+                                    <li>an der Wand</li>
+                                    <li>an der Decke</li>
+                                    <li>vor der Wand verlaufend</li>
+                                    <li>in der Wand verlaufend</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <ul>
+                            <li>Link zum Anfrageformular</li>
+                            <li>Link zur Detailpage</li>
+                            <li>Link auf Detailpage zum Anfrageformular</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </f:link.page>
+
+    </f:section>
+
+
+
+
+</div>

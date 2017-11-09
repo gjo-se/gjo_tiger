@@ -1,8 +1,11 @@
 plugin.tx_gjotiger {
     view {
-        templateRootPath = {$filepaths.templateRootPath}
-        partialRootPath = {$filepaths.partialRootPath}
         layoutRootPath = {$filepaths.layoutRootPath}
+        templateRootPath = {$filepaths.templateRootPath}
+        partialRootPaths {
+            10 = {$filepaths.partialRootPath}
+            20 = EXT:gjo_boilerplate/Resources/Private/Partials/
+        }
     }
 
     settings {
@@ -23,3 +26,4 @@ config.tx_extbase {
 }
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:gjo_tiger/Configuration/TypoScript/_autocomplete.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:gjo_tiger/Configuration/TypoScript/_ajaxListProducts.ts">

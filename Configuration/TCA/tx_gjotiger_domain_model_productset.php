@@ -139,6 +139,13 @@ return array(
             ),
         ),
 
+        'is_featured' => array(
+            'label'  => $lll . $table . '.is_featured',
+            'config'  => array(
+                'type' => 'check',
+            ),
+        ),
+
         'description' => array(
             'label'  => $lll . $table . '.description',
             'config' => array(
@@ -419,12 +426,27 @@ return array(
             ),
         ),
 
+        'filter_material_wood' => [
+            'label'  => $lll . $table . '.filter_material_wood',
+            'config' => [
+                'type' => 'check'
+            ]
+        ],
+
+        'filter_material_glas' => [
+            'label'  => $lll . $table . '.filter_material_glas',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
     ),
 
     'interface' => array(
         'showRecordFieldList' => '
               name,
               is_accessory_kit,
+              is_featured,
               description,
               image,
               icon,
@@ -451,6 +473,8 @@ return array(
               download_engineering_drawing,
               image_engineering_drawing,
               product_sets,
+              filter_material_wood,
+              filter_material_glas,
             
               product_set_variant_groups,
               products,    
@@ -466,6 +490,7 @@ return array(
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, 
                               name,
                               is_accessory_kit,
+                              is_featured,
                               description,                                                            
                               image,
                               icon,
@@ -503,6 +528,9 @@ return array(
                               image_engineering_drawing,
                         --div--;' . $lll . $table . '.tabs.accessory_kit,
                               product_sets,
+                        --div--;' . $lll . $table . '.tabs.filter,
+                              filter_material_wood,
+                              filter_material_glas,
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, 
                             hidden,
             ',

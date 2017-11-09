@@ -66,12 +66,42 @@ class ProductController extends AbstractController
 
     public function ajaxProductSetAction()
     {
-        $getParams = GeneralUtility::_GET();
+        $getParams    = GeneralUtility::_GET();
         $searchString = $getParams['tx_gjotiger']['searchString'];
-        $productSets = $this->productSetRepository->findBySearchString($searchString);
+        $productSets  = $this->productSetRepository->findBySearchString($searchString);
 
         $this->view->assign('searchString', $searchString);
         $this->view->assign('productSets', $productSets);
-
     }
+
+    public function productFinderAction()
+    {
+        $getParams    = GeneralUtility::_GET();
+        $searchString = $getParams['tx_gjotiger']['searchString'];
+        $productSets  = $this->productSetRepository->findBySearchString($searchString);
+
+        $this->view->assign('searchString', $searchString);
+        $this->view->assign('productSets', $productSets);
+    }
+
+    public function ajaxListProductsAction()
+    {
+
+        $postParams    = GeneralUtility::_POST();
+
+        $productFinderFilter = $postParams['productFinderFilter'];
+
+        if($postParams['offset']){
+            $offset = $postParams['offset'];
+        }else{
+            $offset = $this->settings['ajaxListProducts']['offset'];
+        }
+
+        $productSets  = $this->productSetRepository->findByFilter($productFinderFilter, $offset, $this->settings['ajaxListProducts']['limit']);
+        $productSetsCount  = $this->productSetRepository->findByFilter($productFinderFilter)->count();
+
+        $this->view->assign('productSets', $productSets);
+        $this->view->assign('productSetsCount', $productSetsCount);
+    }
+
 }

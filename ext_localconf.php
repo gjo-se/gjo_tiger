@@ -7,10 +7,10 @@ if (!defined('TYPO3_MODE')) {
     'GjoSe.' . $_EXTKEY,
     'Product',
     [
-        'Product' => 'showProductGroupTeaser, showProductGroup, showProductSet, ajaxProductSet',
+        'Product' => 'showProductGroupTeaser, showProductGroup, showProductSet, ajaxProductSet, productFinder, ajaxListProducts',
     ],
     [
-        'Product' => 'showProductGroupTeaser, showProductGroup, showProductSet, ajaxProductSet',
+        'Product' => 'showProductGroupTeaser, showProductGroup, showProductSet, ajaxProductSet, productFinder, ajaxListProducts',
     ]
 );
 

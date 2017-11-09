@@ -21,6 +21,7 @@ namespace GjoSe\GjoTiger\Domain\Repository;
  ***************************************************************/
 
 use GjoSe\GjoBoilerplate\Domain\Repository\AbstractRepository as GjoBoilerplateAbstractRepository;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * Class ProductSetRepository
@@ -47,6 +48,55 @@ class ProductSetRepository extends AbstractRepository
                 $query->equals('is_accessory_kit', 0)
             )
 
+        );
+
+        $query->setOrderings(
+            array(
+                'is_featured' => QueryInterface::ORDER_DESCENDING,
+                'name' => QueryInterface::ORDER_ASCENDING
+            )
+        );
+
+        return $query->execute();
+    }
+
+    public function findByFilter($productFinderFilter = '', $offset = 0, $limit = 0)
+    {
+        $query = $this->createQuery();
+
+//        https://docs.typo3.org/typo3cms/ExtbaseFluidBook/6-Persistence/3-implement-individual-database-queries.html
+        $constraints = array();
+        $constraints[] = $query->equals('is_accessory_kit', 0);
+
+
+
+        if($productFinderFilter){
+
+            if (isset($productFinderFilter['material'])) {
+                if($productFinderFilter['material'] == 'wood'){
+                    $constraints[] = $query->equals('filter_material_wood', 1);
+                }
+                if ($productFinderFilter['material'] == 'glas') {
+                    $constraints[] = $query->equals('filter_material_glas', 1);
+                }
+            }
+
+        }
+
+        $query->matching($query->logicalAnd($constraints));
+
+        if ($offset) {
+            $query->setOffset(intval($offset));
+        }
+        if ($limit) {
+            $query->setLimit(intval($limit));
+        }
+
+        $query->setOrderings(
+            array(
+                'is_featured' => QueryInterface::ORDER_DESCENDING,
+                'name' => QueryInterface::ORDER_ASCENDING
+            )
         );
 
         return $query->execute();

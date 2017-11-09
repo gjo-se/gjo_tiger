@@ -137,6 +137,9 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.is_accessory_kit">
                 <source>Ist Ergänzungs-Set</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.is_featured">
+                <source>Promo Artikel</source>
+            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.description">
                 <source>Beschreibung</source>
             </trans-unit>
@@ -230,6 +233,12 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.pages" >
                 <source>Seite</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_material_wood" >
+                <source>Holz</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_material_glas" >
+                <source>Glas</source>
+            </trans-unit>
 
             <trans-unit id="tx_gjotiger_domain_model_productset.select">
                 <source>Bitte wählen...</source>
@@ -252,8 +261,9 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.tabs.accessory_kit">
                 <source>Ergänzungs-Sets</source>
             </trans-unit>
-
-
+            <trans-unit id="tx_gjotiger_domain_model_productset.tabs.filter">
+                <source>Filter</source>
+            </trans-unit>
 
 		</body>
 	</file>

@@ -178,6 +178,21 @@ class ProductSet extends AbstractModel
     protected $invitationToTender = '';
 
     /**
+     * @var bool
+     */
+    protected $isFeatured = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterMaterialWood = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterMaterialGlas = false;
+
+    /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      * @lazy
      */
@@ -471,5 +486,59 @@ class ProductSet extends AbstractModel
     public function getImageEngineeringDrawing()
     {
         return $this->imageEngineeringDrawing;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIsFeatured()
+    {
+        return $this->isFeatured;
+    }
+
+    /**
+     * @param bool $isFeatured
+     *
+     * @return void
+     */
+    public function setIsFeatured($isFeatured)
+    {
+        $this->isFeatured = $isFeatured;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterMaterialWood()
+    {
+        return $this->filterMaterialWood;
+    }
+
+    /**
+     * @param bool $filterMaterialWood
+     *
+     * @return void
+     */
+    public function setFilterMaterialWood($filterMaterialWood)
+    {
+        $this->filterMaterialWood = $filterMaterialWood;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterMaterialGlas()
+    {
+        return $this->filterMaterialGlas;
+    }
+
+    /**
+     * @param bool $filterMaterialGlas
+     *
+     * @return void
+     */
+    public function setFilterMaterialGlas($filterMaterialGlas)
+    {
+        $this->filterMaterialGlas = $filterMaterialGlas;
     }
 }
