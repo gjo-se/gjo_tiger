@@ -193,6 +193,11 @@ class ProductSet extends AbstractModel
     protected $filterMaterialGlas = false;
 
     /**
+     * @var string
+     */
+    protected $filterWingcount = '';
+
+    /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      * @lazy
      */
@@ -540,5 +545,23 @@ class ProductSet extends AbstractModel
     public function setFilterMaterialGlas($filterMaterialGlas)
     {
         $this->filterMaterialGlas = $filterMaterialGlas;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilterWingcount()
+    {
+        return $this->filterWingcount;
+    }
+
+    /**
+     * @param string $filterWingcount
+     *
+     * @return void
+     */
+    public function setFilterWingcount($filterWingcount)
+    {
+        $this->filterWingcount = $filterWingcount;
     }
 }

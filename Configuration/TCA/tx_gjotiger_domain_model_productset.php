@@ -440,6 +440,19 @@ return array(
             ],
         ],
 
+        'filter_wingcount' => [
+            'label' => $lll . $table . '.filter_wingcount',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingleBox',
+                'items' => [
+                    ['1-flügelig', 1],
+                    ['2-flügelig', 2],
+                    ['3-flügelig', 3]
+                ],
+            ],
+        ],
+
     ),
 
     'interface' => array(
@@ -475,6 +488,7 @@ return array(
               product_sets,
               filter_material_wood,
               filter_material_glas,
+              filter_wingcount,
             
               product_set_variant_groups,
               products,    
@@ -531,6 +545,7 @@ return array(
                         --div--;' . $lll . $table . '.tabs.filter,
                               filter_material_wood,
                               filter_material_glas,
+                              filter_wingcount,
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, 
                             hidden,
             ',

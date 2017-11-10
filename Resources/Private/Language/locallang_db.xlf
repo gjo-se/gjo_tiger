@@ -239,6 +239,9 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.filter_material_glas" >
                 <source>Glas</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_wingcount" >
+                <source>Mögliche Anzahl Flügel</source>
+            </trans-unit>
 
             <trans-unit id="tx_gjotiger_domain_model_productset.select">
                 <source>Bitte wählen...</source>

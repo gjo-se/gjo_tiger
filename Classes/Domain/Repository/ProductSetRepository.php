@@ -68,17 +68,26 @@ class ProductSetRepository extends AbstractRepository
         $constraints = array();
         $constraints[] = $query->equals('is_accessory_kit', 0);
 
-
-
         if($productFinderFilter){
 
             if (isset($productFinderFilter['material'])) {
                 if($productFinderFilter['material'] == 'wood'){
-                    $constraints[] = $query->equals('filter_material_wood', 1);
+                    $constraints[] = $query->equals('filterMaterialWood', 1);
                 }
                 if ($productFinderFilter['material'] == 'glas') {
-                    $constraints[] = $query->equals('filter_material_glas', 1);
+                    $constraints[] = $query->equals('filterMaterialGlas', 1);
                 }
+            }
+
+            if (isset($productFinderFilter['wingCount'])) {
+                $constraints[] = $query->like('filterWingcount', '%' . $productFinderFilter['wingCount'] . '%');
+            }
+
+
+
+            if (isset($productFinderFilter['doorWidth'])) {
+                $constraints[] = $query->lessThanOrEqual('minimumDoorWidth', intval($productFinderFilter['doorWidth']));
+                $constraints[] = $query->greaterThanOrEqual('maximumDoorWidth', $productFinderFilter['doorWidth']);
             }
 
         }

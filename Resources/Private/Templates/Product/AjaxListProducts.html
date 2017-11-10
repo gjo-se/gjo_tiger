@@ -6,12 +6,12 @@
 
     <f:section name="main">
         <f:render section="list" arguments="{_all}"/>
-        <f:render section="javaScript" arguments="{_all}" />
+        <f:render section="javaScript" arguments="{_all}"/>
     </f:section>
 
     <f:section name="javaScript">
         <script type="text/javascript">
-            var ajaxListProductsCount = parseInt('{productSetsCount}');
+            sessionStorage.setItem('ajaxListProductsCount', {productSetsCount});
         </script>
     </f:section>
 
@@ -53,9 +53,23 @@
                                               length: '15'
                                               }"/>
                                 <ul>
-                                    <li>Material</li>
-                                    <li>Anzahl Flügel</li>
-                                    <li>Breite / Höhe</li>
+                                    <li>Geeignet für:
+                                        <f:if condition="{productSet.filterMaterialWood}">
+                                            Holz
+                                        </f:if>
+                                        <f:if condition="{productSet.filterMaterialWood} && {productSet.filterMaterialGlas}">
+                                             &
+                                        </f:if>
+                                        <f:if condition="{productSet.filterMaterialGlas}">
+                                            Glas
+                                        </f:if>
+                                    </li>
+                                    <li>
+                                        Mögliche Flügelanzahl: {productSet.filterWingcount}
+                                    </li>
+                                    <li>
+                                        Breite: {productSet.minimumDoorWidth} - {productSet.maximumDoorWidth} mm
+                                    </li>
                                     <li>Gewicht</li>
                                     <li>Verblendung</li>
                                 </ul>
@@ -105,8 +119,6 @@
         </f:link.page>
 
     </f:section>
-
-
 
 
 </div>
