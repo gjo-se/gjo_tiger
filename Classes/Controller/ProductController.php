@@ -76,19 +76,12 @@ class ProductController extends AbstractController
 
     public function productFinderAction()
     {
-        $getParams    = GeneralUtility::_GET();
-        $searchString = $getParams['tx_gjotiger']['searchString'];
-        $productSets  = $this->productSetRepository->findBySearchString($searchString);
-
-        $this->view->assign('searchString', $searchString);
-        $this->view->assign('productSets', $productSets);
+        $this->view->assign('specificMaterial', $this->specificMaterialRepository->findAll());
     }
 
     public function ajaxListProductsAction()
     {
-
         $postParams    = GeneralUtility::_POST();
-
         $productFinderFilter = $postParams['productFinderFilter'];
 
         if($postParams['offset']){
@@ -99,6 +92,9 @@ class ProductController extends AbstractController
 
         $productSets  = $this->productSetRepository->findByFilter($productFinderFilter, $offset, $this->settings['ajaxListProducts']['limit']);
         $productSetsCount  = $this->productSetRepository->findByFilter($productFinderFilter)->count();
+
+//        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($productSets);
+//        exit;
 
         $this->view->assign('productSets', $productSets);
         $this->view->assign('productSetsCount', $productSetsCount);

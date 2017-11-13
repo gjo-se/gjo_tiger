@@ -85,12 +85,22 @@ class ProductSet extends AbstractModel
     /**
      * @var string
      */
-    protected $height = '';
+    protected $minimumDoorWeight = '';
 
     /**
      * @var string
      */
-    protected $doorLeafThickness = '';
+    protected $height = '';
+
+    /**
+     * @var int
+     */
+    protected $minimumDoorThickness = 0;
+
+    /**
+     * @var int
+     */
+    protected $maximumDoorThickness = 0;
 
     /**
      * @var string
@@ -312,17 +322,33 @@ class ProductSet extends AbstractModel
     /**
      * @return string
      */
+    public function getMinimumDoorWeight()
+    {
+        return $this->minimumDoorWeight;
+    }
+
+    /**
+     * @return string
+     */
     public function getHeight()
     {
         return $this->height;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getDoorLeafThickness()
+    public function getMinimumDoorThickness()
     {
-        return $this->doorLeafThickness;
+        return $this->minimumDoorThickness;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaximumDoorThickness()
+    {
+        return $this->maximumDoorThickness;
     }
 
     /**

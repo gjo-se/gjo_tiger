@@ -152,14 +152,20 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.show_technicalnots">
                 <source>Zeige Technische Hinweise</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.minimum_door_weight">
+                <source>Minimales Türgewicht</source>
+            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.maximum_door_weight">
                 <source>Maximales Türgewicht</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.height">
                 <source>Aufbauhöhe</source>
             </trans-unit>
-            <trans-unit id="tx_gjotiger_domain_model_productset.door_leaf_thickness">
-                <source>Türstärke</source>
+            <trans-unit id="tx_gjotiger_domain_model_productset.minimum_door_thickness">
+                <source>min. Türstärke</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.maximum_door_thickness">
+                <source>max. Türstärke</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.minimum_door_width">
                 <source>Minimale Türbreite</source>
@@ -266,6 +272,27 @@
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.tabs.filter">
                 <source>Filter</source>
+            </trans-unit>
+
+            ### ProductSpecificMaterial ####
+
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial">
+                <source>Specific Material</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial.description">
+                <source>Beschreibung - intern</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial.material_group">
+                <source>Gruppe (Holz, Glas)</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial.material_weight">
+                <source>Spezifisches Gewicht je cbm</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial.image">
+                <source>Icon</source>
             </trans-unit>
 
 		</body>

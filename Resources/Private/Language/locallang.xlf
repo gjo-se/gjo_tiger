@@ -17,17 +17,26 @@
             </trans-unit>
 
 
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWeight" >
+                <source>Minimales Türgewicht</source>
+            </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorWeight" >
                 <source>Maximales Türgewicht</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.height" >
                 <source>Aufbauhöhe</source>
             </trans-unit>
-            <trans-unit id="productSetVariantGroup.technicalnots.doorLeafThickness" >
-                <source>Türblattstärke</source>
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorThickness" >
+                <source>min. Türblattstärke</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorThickness" >
+                <source>max. Türblattstärke</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidth" >
                 <source>Minimale Türbreite</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorWidth" >
+                <source>Maximale Türbreite</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidthSoftClose" >
                 <source>Minimale Türbreite einseitig gedämpft, kurz</source>

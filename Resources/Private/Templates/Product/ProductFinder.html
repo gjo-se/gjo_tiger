@@ -81,6 +81,16 @@
                                  height="145" alt="">
                         </label>
                     </div>
+                    <f:debug inline="false" title="">{_all}</f:debug>
+                    <!--TODO: Bootstrap Flex - für jede Spezifikation ein Bild anlegen - dann input Buttons wie oben, nur kleiner-->
+                    <div class="d-flex justify-content-around">
+                        <div class="p-2 bg-gray-300 m-1">Flex 1</div>
+                        <div class="p-2 bg-gray-300 m-1">Flex 2</div>
+                        <div class="p-2 bg-gray-300 m-1">Flex 3</div>
+                        <div class="p-2 bg-gray-300 m-1">Flex 4</div>
+                        <div class="p-2 bg-gray-300 m-1">Flex 5</div>
+                        <div class="p-2 bg-gray-300 m-1">Flex 6</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,6 +121,24 @@
                         <div id="doorWidthSlider"></div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="doorHeightInput">Tür-Höhe: <span id="doorHeightSpan"></span> mm</label>
+                        <input type="text" class="d-none input-text" name="doorHeight" id="doorHeightInput">
+                        <div id="doorHeightSlider"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="doorThicknessInput">Türblatt-Dicke: <span id="doorThicknessSpan"></span> mm</label>
+                        <input type="text" class="d-none input-text" name="doorThickness" id="doorThicknessInput">
+                        <div id="doorThicknessSlider"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="doorWeightInput">Tür-Gewicht: <span id="doorWeightSpan"></span> kg</label>
+                        <input type="text" class="d-none input-text" name="doorWeight" id="doorWeightInput">
+                        <div id="doorWeightSlider"></div>
+                    </div>
+
                 </div>
 
             </div>
@@ -123,6 +151,9 @@
                   arguments="{
                               content: ' '
                               }"/>
+        <div id="loadingImage" class="text-center">
+            <img alt="AjaxLoader" src="typo3conf/ext/gjo_introduction/Resources/Public/Icons/ajax-loader.gif" width="20" height="20">
+        </div>
         <div class="ajax-lists-products"></div>
     </f:section>
 

@@ -10,9 +10,11 @@ CREATE TABLE tx_gjotiger_domain_model_productset (
   image int(11) unsigned NOT NULL default '0',
   icon int(11) unsigned NOT NULL default '0',
   show_technicalnots tinyint(4) unsigned DEFAULT '0' NOT NULL,
-  maximum_door_weight VARCHAR(150) NOT NULL DEFAULT '',
+  minimum_door_weight INT(11) NOT NULL DEFAULT '0',
+  maximum_door_weight INT(11) NOT NULL DEFAULT '0',
   height VARCHAR(150) NOT NULL DEFAULT '',
-  door_leaf_thickness VARCHAR(150) NOT NULL DEFAULT '',
+  minimum_door_thickness INT(11) NOT NULL DEFAULT '0',
+  maximum_door_thickness INT(11) NOT NULL DEFAULT '0',
   minimum_door_width INT(11) NOT NULL DEFAULT '0',
   minimum_door_width_soft_close VARCHAR(150) NOT NULL DEFAULT '',
   minimum_door_width_soft_close_long VARCHAR(150) NOT NULL DEFAULT '',
@@ -211,6 +213,32 @@ CREATE TABLE tx_gjotiger_domain_model_productsubgroup (
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l10n_parent int(11) DEFAULT '0' NOT NULL,
 	l10n_diffsource mediumblob,
+
+	PRIMARY KEY (uid),
+	KEY parent (pid)
+
+);
+
+CREATE TABLE tx_gjotiger_domain_model_specificmaterial (
+	uid INT(11) NOT NULL auto_increment,
+	pid INT(11) NOT NULL DEFAULT '0',
+
+	tstamp INT(11) NOT NULL DEFAULT '0',
+	crdate INT(11) NOT NULL DEFAULT '0',
+	cruser_id INT(11) NOT NULL DEFAULT '0',
+	hidden TINYINT(4) NOT NULL DEFAULT '0',
+	sorting INT(11) NOT NULL DEFAULT '0',
+
+  name VARCHAR(150) NOT NULL DEFAULT '',
+  description text NULL,
+  material_group SMALLINT(5) unsigned NOT NULL DEFAULT '0',
+  material_weight SMALLINT(5) unsigned NOT NULL DEFAULT '0',
+  image INT(11) unsigned NOT NULL DEFAULT '0',
+
+	sys_language_uid INT(11) NOT NULL DEFAULT '0',
+	l10n_parent INT(11) NOT NULL DEFAULT '0',
+	l10n_source INT(11) NOT NULL DEFAULT '0',
+	l10n_diffsource MEDIUMTEXT,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)

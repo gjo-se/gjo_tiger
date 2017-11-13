@@ -83,11 +83,18 @@ class ProductSetRepository extends AbstractRepository
                 $constraints[] = $query->like('filterWingcount', '%' . $productFinderFilter['wingCount'] . '%');
             }
 
+            if (isset($productFinderFilter['wingCount'])) {
+                $constraints[] = $query->like('filterWingcount', '%' . $productFinderFilter['wingCount'] . '%');
+            }
 
+            if (isset($productFinderFilter['doorWeight'])) {
+                $constraints[] = $query->lessThanOrEqual('minimumDoorWeight', intval($productFinderFilter['doorWeight']));
+                $constraints[] = $query->greaterThanOrEqual('maximumDoorWeight', $productFinderFilter['doorWeight']);
+            }
 
-            if (isset($productFinderFilter['doorWidth'])) {
-                $constraints[] = $query->lessThanOrEqual('minimumDoorWidth', intval($productFinderFilter['doorWidth']));
-                $constraints[] = $query->greaterThanOrEqual('maximumDoorWidth', $productFinderFilter['doorWidth']);
+            if (isset($productFinderFilter['doorThickness'])) {
+                $constraints[] = $query->lessThanOrEqual('minimumDoorThickness', intval($productFinderFilter['doorThickness']));
+                $constraints[] = $query->greaterThanOrEqual('maximumDoorThickness', $productFinderFilter['doorThickness']);
             }
 
         }

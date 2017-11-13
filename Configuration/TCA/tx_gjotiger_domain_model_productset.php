@@ -186,6 +186,15 @@ return array(
             'onChange' => 'reload',
         ],
 
+        'minimum_door_weight' => [
+            'displayCond' => 'FIELD:show_technicalnots:REQ:true',
+            'label'       => $lll . $table . '.minimum_door_weight',
+            'config'      => [
+                'type' => 'input',
+
+            ]
+        ],
+
         'maximum_door_weight' => [
             'displayCond' => 'FIELD:show_technicalnots:REQ:true',
             'label'       => $lll . $table . '.maximum_door_weight',
@@ -203,9 +212,17 @@ return array(
             ]
         ],
 
-        'door_leaf_thickness' => [
+        'minimum_door_thickness' => [
             'displayCond' => 'FIELD:show_technicalnots:REQ:true',
-            'label'       => $lll . $table . '.door_leaf_thickness',
+            'label'       => $lll . $table . '.minimum_door_thickness',
+            'config'      => [
+                'type' => 'input'
+            ]
+        ],
+
+        'maximum_door_thickness' => [
+            'displayCond' => 'FIELD:show_technicalnots:REQ:true',
+            'label'       => $lll . $table . '.maximum_door_thickness',
             'config'      => [
                 'type' => 'input'
             ]
@@ -463,6 +480,7 @@ return array(
               description,
               image,
               icon,
+              minimum_door_weight,
               maximum_door_weight,
               height,
               door_leaf_thickness,
@@ -514,6 +532,7 @@ return array(
                               product_set_variant_groups,
                         --div--;' . $lll . $table . '.tabs.technicalNotes,
                               show_technicalnots,
+                              minimum_door_weight,
                               maximum_door_weight,
                               height,
                               door_leaf_thickness,
