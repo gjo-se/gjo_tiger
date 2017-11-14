@@ -27,6 +27,14 @@
             var ajaxListProductsOffset = '{settings.ajaxListProducts.offset}';
             var ajaxListProductsLimit = parseInt('{settings.ajaxListProducts.limit}');
         </script>
+
+        <f:for each="{specificMaterial}" as="spezificMaterialItem">
+            <script type="text/javascript">
+                var specificMaterialWeight_{spezificMaterialItem.uid} = '{spezificMaterialItem.materialWeight}';
+            </script>
+        </f:for>
+
+
     </f:section>
 
     <f:section name="javaScriptExternal">
@@ -69,28 +77,35 @@
                 <div class="card-body">
                     <div class="btn-group btn-group-justified">
                         <label class="btn">
-                            <input class="d-none" type="radio" name="material" value="wood">
-                            <img class="radio-icon"
-                                 src="typo3conf/ext/gjo_tiger/Resources/Public/Icons/Mediamarkt/akku_8_default.png" width="145"
-                                 height="145" alt="">
+                            <input class="d-none" type="radio" name="material" value="wood" checked="checked">
+                            <img class="radio-icon border-tiger-orange"
+                                 src="fileadmin/user_upload/productgroup/accessory_kit/icon_sidestop_holz_1_1.jpg" width="145" alt="Holz">
                         </label>
                         <label class="btn">
                             <input class="d-none" type="radio" name="material" value="glas">
                             <img class="radio-icon"
-                                 src="typo3conf/ext/gjo_tiger/Resources/Public/Icons/Mediamarkt/akku_6_default.png" width="145"
-                                 height="145" alt="">
+                                 src="fileadmin/user_upload/productgroup/accessory_kit/icon_glas_1_1.jpg" width="145" alt="Glas">
                         </label>
                     </div>
                     <f:debug inline="false" title="">{_all}</f:debug>
-                    <!--TODO: Bootstrap Flex - für jede Spezifikation ein Bild anlegen - dann input Buttons wie oben, nur kleiner-->
-                    <div class="d-flex justify-content-around">
-                        <div class="p-2 bg-gray-300 m-1">Flex 1</div>
-                        <div class="p-2 bg-gray-300 m-1">Flex 2</div>
-                        <div class="p-2 bg-gray-300 m-1">Flex 3</div>
-                        <div class="p-2 bg-gray-300 m-1">Flex 4</div>
-                        <div class="p-2 bg-gray-300 m-1">Flex 5</div>
-                        <div class="p-2 bg-gray-300 m-1">Flex 6</div>
-                    </div>
+                    <f:if condition="{specificMaterial}">
+                        <div class="specific-material">
+                            <div class="d-flex justify-content-around">
+                                <f:for each="{specificMaterial}" as="specificMaterialItem" iteration="iteration">
+                                    <label class="btn p-0">
+                                        <f:form.radio class="d-none" name="spezificMaterial" value="{specificMaterialItem.uid}" checked="{f:if(condition: '{specificMaterialItem.name} == \'Röhrenspan\'', then: '1', else: '0')}"/>
+                                        <f:for each="{specificMaterialItem.image}" as="image">
+                                            <f:image src="{image.uid}"
+                                                     treatIdAsReference="1"
+                                                     width="45"
+                                                     class="{f:if(condition: '{specificMaterialItem.name} == \'Röhrenspan\'', then: 'border-tiger-orange', else: 'border-gray-300')}"
+                                            />
+                                        </f:for>
+                                    </label>
+                                </f:for>
+                            </div>
+                        </div>
+                    </f:if>
                 </div>
             </div>
         </div>
@@ -132,7 +147,6 @@
                         <input type="text" class="d-none input-text" name="doorThickness" id="doorThicknessInput">
                         <div id="doorThicknessSlider"></div>
                     </div>
-
                     <div class="form-group">
                         <label for="doorWeightInput">Tür-Gewicht: <span id="doorWeightSpan"></span> kg</label>
                         <input type="text" class="d-none input-text" name="doorWeight" id="doorWeightInput">
