@@ -62,6 +62,8 @@ class ProductSetRepository extends AbstractRepository
 
     public function findByFilter($productFinderFilter = '', $offset = 0, $limit = 0)
     {
+
+        $pluginSignature = 'tx_gjotiger_product[';
         $query = $this->createQuery();
 
 //        https://docs.typo3.org/typo3cms/ExtbaseFluidBook/6-Persistence/3-implement-individual-database-queries.html
@@ -70,31 +72,31 @@ class ProductSetRepository extends AbstractRepository
 
         if($productFinderFilter){
 
-            if (isset($productFinderFilter['material'])) {
-                if($productFinderFilter['material'] == 'wood'){
+            if (isset($productFinderFilter[$pluginSignature . 'material'])) {
+                if($productFinderFilter[$pluginSignature . 'material'] == 'wood'){
                     $constraints[] = $query->equals('filterMaterialWood', 1);
                 }
-                if ($productFinderFilter['material'] == 'glas') {
+                if ($productFinderFilter[$pluginSignature . 'material'] == 'glas') {
                     $constraints[] = $query->equals('filterMaterialGlas', 1);
                 }
             }
 
-            if (isset($productFinderFilter['wingCount'])) {
-                $constraints[] = $query->like('filterWingcount', '%' . $productFinderFilter['wingCount'] . '%');
+            if (isset($productFinderFilter[$pluginSignature . 'wingCount'])) {
+                $constraints[] = $query->like('filterWingcount', '%' . $productFinderFilter[$pluginSignature . 'wingCount'] . '%');
             }
 
-            if (isset($productFinderFilter['wingCount'])) {
-                $constraints[] = $query->like('filterWingcount', '%' . $productFinderFilter['wingCount'] . '%');
+            if (isset($productFinderFilter[$pluginSignature . 'doorWidth'])) {
+                $constraints[] = $query->lessThanOrEqual('minimumDoorWidth', intval($productFinderFilter[$pluginSignature . 'doorWidth']));
+                $constraints[] = $query->greaterThanOrEqual('maximumDoorWidth', $productFinderFilter[$pluginSignature . 'doorWidth']);
             }
 
-            if (isset($productFinderFilter['doorWeight'])) {
-                $constraints[] = $query->lessThanOrEqual('minimumDoorWeight', intval($productFinderFilter['doorWeight']));
-                $constraints[] = $query->greaterThanOrEqual('maximumDoorWeight', $productFinderFilter['doorWeight']);
+            if (isset($productFinderFilter[$pluginSignature . 'doorThickness'])) {
+                $constraints[] = $query->lessThanOrEqual('minimumDoorThickness', intval($productFinderFilter[$pluginSignature . 'doorThickness']));
+                $constraints[] = $query->greaterThanOrEqual('maximumDoorThickness', $productFinderFilter[$pluginSignature . 'doorThickness']);
             }
-
-            if (isset($productFinderFilter['doorThickness'])) {
-                $constraints[] = $query->lessThanOrEqual('minimumDoorThickness', intval($productFinderFilter['doorThickness']));
-                $constraints[] = $query->greaterThanOrEqual('maximumDoorThickness', $productFinderFilter['doorThickness']);
+            if (isset($productFinderFilter[$pluginSignature . 'doorWeight'])) {
+                $constraints[] = $query->lessThanOrEqual('minimumDoorWeight', intval($productFinderFilter[$pluginSignature . 'doorWeight']));
+                $constraints[] = $query->greaterThanOrEqual('maximumDoorWeight', $productFinderFilter[$pluginSignature . 'doorWeight']);
             }
 
         }

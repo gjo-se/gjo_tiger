@@ -27,14 +27,6 @@
             var ajaxListProductsOffset = '{settings.ajaxListProducts.offset}';
             var ajaxListProductsLimit = parseInt('{settings.ajaxListProducts.limit}');
         </script>
-
-        <f:for each="{specificMaterial}" as="spezificMaterialItem">
-            <script type="text/javascript">
-                var specificMaterialWeight_{spezificMaterialItem.uid} = '{spezificMaterialItem.materialWeight}';
-            </script>
-        </f:for>
-
-
     </f:section>
 
     <f:section name="javaScriptExternal">
@@ -55,7 +47,7 @@
 
     <f:section name="filter">
         <div id="productFinderAccordion" role="tablist">
-            <f:form id="productFinder" action="productFinder">
+            <f:form id="productFinder" action="productFinderXYZ">
                 <f:render section="material" arguments="{_all}"/>
                 <f:render section="measure" arguments="{_all}"/>
             </f:form>
@@ -77,31 +69,43 @@
                 <div class="card-body">
                     <div class="btn-group btn-group-justified">
                         <label class="btn">
-                            <input class="d-none" type="radio" name="material" value="wood" checked="checked">
+                            <f:form.radio class="d-none" name="material" value="wood" checked="1"/>
                             <img class="radio-icon border-tiger-orange"
                                  src="fileadmin/user_upload/productgroup/accessory_kit/icon_sidestop_holz_1_1.jpg" width="145" alt="Holz">
                         </label>
                         <label class="btn">
-                            <input class="d-none" type="radio" name="material" value="glas">
+                            <f:form.radio class="d-none" name="material" value="glas"/>
                             <img class="radio-icon"
                                  src="fileadmin/user_upload/productgroup/accessory_kit/icon_glas_1_1.jpg" width="145" alt="Glas">
                         </label>
                     </div>
-                    <f:debug inline="false" title="">{_all}</f:debug>
                     <f:if condition="{specificMaterial}">
                         <div class="specific-material">
                             <div class="d-flex justify-content-around">
                                 <f:for each="{specificMaterial}" as="specificMaterialItem" iteration="iteration">
-                                    <label class="btn p-0">
-                                        <f:form.radio class="d-none" name="spezificMaterial" value="{specificMaterialItem.uid}" checked="{f:if(condition: '{specificMaterialItem.name} == \'Röhrenspan\'', then: '1', else: '0')}"/>
-                                        <f:for each="{specificMaterialItem.image}" as="image">
-                                            <f:image src="{image.uid}"
-                                                     treatIdAsReference="1"
-                                                     width="45"
-                                                     class="{f:if(condition: '{specificMaterialItem.name} == \'Röhrenspan\'', then: 'border-tiger-orange', else: 'border-gray-300')}"
-                                            />
-                                        </f:for>
-                                    </label>
+                                    <f:if condition="{specificMaterialItem.materialGroup} == '1' ">
+                                        <f:then>
+                                            <label class="btn p-0">
+                                                <f:form.radio class="d-none" name="spezificMaterial"
+                                                              value="{specificMaterialItem.materialWeight}"
+                                                              checked="{f:if(condition: '{specificMaterialItem.name} == \'Röhrenspan\'', then: '1', else: '0')}"/>
+                                                <f:for each="{specificMaterialItem.image}" as="image">
+                                                    <div data-toggle="tooltip" data-placement="bottom" title="{specificMaterialItem.name}">
+                                                        <f:image src="{image.uid}"
+                                                                 treatIdAsReference="1"
+                                                                 width="45"
+                                                                 class="{f:if(condition: '{specificMaterialItem.name} == \'Röhrenspan\'', then: 'border-tiger-orange', else: 'border-gray-300')}"
+                                                        />
+                                                    </div>
+                                                </f:for>
+                                            </label>
+                                        </f:then>
+                                        <f:else>
+                                            <f:form.radio class="d-none" id="specificMaterialItemGlas" name="spezificMaterial"
+                                                          value="{specificMaterialItem.materialWeight}"/>
+                                        </f:else>
+                                    </f:if>
+
                                 </f:for>
                             </div>
                         </div>
@@ -126,30 +130,30 @@
 
                     <div class="form-group">
                         <label for="wingCountInput">Anzahl Flügel: <span id="wingCountSpan"></span></label>
-                        <input type="text" class="d-none input-text" name="wingCount" id="wingCountInput">
+                        <f:form.textfield class="d-none input-text" name="wingCount" id="wingCountInput"/>
                         <div id="wingCountSlider"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="doorWidthInput">Tür-Breite: <span id="doorWidthSpan"></span> mm</label>
-                        <input type="text" class="d-none input-text" name="doorWidth" id="doorWidthInput">
+                        <f:form.textfield class="d-none input-text" name="doorWidth" id="doorWidthInput"/>
                         <div id="doorWidthSlider"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="doorHeightInput">Tür-Höhe: <span id="doorHeightSpan"></span> mm</label>
-                        <input type="text" class="d-none input-text" name="doorHeight" id="doorHeightInput">
+                        <f:form.textfield class="d-none input-text" name="doorHeight" id="doorHeightInput"/>
                         <div id="doorHeightSlider"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="doorThicknessInput">Türblatt-Dicke: <span id="doorThicknessSpan"></span> mm</label>
-                        <input type="text" class="d-none input-text" name="doorThickness" id="doorThicknessInput">
+                        <f:form.textfield class="d-none input-text" name="doorThickness" id="doorThicknessInput"/>
                         <div id="doorThicknessSlider"></div>
                     </div>
                     <div class="form-group">
                         <label for="doorWeightInput">Tür-Gewicht: <span id="doorWeightSpan"></span> kg</label>
-                        <input type="text" class="d-none input-text" name="doorWeight" id="doorWeightInput">
+                        <f:form.textfield class="d-none input-text" name="doorWeight" id="doorWeightInput"/>
                         <div id="doorWeightSlider"></div>
                     </div>
 

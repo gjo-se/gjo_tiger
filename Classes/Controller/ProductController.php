@@ -93,9 +93,6 @@ class ProductController extends AbstractController
         $productSets  = $this->productSetRepository->findByFilter($productFinderFilter, $offset, $this->settings['ajaxListProducts']['limit']);
         $productSetsCount  = $this->productSetRepository->findByFilter($productFinderFilter)->count();
 
-//        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($productSets);
-//        exit;
-
         $this->view->assign('productSets', $productSets);
         $this->view->assign('productSetsCount', $productSetsCount);
     }
