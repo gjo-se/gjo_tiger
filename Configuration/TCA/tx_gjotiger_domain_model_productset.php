@@ -399,6 +399,34 @@ return array(
             ),
         ),
 
+        'filter_montage_ahead' => [
+            'label'  => $lll . $table . '.filter_montage_ahead',
+            'config' => [
+                'type' => 'check'
+            ]
+        ],
+
+        'filter_montage_in' => [
+            'label'  => $lll . $table . '.filter_montage_in',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_montage_wall' => [
+            'label'  => $lll . $table . '.filter_montage_wall',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_montage_ceiling' => [
+            'label'  => $lll . $table . '.filter_montage_ceiling',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
         ###############################################################################
 
         'sys_language_uid' => array(
@@ -507,6 +535,10 @@ return array(
               filter_material_wood,
               filter_material_glas,
               filter_wingcount,
+              filter_montage_ahead,
+              filter_montage_in,
+              filter_montage_wall,
+              filter_montage_ceiling,
             
               product_set_variant_groups,
               products,    
@@ -562,9 +594,9 @@ return array(
                         --div--;' . $lll . $table . '.tabs.accessory_kit,
                               product_sets,
                         --div--;' . $lll . $table . '.tabs.filter,
-                              filter_material_wood,
-                              filter_material_glas,
+                              --palette--;' . $lll . $table . '.palettes.material;material,
                               filter_wingcount,
+                              --palette--;' . $lll . $table . '.palettes.montage;montage,
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, 
                             hidden,
             ',
@@ -572,6 +604,16 @@ return array(
     ],
 
     'palettes' => array(
-        '1' => array('showitem' => ''),
+        'material' => array('showitem' => '
+                filter_material_wood,
+                filter_material_glas
+        '),
+        'montage' => array('showitem' => '
+                filter_montage_ahead,
+                filter_montage_in,
+                filter_montage_wall,
+                filter_montage_ceiling,
+        '),
     ),
+
 );

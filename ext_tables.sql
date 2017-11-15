@@ -38,6 +38,10 @@ CREATE TABLE tx_gjotiger_domain_model_productset (
   filter_material_wood TINYINT(4) NOT NULL DEFAULT '0',
   filter_material_glas TINYINT(4) NOT NULL DEFAULT '0',
   filter_wingcount VARCHAR(10) NOT NULL DEFAULT '',
+  filter_montage_ahead TINYINT(4) NOT NULL DEFAULT '0',
+  filter_montage_in TINYINT(4) NOT NULL DEFAULT '0',
+  filter_montage_wall TINYINT(4) NOT NULL DEFAULT '0',
+  filter_montage_ceiling TINYINT(4) NOT NULL DEFAULT '0',
 
   product_set_variant_groups int(11) unsigned NOT NULL default '0',
   products int(11) unsigned NOT NULL default '0',

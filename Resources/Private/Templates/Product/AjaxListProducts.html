@@ -99,10 +99,18 @@
                                               content: ''
                                               }"/>
                                 <ul>
-                                    <li>an der Wand</li>
-                                    <li>an der Decke</li>
-                                    <li>vor der Wand verlaufend</li>
-                                    <li>in der Wand verlaufend</li>
+                                    <f:if condition="{productSet.filterMontageWall}">
+                                        <li>an der Wand</li>
+                                    </f:if>
+                                    <f:if condition="{productSet.filterMontageCeiling}">
+                                        <li>an der Decke</li>
+                                    </f:if>
+                                    <f:if condition="{productSet.filterMontageAhead}">
+                                        <li>vor der Wand verlaufend</li>
+                                    </f:if>
+                                    <f:if condition="{productSet.filterMontageIn}">
+                                        <li>in der Wand verlaufend</li>
+                                    </f:if>
                                 </ul>
                             </div>
                         </div>

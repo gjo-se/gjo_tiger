@@ -66,7 +66,10 @@ class ProductSetRepository extends AbstractRepository
         $pluginSignature = 'tx_gjotiger_product[';
         $query = $this->createQuery();
 
-//        https://docs.typo3.org/typo3cms/ExtbaseFluidBook/6-Persistence/3-implement-individual-database-queries.html
+//        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($productFinderFilter);
+//        exit;
+
+        //        https://docs.typo3.org/typo3cms/ExtbaseFluidBook/6-Persistence/3-implement-individual-database-queries.html
         $constraints = array();
         $constraints[] = $query->equals('is_accessory_kit', 0);
 
@@ -99,6 +102,47 @@ class ProductSetRepository extends AbstractRepository
                 $constraints[] = $query->greaterThanOrEqual('maximumDoorWeight', $productFinderFilter[$pluginSignature . 'doorWeight']);
             }
 
+            if (isset($productFinderFilter[$pluginSignature . 'design'])) {
+                if($productFinderFilter[$pluginSignature . 'design'] == 'alu'){
+                    $constraints[] = $query->logicalOr(
+                        $query->like('name', '%Alu 100%'),
+                        $query->like('name', '%Alu 150%')
+                    );
+                }
+                if($productFinderFilter[$pluginSignature . 'design'] == 'customer'){
+                    $constraints[] = $query->logicalOr(
+                        $query->like('name', '%Alu 40%'),
+                        $query->like('name', '%Alu 80%'),
+                        $query->like('name', '%Alu 250%')
+                    );
+                }
+                if($productFinderFilter[$pluginSignature . 'design'] == 'design'){
+                    $constraints[] = $query->logicalOr(
+                        $query->like('name', '%Evolution%'),
+                        $query->like('name', '%Retro%')
+                    );
+                }
+            }
+
+            if (isset($productFinderFilter[$pluginSignature . 'montage'])) {
+                if($productFinderFilter[$pluginSignature . 'montage'] == 'wall'){
+                    $constraints[] = $query->equals('filterMontageWall', 1);
+                }
+                if($productFinderFilter[$pluginSignature . 'montage'] == 'ceiling'){
+                    $constraints[] = $query->equals('filterMontageCeiling', 1);
+                }
+            }
+
+
+
+            if (isset($productFinderFilter[$pluginSignature . 'montageWall'])) {
+                if($productFinderFilter[$pluginSignature . 'montageWall'] == 'ahead'){
+                    $constraints[] = $query->equals('filterMontageAhead', 1);
+                }
+                if($productFinderFilter[$pluginSignature . 'montageWall'] == 'in'){
+                    $constraints[] = $query->equals('filterMontageIn', 1);
+                }
+            }
         }
 
         $query->matching($query->logicalAnd($constraints));

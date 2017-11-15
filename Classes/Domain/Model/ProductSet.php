@@ -225,6 +225,25 @@ class ProductSet extends AbstractModel
      */
     protected $imageEngineeringDrawing = null;
 
+    /**
+     * @var bool
+     */
+    protected $filterMontageAhead = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterMontageIn = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterMontageWall = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterMontageCeiling = false;
 
     public function __construct()
     {
@@ -589,5 +608,37 @@ class ProductSet extends AbstractModel
     public function setFilterWingcount($filterWingcount)
     {
         $this->filterWingcount = $filterWingcount;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterMontageAhead()
+    {
+        return $this->filterMontageAhead;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterMontageIn()
+    {
+        return $this->filterMontageIn;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterMontageWall()
+    {
+        return $this->filterMontageWall;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterMontageCeiling()
+    {
+        return $this->filterMontageCeiling;
     }
 }

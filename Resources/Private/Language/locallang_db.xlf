@@ -248,6 +248,18 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.filter_wingcount" >
                 <source>Mögliche Anzahl Flügel</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_montage_ahead" >
+                <source>Montage VOR der Wand</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_montage_in" >
+                <source>Montage IN der Wand</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_montage_wall" >
+                <source>Wand-Montage</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_montage_ceiling" >
+                <source>Decken-Montage</source>
+            </trans-unit>
 
             <trans-unit id="tx_gjotiger_domain_model_productset.select">
                 <source>Bitte wählen...</source>
@@ -272,6 +284,12 @@
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.tabs.filter">
                 <source>Filter</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.palettes.material">
+                <source>Montage</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.palettes.montage">
+                <source>Montage</source>
             </trans-unit>
 
             ### ProductSpecificMaterial ####
