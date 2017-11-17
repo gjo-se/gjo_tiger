@@ -103,27 +103,27 @@ class ProductSet extends AbstractModel
     protected $maximumDoorThickness = 0;
 
     /**
-     * @var string
+     * @var integer
      */
     protected $minimumDoorWidth = '';
 
     /**
-     * @var string
+     * @var integer
      */
     protected $minimumDoorWidthSoftClose = '';
 
     /**
-     * @var string
+     * @var integer
      */
     protected $minimumDoorWidthSoftCloseLong = '';
 
     /**
-     * @var string
+     * @var integer
      */
     protected $minimumDoorWidthSoftCloseBoth = '';
 
     /**
-     * @var string
+     * @var integer
      */
     protected $maximumDoorWidth = '';
 
@@ -371,7 +371,7 @@ class ProductSet extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getMinimumDoorWidth()
     {
@@ -379,7 +379,7 @@ class ProductSet extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getMinimumDoorWidthSoftClose()
     {
@@ -387,7 +387,7 @@ class ProductSet extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getMinimumDoorWidthSoftCloseLong()
     {
@@ -395,7 +395,7 @@ class ProductSet extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getMinimumDoorWidthSoftCloseBoth()
     {
@@ -403,7 +403,7 @@ class ProductSet extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getMaximumDoorWidth()
     {
