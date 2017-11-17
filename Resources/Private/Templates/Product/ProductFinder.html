@@ -10,11 +10,16 @@
         <f:render section="javaScriptExternal"/>
 
         <div class="container">
+
+            <div class="slide-headline">
+                <h2>Produkt-Konfigurator</h2>
+            </div>
+
             <div class="row">
-                <div class="col-4">
+                <div class="col-4 px-2">
                     <f:render section="filter" arguments="{_all}"/>
                 </div>
-                <div class="col-8">
+                <div class="col-8 border-gray-900">
                     <f:render section="list" arguments="{_all}"/>
                 </div>
             </div>
@@ -51,13 +56,14 @@
                 <f:render section="material" arguments="{_all}"/>
                 <f:render section="measure" arguments="{_all}"/>
                 <f:render section="design" arguments="{_all}"/>
+                <f:render section="configuration" arguments="{_all}"/>
                 <f:render section="montage" arguments="{_all}"/>
             </f:form>
         </div>
     </f:section>
 
     <f:section name="material">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-header" role="tab" id="material">
                 <h5 class="mb-0">
                     <a data-toggle="collapse" href="#collapseMaterial" aria-expanded="true" aria-controls="collapseMaterial">
@@ -88,15 +94,17 @@
                                     <f:if condition="{specificMaterialItem.materialGroup} == '1' ">
                                         <f:then>
                                             <label class="btn p-0">
-                                                <f:form.radio class="d-none" name="spezificMaterial"
-                                                              value="{specificMaterialItem.materialWeight}"
-                                                              checked="{f:if(condition: '{specificMaterialItem.name} == \'Röhrenspan\'', then: '1', else: '0')}"/>
+                                                <f:form.radio
+                                                        class="d-none specificMaterialItemWood {f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: 'default-material')}"
+                                                        name="spezificMaterial"
+                                                        value="{specificMaterialItem.materialWeight}"
+                                                        checked="{f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: '1', else: '0')}"/>
                                                 <f:for each="{specificMaterialItem.image}" as="image">
                                                     <div data-toggle="tooltip" data-placement="bottom" title="{specificMaterialItem.name}">
                                                         <f:image src="{image.uid}"
                                                                  treatIdAsReference="1"
                                                                  width="45"
-                                                                 class="{f:if(condition: '{specificMaterialItem.name} == \'Röhrenspan\'', then: 'border-tiger-orange', else: 'border-gray-300')}"
+                                                                 class="{f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: 'border-tiger-orange', else: 'border-gray-300')}"
                                                         />
                                                     </div>
                                                 </f:for>
@@ -118,13 +126,13 @@
     </f:section>
 
     <f:section name="measure">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-header" role="tab" id="measure">
-                <h5 class="mb-0">
+
                     <a data-toggle="collapse" href="#collapseMeasure" aria-expanded="true" aria-controls="collapseMeasure">
-                        Maße
+                        <h5 class="mb-0">Maße</h5>
                     </a>
-                </h5>
+
             </div>
 
             <div id="collapseMeasure" class="collapse show" role="tabpanel" aria-labelledby="measure" data-parent="#productFinderAccordion">
@@ -154,10 +162,21 @@
                         <div id="doorThicknessSlider"></div>
                     </div>
                     <div class="form-group">
-                        <label for="doorWeightInput">Tür-Gewicht: <span id="doorWeightSpan"></span> kg</label>
-                        <f:form.textfield class="d-none input-text" name="doorWeight" id="doorWeightInput"/>
+                        <div class="row">
+                            <div class="col">
+                                <label for="doorWeightInput">Tür-Gewicht: <span id="doorWeightSpan"></span> kg</label>
+                                <f:form.textfield class="d-none input-text" name="doorWeight" id="doorWeightInput"/>
+                            </div>
+                            <div class="col ml-4">
+                                <f:form.checkbox class="form-check-input" name="automaticCompute" value="1" checked="true"/>
+                                automatisch
+                            </div>
+                        </div>
+
+
                         <div id="doorWeightSlider"></div>
                     </div>
+
 
                 </div>
 
@@ -166,7 +185,7 @@
     </f:section>
 
     <f:section name="design">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-header" role="tab" id="design">
                 <h5 class="mb-0">
                     <a data-toggle="collapse" href="#collapseDesign" aria-expanded="true" aria-controls="collapseDesign">
@@ -179,25 +198,91 @@
                  data-parent="#productFinderAccordion">
                 <div class="card-body">
                     <div class="d-flex justify-content-around">
-                        <label class="btn">
+                        <label class="btn  px-1">
                             <f:form.radio class="d-none" name="design" value="customer"/>
                             <div data-toggle="tooltip" data-placement="bottom" title="bauseitige Verkleidung">
-                                <img class="" src="http://via.placeholder.com/100x100">
+                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
                             </div>
                         </label>
-                        <label class="btn">
+                        <label class="btn px-1">
                             <f:form.radio class="d-none" name="design" value="alu"/>
                             <div data-toggle="tooltip" data-placement="bottom" title="Alu-Schiene">
-                                <img class="" src="http://via.placeholder.com/100x100">
+                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
                             </div>
                         </label>
-                        <label class="btn">
+                        <label class="btn px-1">
                             <f:form.radio class="d-none" name="design" value="design"/>
                             <div data-toggle="tooltip" data-placement="bottom" title="Design-Beschlag">
-                                <img class="" src="http://via.placeholder.com/100x100">
+                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
                             </div>
                         </label>
                     </div>
+                </div>
+            </div>
+        </div>
+    </f:section>
+
+    <f:section name="configuration">
+
+        <div class="card mb-3">
+            <div class="card-header" role="tab" id="configuration">
+                <h5 class="mb-0">
+                    <a data-toggle="collapse" href="#collapseConfiguration" aria-expanded="true" aria-controls="collapseConfiguration">
+                        Ausstattung
+                    </a>
+                </h5>
+            </div>
+
+            <div id="collapseConfiguration" class="collapse show" role="tabpanel" aria-labelledby="configuration"
+                 data-parent="#productFinderAccordion">
+
+                <div class="soft-close-automatic card-body">
+                    <div class="d-flex justify-content-around">
+
+                        <label class="btn soft-close px-1">
+                            <f:form.checkbox class="d-none" name="soft-close" value="1"/>
+                            <div data-toggle="tooltip" data-placement="bottom" title="Dämpfung">
+                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
+                            </div>
+                        </label>
+                        <label class="btn et3 px-1">
+                            <f:form.checkbox class="d-none" name="et3" value="1"/>
+                            <div data-toggle="tooltip" data-placement="bottom" title="Automatic ET3">
+                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
+                            </div>
+                        </label>
+                        <label class="btn t-fold px-1">
+                            <f:form.checkbox class="d-none" name="t-fold" value="1"/>
+                            <div data-toggle="tooltip" data-placement="bottom" title="Falttür T-Fold">
+                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="telescope-synchron ">
+                        <div class="d-flex justify-content-around">
+
+                            <label class="btn two-wings px-1">
+                                <f:form.checkbox class="d-none" name="synchron" value="1" disabled="disabled"/>
+                                <div data-toggle="tooltip" data-placement="bottom" title="Synchron">
+                                    <img class="border-gray-300" src="{settings.placeholder.imageDisabled100}">
+                                </div>
+                            </label>
+                            <label class="btn two-wings px-1">
+                                <f:form.checkbox class="d-none" name="telescop2" value="1" disabled="disabled"/>
+                                <div data-toggle="tooltip" data-placement="bottom" title="Teleskop 2-fach">
+                                    <img class="border-gray-300" src="{settings.placeholder.imageDisabled100}">
+                                </div>
+                            </label>
+                            <label class="btn three-wings px-1">
+                                <f:form.checkbox class="d-none" name="telescop3" value="1" disabled="disabled"/>
+                                <div data-toggle="tooltip" data-placement="bottom" title="Teleskop 3-fach">
+                                    <img class="border-gray-300" src="{settings.placeholder.imageDisabled100}">
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -221,29 +306,29 @@
                         <label class="btn">
                             <f:form.radio class="d-none" name="montage" value="wall"/>
                             <div data-toggle="tooltip" data-placement="bottom" title="Wand-Montage">
-                                <img class="" src="http://via.placeholder.com/145x145">
+                                <img class="border-gray-300" src="{settings.placeholder.imageDefault150}">
                             </div>
                         </label>
                         <label class="btn">
                             <f:form.radio class="d-none" name="montage" value="ceiling"/>
                             <div data-toggle="tooltip" data-placement="bottom" title="Decken-Montage">
-                                <img class="" src="http://via.placeholder.com/145x145">
+                                <img class="border-gray-300" src="{settings.placeholder.imageDefault150}">
                             </div>
                         </label>
 
                     </div>
                     <div class="d-flex justify-content-around">
 
-                    <label class="btn">
+                        <label class="btn">
                             <f:form.radio class="d-none" name="montageWall" value="ahead"/>
                             <div data-toggle="tooltip" data-placement="bottom" title="Vor der Wand">
-                                <img class="" src="http://via.placeholder.com/145x145">
+                                <img class="border-gray-300" src="{settings.placeholder.imageDefault150}">
                             </div>
                         </label>
                         <label class="btn">
                             <f:form.radio class="d-none" name="montageWall" value="in"/>
                             <div data-toggle="tooltip" data-placement="bottom" title="In der Wand">
-                                <img class="" src="http://via.placeholder.com/145x145">
+                                <img class="border-gray-300" src="{settings.placeholder.imageDefault150}">
                             </div>
                         </label>
                     </div>
