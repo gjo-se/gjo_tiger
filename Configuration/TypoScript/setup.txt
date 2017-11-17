@@ -10,6 +10,42 @@ plugin.tx_gjotiger {
 
     settings {
 
+        placeholder{
+            imageDefault100 = http://via.placeholder.com/100/f8f9fa
+            imageDisabled100 = http://via.placeholder.com/100/dee2e6/?text=disabled
+            imageDefault150 = http://via.placeholder.com/150/f8f9fa
+            imageDisabled150 = http://via.placeholder.com/150/dee2e6/?text=disabled
+        }
+
+
+
+        productset{
+            alu-80 {
+                synchron {
+                    maximumDoorWidth = 1000
+                }
+                telescop2 {
+                    minimumDoorWidth = 600
+                    maximumDoorWidth = 1200
+                    minimumDoorThickness = 35
+                    maximumDoorThickness = 50
+                }
+                telescop3 {
+                    minimumDoorWidth = 600
+                    maximumDoorWidth = 1200
+                    minimumDoorThickness = 35
+                    maximumDoorThickness = 50
+                    maximumDoorWeight = 55
+                }
+            }
+            alu-250 {
+                synchron {
+                    maximumDoorWeight = 200
+                }
+            }
+
+        }
+
     }
 
     persistence {
