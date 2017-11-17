@@ -53,7 +53,7 @@ class ProductSetRepository extends AbstractRepository
         $query->setOrderings(
             array(
                 'is_featured' => QueryInterface::ORDER_DESCENDING,
-                'name' => QueryInterface::ORDER_ASCENDING
+                'name'        => QueryInterface::ORDER_ASCENDING
             )
         );
 
@@ -64,19 +64,20 @@ class ProductSetRepository extends AbstractRepository
     {
 
         $pluginSignature = 'tx_gjotiger_product[';
-        $query = $this->createQuery();
+        $query           = $this->createQuery();
 
-//        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($productFinderFilter);
-//        exit;
+                \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($productFinderFilter);
+                exit;
 
         //        https://docs.typo3.org/typo3cms/ExtbaseFluidBook/6-Persistence/3-implement-individual-database-queries.html
-        $constraints = array();
+        $constraints   = array();
         $constraints[] = $query->equals('is_accessory_kit', 0);
+        $constraintsNotFoundHelper = $query->equals('name', 'IsNotFound');
 
-        if($productFinderFilter){
+        if ($productFinderFilter) {
 
             if (isset($productFinderFilter[$pluginSignature . 'material'])) {
-                if($productFinderFilter[$pluginSignature . 'material'] == 'wood'){
+                if ($productFinderFilter[$pluginSignature . 'material'] == 'wood') {
                     $constraints[] = $query->equals('filterMaterialWood', 1);
                 }
                 if ($productFinderFilter[$pluginSignature . 'material'] == 'glas') {
@@ -94,29 +95,32 @@ class ProductSetRepository extends AbstractRepository
             }
 
             if (isset($productFinderFilter[$pluginSignature . 'doorThickness'])) {
-                $constraints[] = $query->lessThanOrEqual('minimumDoorThickness', intval($productFinderFilter[$pluginSignature . 'doorThickness']));
-                $constraints[] = $query->greaterThanOrEqual('maximumDoorThickness', $productFinderFilter[$pluginSignature . 'doorThickness']);
+                $constraints[] = $query->lessThanOrEqual('minimumDoorThickness',
+                    intval($productFinderFilter[$pluginSignature . 'doorThickness']));
+                $constraints[] = $query->greaterThanOrEqual('maximumDoorThickness',
+                    $productFinderFilter[$pluginSignature . 'doorThickness']);
             }
             if (isset($productFinderFilter[$pluginSignature . 'doorWeight'])) {
-                $constraints[] = $query->lessThanOrEqual('minimumDoorWeight', intval($productFinderFilter[$pluginSignature . 'doorWeight']));
+                $constraints[] = $query->lessThanOrEqual('minimumDoorWeight',
+                    intval($productFinderFilter[$pluginSignature . 'doorWeight']));
                 $constraints[] = $query->greaterThanOrEqual('maximumDoorWeight', $productFinderFilter[$pluginSignature . 'doorWeight']);
             }
 
             if (isset($productFinderFilter[$pluginSignature . 'design'])) {
-                if($productFinderFilter[$pluginSignature . 'design'] == 'alu'){
+                if ($productFinderFilter[$pluginSignature . 'design'] == 'alu') {
                     $constraints[] = $query->logicalOr(
                         $query->like('name', '%Alu 100%'),
                         $query->like('name', '%Alu 150%')
                     );
                 }
-                if($productFinderFilter[$pluginSignature . 'design'] == 'customer'){
+                if ($productFinderFilter[$pluginSignature . 'design'] == 'customer') {
                     $constraints[] = $query->logicalOr(
                         $query->like('name', '%Alu 40%'),
                         $query->like('name', '%Alu 80%'),
                         $query->like('name', '%Alu 250%')
                     );
                 }
-                if($productFinderFilter[$pluginSignature . 'design'] == 'design'){
+                if ($productFinderFilter[$pluginSignature . 'design'] == 'design') {
                     $constraints[] = $query->logicalOr(
                         $query->like('name', '%Evolution%'),
                         $query->like('name', '%Retro%')
@@ -125,24 +129,118 @@ class ProductSetRepository extends AbstractRepository
             }
 
             if (isset($productFinderFilter[$pluginSignature . 'montage'])) {
-                if($productFinderFilter[$pluginSignature . 'montage'] == 'wall'){
+                if ($productFinderFilter[$pluginSignature . 'montage'] == 'wall') {
                     $constraints[] = $query->equals('filterMontageWall', 1);
                 }
-                if($productFinderFilter[$pluginSignature . 'montage'] == 'ceiling'){
+                if ($productFinderFilter[$pluginSignature . 'montage'] == 'ceiling') {
                     $constraints[] = $query->equals('filterMontageCeiling', 1);
                 }
             }
 
-
-
             if (isset($productFinderFilter[$pluginSignature . 'montageWall'])) {
-                if($productFinderFilter[$pluginSignature . 'montageWall'] == 'ahead'){
+                if ($productFinderFilter[$pluginSignature . 'montageWall'] == 'ahead') {
                     $constraints[] = $query->equals('filterMontageAhead', 1);
                 }
-                if($productFinderFilter[$pluginSignature . 'montageWall'] == 'in'){
+                if ($productFinderFilter[$pluginSignature . 'montageWall'] == 'in') {
                     $constraints[] = $query->equals('filterMontageIn', 1);
                 }
             }
+
+            if (isset($productFinderFilter[$pluginSignature . 'synchron'])) {
+                if ($productFinderFilter[$pluginSignature . 'synchron']) {
+
+                    $constraintsAlu80Syncron = $constraintsNotFoundHelper;
+                    if ($productFinderFilter[$pluginSignature . 'doorWidth'] <= $this->settings['productset']['alu-80']['synchron']['maximumDoorWidth']) {
+                        $constraintsAlu80Syncron = $query->equals('name', 'ALU 80 NEO');
+                    }
+
+                    $constraintsAlu250Syncron = $constraintsNotFoundHelper;
+                    if ($productFinderFilter[$pluginSignature . 'doorWeight'] <= $this->settings['productset']['alu-250']['synchron']['maximumDoorWeight']) {
+                        $constraintsAlu250Syncron = $query->like('name', '%Alu 250%');
+                    }
+
+                    $constraints[] = $query->logicalOr(
+                        $query->like('name', '%synchron%'),
+                        $constraintsAlu80Syncron,
+                        $constraintsAlu250Syncron
+                    );
+                }
+            }
+
+            if (isset($productFinderFilter[$pluginSignature . 'telescop2'])) {
+                if ($productFinderFilter[$pluginSignature . 'telescop2']) {
+
+                    $constraintsAlu80Telescop2 = $constraintsNotFoundHelper;
+                    
+                    $doorWidth = $productFinderFilter[$pluginSignature . 'doorWidth'];
+                    $minimumDoorWidth = $this->settings['productset']['alu-80']['telescop2']['minimumDoorWidth'];
+                    $maximumDoorWidth = $this->settings['productset']['alu-80']['telescop2']['maximumDoorWidth'];
+                    
+                    $doorThickness = $productFinderFilter[$pluginSignature . 'doorThickness'];
+                    $minimumDoorThickness = $this->settings['productset']['alu-80']['telescop2']['minimumDoorThickness'];
+                    $maximumDoorThickness = $this->settings['productset']['alu-80']['telescop2']['maximumDoorThickness'];
+
+                    if ($doorWidth >= $minimumDoorWidth && $doorWidth <= $maximumDoorWidth && $doorThickness >= $minimumDoorThickness && $doorThickness <= $maximumDoorThickness) {
+                        $constraintsAlu80Telescop2 = $query->equals('name', 'ALU 80 NEO');
+                    }
+
+                    $constraints[] = $query->logicalOr(
+                        $query->like('name', '%Teleskop 2%'),
+                        $constraintsAlu80Telescop2
+                    );
+                }
+            }
+
+            if (isset($productFinderFilter[$pluginSignature . 'telescop3'])) {
+                if ($productFinderFilter[$pluginSignature . 'telescop3']) {
+
+                    $constraintsAlu80Telescop3 = $constraintsNotFoundHelper;
+
+                    $doorWidth = $productFinderFilter[$pluginSignature . 'doorWidth'];
+                    $minimumDoorWidth = $this->settings['productset']['alu-80']['telescop3']['minimumDoorWidth'];
+                    $maximumDoorWidth = $this->settings['productset']['alu-80']['telescop3']['maximumDoorWidth'];
+
+                    $doorThickness = $productFinderFilter[$pluginSignature . 'doorThickness'];
+                    $minimumDoorThickness = $this->settings['productset']['alu-80']['telescop3']['minimumDoorThickness'];
+                    $maximumDoorThickness = $this->settings['productset']['alu-80']['telescop3']['maximumDoorThickness'];
+                    
+                    $doorWeight = $productFinderFilter[$pluginSignature . 'doorWeight'];
+                    $maximumDoorWeight = $this->settings['productset']['alu-80']['telescop3']['maximumDoorWeight'];
+
+                    if ($doorWidth >= $minimumDoorWidth && $doorWidth <= $maximumDoorWidth
+                        && $doorThickness >= $minimumDoorThickness && $doorThickness <= $maximumDoorThickness
+                        && $doorWeight <= $maximumDoorWeight) {
+                        $constraintsAlu80Telescop3 = $query->equals('name', 'ALU 80 NEO');
+                    }
+
+                    $constraints[] = $query->logicalOr(
+                        $query->like('name', '%Teleskop 3%'),
+                        $constraintsAlu80Telescop3
+                    );
+                }
+            }
+
+            if (isset($productFinderFilter[$pluginSignature . 't-fold'])) {
+                if ($productFinderFilter[$pluginSignature . 't-fold']) {
+                    $constraints[] = $query->like('name', '%T-FOLD%');
+                }
+            }
+
+            if (isset($productFinderFilter[$pluginSignature . 'et3'])) {
+                if ($productFinderFilter[$pluginSignature . 'et3']) {
+                    $constraints[] = $query->like('name', '%ET3%');
+                }
+            }
+
+            if (isset($productFinderFilter[$pluginSignature . 'soft-close'])) {
+                if ($productFinderFilter[$pluginSignature . 'soft-close']) {
+                    $constraints[] = $query->logicalAnd(
+                        $query->lessThanOrEqual('minimumDoorWidthSoftClose',intval($productFinderFilter[$pluginSignature . 'doorWidth'])),
+                        $query->greaterThan('minimumDoorWidthSoftClose', 0)
+                    );
+                }
+            }
+
         }
 
         $query->matching($query->logicalAnd($constraints));
@@ -157,7 +255,7 @@ class ProductSetRepository extends AbstractRepository
         $query->setOrderings(
             array(
                 'is_featured' => QueryInterface::ORDER_DESCENDING,
-                'name' => QueryInterface::ORDER_ASCENDING
+                'name'        => QueryInterface::ORDER_ASCENDING
             )
         );
 
