@@ -498,6 +498,69 @@ return array(
             ],
         ],
 
+        'filter_design_customer' => [
+            'label'  => $lll . $table . '.filter_design_customer',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_design_alu' => [
+            'label'  => $lll . $table . '.filter_design_alu',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_design_design' => [
+            'label'  => $lll . $table . '.filter_design_design',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_soft_close' => [
+            'label'  => $lll . $table . '.filter_soft_close',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_et3' => [
+            'label'  => $lll . $table . '.filter_et3',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_tfold' => [
+            'label'  => $lll . $table . '.filter_tfold',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_synchron' => [
+            'label'  => $lll . $table . '.filter_synchron',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_telescop2' => [
+            'label'  => $lll . $table . '.filter_telescop2',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_telescop3' => [
+            'label'  => $lll . $table . '.filter_telescop3',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
     ),
 
     'interface' => array(
@@ -539,6 +602,16 @@ return array(
               filter_montage_in,
               filter_montage_wall,
               filter_montage_ceiling,
+              filter_design_customer,
+              filter_design_alu,
+              filter_design_design,
+              filter_soft_close,
+              filter_et3,
+              filter_tfold,
+              filter_synchron,
+              filter_telescop2,
+              filter_telescop3,
+              
             
               product_set_variant_groups,
               products,    
@@ -596,6 +669,8 @@ return array(
                         --div--;' . $lll . $table . '.tabs.filter,
                               --palette--;' . $lll . $table . '.palettes.material;material,
                               filter_wingcount,
+                              --palette--;' . $lll . $table . '.palettes.design;design,
+                              --palette--;' . $lll . $table . '.palettes.configuration;configuration,
                               --palette--;' . $lll . $table . '.palettes.montage;montage,
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, 
                             hidden,
@@ -607,6 +682,20 @@ return array(
         'material' => array('showitem' => '
                 filter_material_wood,
                 filter_material_glas
+        '),
+        'design' => array('showitem' => '
+                filter_design_customer,
+                filter_design_alu,
+                filter_design_design
+      
+         '),
+        'configuration' => array('showitem' => '
+                  filter_soft_close,
+                  filter_et3,
+                  filter_tfold,
+                  filter_synchron,
+                  filter_telescop2,
+                  filter_telescop3
         '),
         'montage' => array('showitem' => '
                 filter_montage_ahead,

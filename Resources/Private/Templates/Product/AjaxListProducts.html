@@ -12,121 +12,187 @@
     <f:section name="javaScript">
         <script type="text/javascript">
             sessionStorage.setItem('ajaxListProductsCount', {productSetsCount});
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
         </script>
     </f:section>
 
     <f:section name="list">
+        <f:debug inline="false" title="">{_all}</f:debug>
         <f:for each="{productSets}" as="productSet" iteration="iteration">
             <f:render section="listItem" arguments="{_all}"/>
         </f:for>
     </f:section>
 
     <f:section name="listItem">
-        <f:link.page pageUid="15">
-            <div class="border-tiger-orange">
-
-                <div class="row">
-                    <div class="col-3">
-                        <f:render partial="Utilities/Image"
-                                  section="main"
-                                  arguments="{
-                                      width: '175',
-                                      height: '175'
+        <div class="border-gray-300 p-3 mb-3">
+            <div class="row">
+                <div class="col-4">
+                    <f:render partial="Utilities/Image"
+                              section="main"
+                              arguments="{
+                                      falObject: productSet.image,
+                                      width: '200',
+                                      height: '200c',
+                                      maxWidth: '200'
+                                      class: 'border-gray-300'
                                       }"/>
-                    </div>
-                    <div class="col-9">
-                        <div class="row">
-                            <div class="col-12">
-                                <f:render partial="Utilities/Headline"
-                                          section="h3"
-                                          arguments="{
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-12">
+                            <f:render partial="Utilities/Headline"
+                                      section="h4"
+                                      arguments="{
                                               content: '{productSet.name}'
                                               }"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <ul>
+                                <li>
+                                    Flügel: {productSet.filterWingcount}
+                                </li>
+                                <li>
+                                    Breite: {productSet.minimumDoorWidth} - {productSet.maximumDoorWidth} mm
+                                </li>
+                                <li>
+                                    Dicke: {productSet.minimumDoorThickness} - {productSet.maximumDoorThickness} mm
+                                </li>
+                                <li>
+                                    Gewicht: max. {productSet.maximumDoorWeight} kg
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-7">
+                            <div class="row">
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterMaterialWood}', then: 'für Holz geeignet', else: 'nicht für Holz geeignet')}">
+                                    <img class="border-gray-300 {f:if(condition: '{productSet.filterMaterialWood}', then: '', else: 'opacity-50')}"
+                                         src="fileadmin/user_upload/productgroup/accessory_kit/icon_sidestop_holz_1_1.jpg"
+                                         width="45">
+                                </div>
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterMaterialGlas}', then: 'für Glas geeignet', else: 'nicht für Glas geeignet')}">
+                                    <img class="border-gray-300 {f:if(condition: '{productSet.filterMaterialGlas}', then: '', else: 'opacity-50')}"
+                                         src="fileadmin/user_upload/productgroup/accessory_kit/icon_glas_1_1.jpg"
+                                         width="45">
+                                </div>
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterMaterialGlas}', then: 'bauseitige Verblendung', else: '')}">
+                                    <img class="border-gray-300 ml-3 {f:if(condition: '{productSet.filterMaterialGlas}', then: '', else: 'opacity-50')}" src="{settings.placeholder.imageDefault100}" width="45">
+                                </div>
+
+                                <!--filterDesignCustomer-->
+                                <!--filterDesignAlu-->
+                                <!--filterDesignDesign-->
+                                <!--filterSoftClose-->
+                                <!--filterEt3-->
+                                <!--filterTfold-->
+                                <!--filterSynchron-->
+                                <!--filterTelescop2-->
+                                <!--filterTelescop3-->
+
+
+
+                                <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                     width="45" height="45" alt="" title="Wabeneinlage">
+                                <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                     width="45" height="45" alt="" title="Wabeneinlage">
+
+                            </div>
+
+                            <div class="row">
+                                <f:if condition="{productSet.filterMaterialWood}">
+                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                         width="45" height="45" alt="" title="Wabeneinlage">
+                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                         width="45" height="45" alt="" title="Wabeneinlage">
+                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                         width="45" height="45" alt="" title="Wabeneinlage">
+                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                         width="45" height="45" alt="" title="Wabeneinlage">
+                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                         width="45" height="45" alt="" title="Wabeneinlage">
+                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                         width="45" height="45" alt="" title="Wabeneinlage">
+                                </f:if>
+                                <f:if condition="{productSet.filterMaterialGlas}">
+                                </f:if>
+
+                            </div>
+                            <div class="row">
+                                <f:if condition="{productSet.filterMaterialWood}">
+                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                         width="45" height="45" alt="" title="Wabeneinlage">
+                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                         width="45" height="45" alt="" title="Wabeneinlage">
+                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                         width="45" height="45" alt="" title="Wabeneinlage">
+                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
+                                         width="45" height="45" alt="" title="Wabeneinlage">
+                                </f:if>
+                                <f:if condition="{productSet.filterMaterialGlas}">
+                                </f:if>
+
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-4"> <!-- Eigenschaften -->
-                                <f:render partial="Utilities/Headline"
-                                          section="h4"
-                                          arguments="{
-                                              content: '',
-                                              length: '15'
-                                              }"/>
-                                <ul>
-                                    <li>Geeignet für:
-                                        <f:if condition="{productSet.filterMaterialWood}">
-                                            Holz
-                                        </f:if>
-                                        <f:if condition="{productSet.filterMaterialWood} && {productSet.filterMaterialGlas}">
-                                             &
-                                        </f:if>
-                                        <f:if condition="{productSet.filterMaterialGlas}">
-                                            Glas
-                                        </f:if>
-                                    </li>
-                                    <li>
-                                        Mögliche Flügelanzahl: {productSet.filterWingcount}
-                                    </li>
-                                    <li>
-                                        Breite: {productSet.minimumDoorWidth} - {productSet.maximumDoorWidth} mm
-                                    </li>
-                                    <li>Tür-Blatt-Dicke: {productSet.minimumDoorThickness} - {productSet.maximumDoorThickness} mm</li>
-                                    <li>Maximales Gesamt-Gewicht: {productSet.maximumDoorWeight} kg</li>
+                    </div>
+                    <!--<div class="row">-->
+                    <!--<div class="col-4"> &lt;!&ndash; Eigenschaften &ndash;&gt;-->
 
-                                    <li>Verblendung</li>
-                                </ul>
-                            </div>
-                            <div class="col-4"> <!--Zusatz-Ausstattungen-->
-                                <f:render partial="Utilities/Headline"
-                                          section="h4"
-                                          arguments="{
-                                              length: '15',
-                                              content: ''
-                                              }"/>
-                                <ul>
-                                    <li>Dämpfung</li>
-                                    <li>Automatik</li>
-                                    <li>Syncron</li>
-                                    <li>Teleskop</li>
-                                    <li>Raumspartür T-FOLD</li>
-                                </ul>
-                            </div>
-                            <div class="col-4"> <!--Montagemöglichkeiten-->
-                                <f:render partial="Utilities/Headline"
-                                          section="h4"
-                                          arguments="{
-                                              length: '15',
-                                              content: ''
-                                              }"/>
-                                <ul>
-                                    <f:if condition="{productSet.filterMontageWall}">
-                                        <li>an der Wand</li>
-                                    </f:if>
-                                    <f:if condition="{productSet.filterMontageCeiling}">
-                                        <li>an der Decke</li>
-                                    </f:if>
-                                    <f:if condition="{productSet.filterMontageAhead}">
-                                        <li>vor der Wand verlaufend</li>
-                                    </f:if>
-                                    <f:if condition="{productSet.filterMontageIn}">
-                                        <li>in der Wand verlaufend</li>
-                                    </f:if>
-                                </ul>
-                            </div>
+
+                    <!--</div>-->
+                    <!--<div class="col-4"> &lt;!&ndash;Zusatz-Ausstattungen&ndash;&gt;-->
+                    <!--<f:render partial="Utilities/Headline"-->
+                    <!--section="h4"-->
+                    <!--arguments="{-->
+                    <!--length: '15',-->
+                    <!--content: ''-->
+                    <!--}"/>-->
+                    <!--<ul>-->
+                    <!--<li>Dämpfung</li>-->
+                    <!--<li>Automatik</li>-->
+                    <!--<li>Syncron</li>-->
+                    <!--<li>Teleskop</li>-->
+                    <!--<li>Raumspartür T-FOLD</li>-->
+                    <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="col-4"> &lt;!&ndash;Montagemöglichkeiten&ndash;&gt;-->
+                    <!--<f:render partial="Utilities/Headline"-->
+                    <!--section="h4"-->
+                    <!--arguments="{-->
+                    <!--length: '15',-->
+                    <!--content: ''-->
+                    <!--}"/>-->
+                    <!--<ul>-->
+                    <!--<f:if condition="{productSet.filterMontageWall}">-->
+                    <!--<li>an der Wand</li>-->
+                    <!--</f:if>-->
+                    <!--<f:if condition="{productSet.filterMontageCeiling}">-->
+                    <!--<li>an der Decke</li>-->
+                    <!--</f:if>-->
+                    <!--<f:if condition="{productSet.filterMontageAhead}">-->
+                    <!--<li>vor der Wand verlaufend</li>-->
+                    <!--</f:if>-->
+                    <!--<f:if condition="{productSet.filterMontageIn}">-->
+                    <!--<li>in der Wand verlaufend</li>-->
+                    <!--</f:if>-->
+                    <!--</ul>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <div class="row">
+                        <div class="col text-right m-2">
+                            <button type="button" class="btn btn-outline-secondary mx-2">Details</button>
+                            <button type="button" class="btn btn-outline-secondary">Anfragen</button>
                         </div>
-
-                        <ul>
-                            <li>Link zum Anfrageformular</li>
-                            <li>Link zur Detailpage</li>
-                            <li>Link auf Detailpage zum Anfrageformular</li>
-                        </ul>
-
                     </div>
 
-                </div>
-            </div>
 
-        </f:link.page>
+                </div>
+
+            </div>
+        </div>
+
 
     </f:section>
 

@@ -260,6 +260,33 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.filter_montage_ceiling" >
                 <source>Decken-Montage</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_design_customer" >
+                <source>bauseitig</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_design_alu" >
+                <source>Alu Schiene</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_design_design" >
+                <source>Design Beschlag</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_soft_close" >
+                <source>Dämpfung</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_et3" >
+                <source>Automatik</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_tfold" >
+                <source>Faltbeschlag</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_synchron" >
+                <source>Synchron</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_telescop2" >
+                <source>Teleskop 2</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_telescop3" >
+                <source>Teleskop 3</source>
+            </trans-unit>
 
             <trans-unit id="tx_gjotiger_domain_model_productset.select">
                 <source>Bitte wählen...</source>
@@ -287,6 +314,12 @@
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.palettes.material">
                 <source>Montage</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.palettes.design">
+                <source>Design</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.palettes.configuration">
+                <source>Ausstattung</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.palettes.montage">
                 <source>Montage</source>

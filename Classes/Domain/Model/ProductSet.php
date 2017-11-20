@@ -228,6 +228,51 @@ class ProductSet extends AbstractModel
     /**
      * @var bool
      */
+    protected $filterDesignCustomer = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterDesignAlu = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterDesignDesign = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterSoftClose = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterEt3 = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterTfold = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterSynchron = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterTelescop2 = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterTelescop3 = false;
+
+    /**
+     * @var bool
+     */
     protected $filterMontageAhead = false;
 
     /**
@@ -640,5 +685,77 @@ class ProductSet extends AbstractModel
     public function isFilterMontageCeiling()
     {
         return $this->filterMontageCeiling;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterDesignCustomer()
+    {
+        return $this->filterDesignCustomer;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterDesignAlu()
+    {
+        return $this->filterDesignAlu;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterDesignDesign()
+    {
+        return $this->filterDesignDesign;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterSoftClose()
+    {
+        return $this->filterSoftClose;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterEt3()
+    {
+        return $this->filterEt3;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterTfold()
+    {
+        return $this->filterTfold;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterSynchron()
+    {
+        return $this->filterSynchron;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterTelescop2()
+    {
+        return $this->filterTelescop2;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterTelescop3()
+    {
+        return $this->filterTelescop3;
     }
 }
