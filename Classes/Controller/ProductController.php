@@ -66,9 +66,10 @@ class ProductController extends AbstractController
 
     public function ajaxProductSetAction()
     {
+        $limit = 5;
         $getParams    = GeneralUtility::_GET();
         $searchString = $getParams['tx_gjotiger']['searchString'];
-        $productSets  = $this->productSetRepository->findBySearchString($searchString);
+        $productSets  = $this->productSetRepository->findBySearchString($searchString, $limit);
 
         $this->view->assign('searchString', $searchString);
         $this->view->assign('productSets', $productSets);
@@ -96,5 +97,4 @@ class ProductController extends AbstractController
         $this->view->assign('productSets', $productSets);
         $this->view->assign('productSetsCount', $productSetsCount);
     }
-
 }

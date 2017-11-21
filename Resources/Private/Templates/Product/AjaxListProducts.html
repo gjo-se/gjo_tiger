@@ -19,7 +19,6 @@
     </f:section>
 
     <f:section name="list">
-        <f:debug inline="false" title="">{_all}</f:debug>
         <f:for each="{productSets}" as="productSet" iteration="iteration">
             <f:render section="listItem" arguments="{_all}"/>
         </f:for>
@@ -29,28 +28,32 @@
         <div class="border-gray-300 p-3 mb-3">
             <div class="row">
                 <div class="col-4">
-                    <f:render partial="Utilities/Image"
-                              section="main"
-                              arguments="{
+                    <f:link.page pageUid="{productSet.pages.uid}">
+                        <f:render partial="Utilities/Image"
+                                  section="main"
+                                  arguments="{
                                       falObject: productSet.image,
                                       width: '200',
                                       height: '200c',
                                       maxWidth: '200'
                                       class: 'border-gray-300'
                                       }"/>
+                    </f:link.page>
                 </div>
                 <div class="col-8">
                     <div class="row">
                         <div class="col-12">
-                            <f:render partial="Utilities/Headline"
-                                      section="h4"
-                                      arguments="{
+                            <f:link.page pageUid="{productSet.pages.uid}">
+                                <f:render partial="Utilities/Headline"
+                                          section="h4"
+                                          arguments="{
                                               content: '{productSet.name}'
                                               }"/>
+                            </f:link.page>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-5">
+                        <div class="col-4">
                             <ul>
                                 <li>
                                     Flügel: {productSet.filterWingcount}
@@ -66,124 +69,71 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-7">
-                            <div class="row">
+                        <div class="col-8 pl-2">
+                            <div class="row mb-1">
                                 <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterMaterialWood}', then: 'für Holz geeignet', else: 'nicht für Holz geeignet')}">
-                                    <img class="border-gray-300 {f:if(condition: '{productSet.filterMaterialWood}', then: '', else: 'opacity-50')}"
+                                    <img class="border-gray-500 mr-1 {f:if(condition: '{productSet.filterMaterialWood}', then: '', else: 'opacity-50')}"
                                          src="fileadmin/user_upload/productgroup/accessory_kit/icon_sidestop_holz_1_1.jpg"
                                          width="45">
                                 </div>
                                 <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterMaterialGlas}', then: 'für Glas geeignet', else: 'nicht für Glas geeignet')}">
-                                    <img class="border-gray-300 {f:if(condition: '{productSet.filterMaterialGlas}', then: '', else: 'opacity-50')}"
+                                    <img class="border-gray-500 mr-3 {f:if(condition: '{productSet.filterMaterialGlas}', then: '', else: 'opacity-50')}"
                                          src="fileadmin/user_upload/productgroup/accessory_kit/icon_glas_1_1.jpg"
                                          width="45">
                                 </div>
-                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterMaterialGlas}', then: 'bauseitige Verblendung', else: '')}">
-                                    <img class="border-gray-300 ml-3 {f:if(condition: '{productSet.filterMaterialGlas}', then: '', else: 'opacity-50')}" src="{settings.placeholder.imageDefault100}" width="45">
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterDesignCustomer}', then: 'bauseitige Verblendung: ja', else: 'bauseitige Verblendung: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterDesignCustomer}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
                                 </div>
-
-                                <!--filterDesignCustomer-->
-                                <!--filterDesignAlu-->
-                                <!--filterDesignDesign-->
-                                <!--filterSoftClose-->
-                                <!--filterEt3-->
-                                <!--filterTfold-->
-                                <!--filterSynchron-->
-                                <!--filterTelescop2-->
-                                <!--filterTelescop3-->
-
-
-
-                                <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                     width="45" height="45" alt="" title="Wabeneinlage">
-                                <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                     width="45" height="45" alt="" title="Wabeneinlage">
-
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterDesignAlu}', then: 'Alu-Verblendung: ja', else: 'Alu-Verblendung: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterDesignAlu}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterDesignDesign}', then: 'Design-Beschlag: ja', else: 'Design-Beschlag: nein')}">
+                                    <img class="border-gray-500" src="{f:if(condition: '{productSet.filterDesignDesign}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
                             </div>
 
-                            <div class="row">
-                                <f:if condition="{productSet.filterMaterialWood}">
-                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                         width="45" height="45" alt="" title="Wabeneinlage">
-                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                         width="45" height="45" alt="" title="Wabeneinlage">
-                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                         width="45" height="45" alt="" title="Wabeneinlage">
-                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                         width="45" height="45" alt="" title="Wabeneinlage">
-                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                         width="45" height="45" alt="" title="Wabeneinlage">
-                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                         width="45" height="45" alt="" title="Wabeneinlage">
-                                </f:if>
-                                <f:if condition="{productSet.filterMaterialGlas}">
-                                </f:if>
-
+                            <div class="row mb-1">
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterSoftClose}', then: 'Dämpfung: ja', else: 'Dämpfung: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterSoftClose}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterEt3}', then: 'Automatic: ja', else: 'Automatic: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterEt3}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterTfold}', then: 'T-FOLD: ja', else: 'T-FOLD: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterTfold}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterSynchron}', then: 'Synchron: ja', else: 'Synchron: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterSynchron}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterTelescop2}', then: 'Teleskop 2-fach: ja', else: 'Teleskop 2-fach: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterTelescop2}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterTelescop3}', then: 'Teleskop 3-fach: ja', else: 'Teleskop 3-fach: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterTelescop3}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
                             </div>
-                            <div class="row">
-                                <f:if condition="{productSet.filterMaterialWood}">
-                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                         width="45" height="45" alt="" title="Wabeneinlage">
-                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                         width="45" height="45" alt="" title="Wabeneinlage">
-                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                         width="45" height="45" alt="" title="Wabeneinlage">
-                                    <img class="border-gray-300" src="fileadmin/_processed_/2/d/csm_specific-material-wabe_50e8424036.gif"
-                                         width="45" height="45" alt="" title="Wabeneinlage">
-                                </f:if>
-                                <f:if condition="{productSet.filterMaterialGlas}">
-                                </f:if>
-
+                            <div class="row mb-1">
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterMontageWall}', then: 'Wandmontage: ja', else: 'Wandmontage: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterMontageWall}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterMontageCeiling}', then: 'Deckenmontage: ja', else: 'Deckenmontage: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterMontageCeiling}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterMontageAhead}', then: 'Montage vor der Wand: ja', else: 'Montage vor der Wand: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterMontageAhead}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
+                                <div data-toggle="tooltip" data-placement="bottom" title="{f:if(condition: '{productSet.filterMontageIn}', then: 'Montage in der Wand: ja', else: 'Montage in der Wand: nein')}">
+                                    <img class="border-gray-500 mr-1" src="{f:if(condition: '{productSet.filterMontageIn}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}" width="45">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!--<div class="row">-->
-                    <!--<div class="col-4"> &lt;!&ndash; Eigenschaften &ndash;&gt;-->
-
-
-                    <!--</div>-->
-                    <!--<div class="col-4"> &lt;!&ndash;Zusatz-Ausstattungen&ndash;&gt;-->
-                    <!--<f:render partial="Utilities/Headline"-->
-                    <!--section="h4"-->
-                    <!--arguments="{-->
-                    <!--length: '15',-->
-                    <!--content: ''-->
-                    <!--}"/>-->
-                    <!--<ul>-->
-                    <!--<li>Dämpfung</li>-->
-                    <!--<li>Automatik</li>-->
-                    <!--<li>Syncron</li>-->
-                    <!--<li>Teleskop</li>-->
-                    <!--<li>Raumspartür T-FOLD</li>-->
-                    <!--</ul>-->
-                    <!--</div>-->
-                    <!--<div class="col-4"> &lt;!&ndash;Montagemöglichkeiten&ndash;&gt;-->
-                    <!--<f:render partial="Utilities/Headline"-->
-                    <!--section="h4"-->
-                    <!--arguments="{-->
-                    <!--length: '15',-->
-                    <!--content: ''-->
-                    <!--}"/>-->
-                    <!--<ul>-->
-                    <!--<f:if condition="{productSet.filterMontageWall}">-->
-                    <!--<li>an der Wand</li>-->
-                    <!--</f:if>-->
-                    <!--<f:if condition="{productSet.filterMontageCeiling}">-->
-                    <!--<li>an der Decke</li>-->
-                    <!--</f:if>-->
-                    <!--<f:if condition="{productSet.filterMontageAhead}">-->
-                    <!--<li>vor der Wand verlaufend</li>-->
-                    <!--</f:if>-->
-                    <!--<f:if condition="{productSet.filterMontageIn}">-->
-                    <!--<li>in der Wand verlaufend</li>-->
-                    <!--</f:if>-->
-                    <!--</ul>-->
-                    <!--</div>-->
-                    <!--</div>-->
                     <div class="row">
                         <div class="col text-right m-2">
-                            <button type="button" class="btn btn-outline-secondary mx-2">Details</button>
-                            <button type="button" class="btn btn-outline-secondary">Anfragen</button>
+                            <button type="button" class="btn btn-outline-secondary mx-2">
+                                <f:link.page pageUid="{productSet.pages.uid}">Details</f:link.page>
+                            </button>
+                            <!--<button type="button" class="btn btn-outline-secondary">Anfragen</button>-->
                         </div>
                     </div>
 
