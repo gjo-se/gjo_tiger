@@ -16,11 +16,11 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 px-3">
                         <f:render section="variants" arguments="{_all}"/>
                         <f:render section="technicalnots" arguments="{_all}"/>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 px-3">
                         <f:render section="downloads" arguments="{productSet: productSet, accordionId: 'productSetaccordion'}"/>
                         <f:render section="productGroupLinks" arguments="{_all}"/>
                     </div>
@@ -31,7 +31,7 @@
         <div class="content">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 px-3">
                         <f:render section="accessoryKit" arguments="{_all}"/>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
 
     <f:section name="images">
 
-        <div class="col-lg-5">
+        <div class="col-lg-5 pr-3">
             <div class="productset-image-main-slider">
 
                 <f:for each="{productSet.image}" as="image">
@@ -79,7 +79,7 @@
 
             </div>
 
-            <div class="productset-product-main-slider hide">
+            <div class="productset-product-main-slider d-none">
 
                 <f:for each="{productSet.products}" as="product">
                     <f:for each="{product.image}" as="image">
@@ -110,12 +110,12 @@
 
         </div>
 
-        <div class="col-lg-7">
+        <div class="col-lg-7 pl-3">
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h4>Abbildungen & Technische Zeichnungen</h4>
-                    <div class="productset-image-slider vcenter">
+                    <h4 class="mb-2">Abbildungen & Technische Zeichnungen</h4>
+                    <div class="productset-image-slider vcenter mb-3">
 
                         <f:for each="{productSet.image}" as="image">
                             <div class="productset-slide">
@@ -146,7 +146,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h4>Produkte</h4>
+                    <h4 class="mb-2">Produkte</h4>
                     <div class="productset-product-slider vcenter">
 
                         <f:for each="{productSet.products}" as="product">
@@ -172,8 +172,8 @@
     </f:section>
 
     <f:section name="variants">
-        <h2 class="border-bottom">
-            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.variants')}</h2>
+        <h3 class="border-bottom">
+            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.variants')}</h3>
 
         <f:for each="{productSet.productSetVariantGroups}" as="productSetVariantGroup">
 
@@ -185,55 +185,57 @@
             </f:if>
 
 
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>{productSetVariantGroup.tableHeadline}<br></th>
-                    <th>
-                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.article_number')}
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <f:for each="{productSetVariantGroup.productSetVariants}" as="productSetVariant">
+            <div class="mb-5">
+                <table class="table">
+                    <thead>
                     <tr>
-                        <td>{productSetVariant.name}</td>
-                        <td>{productSetVariant.articleNumber}</td>
+                        <th>{productSetVariantGroup.tableHeadline}<br></th>
+                        <th>
+                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.article_number')}
+                        </th>
                     </tr>
-                </f:for>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <f:for each="{productSetVariantGroup.productSetVariants}" as="productSetVariant">
+                        <tr>
+                            <td>{productSetVariant.name}</td>
+                            <td>{productSetVariant.articleNumber}</td>
+                        </tr>
+                    </f:for>
+                    </tbody>
+                </table>
+            </div>
         </f:for>
     </f:section>
 
     <f:section name="technicalnots">
         <f:if condition="{productSet.showTechnicalnots}">
-            <h2 class="border-bottom">
+            <h3 class="border-bottom">
                 {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots')}
-            </h2>
+            </h3>
         </f:if>
 
-        <div>
+        <div class="mb-5">
 
             <!-- Nav tabs -->
             <ul class="nav nav-tabs nav-justified" role="tablist" id="technicalnots">
                 <f:if condition="{productSet.showTechnicalnots}">
-                    <li role="presentation" class="active">
-                        <a href="#technical_nots" aria-controls="home" role="tab" data-toggle="tab">
+                    <li role="presentation" class="nav-item">
+                        <a href="#technical_nots" class="nav-link active" aria-controls="home" role="tab" data-toggle="tab">
                             Technische Hinweise
                         </a>
                     </li>
                 </f:if>
                 <f:if condition="{productSet.showDin}">
-                    <li role="presentation">
-                        <a href="#din" aria-controls="profile" role="tab" data-toggle="tab">
+                    <li role="presentation" class="nav-item">
+                        <a href="#din" class="nav-link" aria-controls="profile" role="tab" data-toggle="tab">
                             DIN EN 1527
                         </a>
                     </li>
                 </f:if>
                 <f:if condition="{productSet.invitationToTender}">
-                    <li role="presentation">
-                        <a href="#invitationToTender" aria-controls="messages" role="tab" data-toggle="tab">
+                    <li role="presentation" class="nav-item">
+                        <a href="#invitationToTender" class="nav-link" aria-controls="messages" role="tab" data-toggle="tab">
                             Ausschreibungstext
                         </a>
                     </li>
@@ -243,7 +245,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <f:if condition="{productSet.showTechnicalnots}">
-                    <div role="tabpanel" class="tab-pane fade in active tab-pane-technicalnots" id="technical_nots">
+                    <div role="tabpanel" class="tab-pane fade show active tab-pane-technicalnots" id="technical_nots">
                         <table>
                             <tbody>
                             <f:if condition="{productSet.maximumDoorWeight}">
@@ -417,17 +419,17 @@
     </f:section>
 
     <f:section name="downloads">
-        <h2 class="border-bottom">
+        <h3 class="border-bottom">
             {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.downloads')}
-        </h2>
+        </h3>
 
 
-        <div class="panel-group" id="{accordionId}" role="tablist" aria-multiselectable="true">
+        <div class="mb-3" id="{accordionId}" role="tablist" aria-multiselectable="true">
 
             <f:if condition="{productSet.download}">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="heading_download_{accordionId}">
-                        <h4 class="panel-title">
+                <div class="card mb-2">
+                    <div class="card-header" role="tab" id="heading_download_{accordionId}">
+                        <h4 class="card-title m-0">
                             <a role="button" data-toggle="collapse" data-parent="#{accordionId}" href="#collapse_download_{accordionId}"
                                aria-expanded="true"
                                aria-controls="collapseOne">
@@ -437,7 +439,7 @@
                     </div>
                     <div id="collapse_download_{accordionId}" class="panel-collapse collapse" role="tabpanel"
                          aria-labelledby="heading_download_{accordionId}">
-                        <div class="panel-body">
+                        <div class="card-body">
                             <ul class="orange-tick">
                                 <f:for each="{productSet.download}" as="file">
                                     <li><a href="{file.originalResource.publicUrl}" target="_blank">{file.originalResource.title}</a></li>
@@ -450,9 +452,9 @@
             </f:if>
 
             <f:if condition="{productSet.downloadEngineeringDrawing}">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="heading_downloadEngineeringDrawing_{accordionId}">
-                        <h4 class="panel-title">
+                <div class="card mb-2">
+                    <div class="card-header" role="tab" id="heading_downloadEngineeringDrawing_{accordionId}">
+                        <h4 class="card-title m-0">
                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#{accordionId}"
                                href="#collapse_downloadEngineeringDrawing_{accordionId}"
                                aria-expanded="false" aria-controls="collapseTwo">
@@ -462,7 +464,7 @@
                     </div>
                     <div id="collapse_downloadEngineeringDrawing_{accordionId}" class="panel-collapse collapse" role="tabpanel"
                          aria-labelledby="heading_downloadEngineeringDrawing_{accordionId}">
-                        <div class="panel-body">
+                        <div class="card-body">
                             <ul class="orange-tick">
                                 <f:for each="{productSet.downloadEngineeringDrawing}" as="file">
                                     <li><a href="{file.originalResource.publicUrl}" target="_blank">{file.originalResource.title}</a></li>
@@ -479,16 +481,16 @@
     <f:section name="productGroupLinks">
 
         <f:if condition="{productGroup.productSetTypes}">
-            <h2 class="border-bottom">
+            <h3 class="border-bottom">
                 {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.productGroupLinks')}
-            </h2>
+            </h3>
 
 
-            <div class="panel-group" id="productGroupAccordion" role="tablist" aria-multiselectable="true">
+            <div class="mb-3" id="productGroupAccordion" role="tablist" aria-multiselectable="true">
                 <f:for each="{productGroup.productSetTypes}" as="productSetType">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="heading_{productSetType.uid}">
-                            <h4 class="panel-title">
+                    <div class="card mb-2">
+                        <div class="card-header" role="tab" id="heading_{productSetType.uid}">
+                            <h4 class="card-title m-0">
                                 <a role="button" data-toggle="collapse" data-parent="#productGroupAccordion"
                                    href="#collapse_{productSetType.uid}" aria-expanded="false"
                                    aria-controls="collapse_{productSetType.uid}">
@@ -498,7 +500,7 @@
                         </div>
                         <div id="collapse_{productSetType.uid}" class="panel-collapse collapse" role="tabpanel"
                              aria-labelledby="heading_{productSetType.uid}">
-                            <div class="panel-body">
+                            <div class="card-body">
                                 <ul class="orange-tick">
                                     <f:for each="{productSetType.productSets}" as="productSet">
                                         <li>
@@ -519,65 +521,21 @@
     <f:section name="accessoryKit">
 
         <f:if condition="{productSet.productSets}">
-            <h2 class="border-bottom" id="accessoryKitHeadline">
+            <h3 class="border-bottom" id="accessoryKitHeadline">
                 {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.accessoryKit')}
-            </h2>
+            </h3>
         </f:if>
 
-        <!-- Nav tabs -->
-        <div class="row">
-            <ul class="nav" role="tablist" id="accessoryKit">
-
-                <f:if condition="{productSet.productSets -> f:count()} <= 3 ">
-                    <div class="col-lg-4">
-                        <f:for each="{productSet.productSets}" as="accessoryKit" iteration="iteration">
-                            <f:render section="accessoryKit-item" arguments="{accessoryKit: accessoryKit}"/>
-                        </f:for>
-                    </div>
-                </f:if>
-
-                <f:if condition="({productSet.productSets -> f:count()} > 3) && ({productSet.productSets -> f:count()} <= 6) ">
-                    <div class="col-lg-4">
-                        <f:for each="{productSet.productSets}" as="accessoryKit" iteration="iteration">
-                            <f:if condition="{iteration.cycle} <= 3 ">
-                                <f:render section="accessoryKit-item" arguments="{accessoryKit: accessoryKit}"/>
-                            </f:if>
-                        </f:for>
-                    </div>
-                    <div class="col-lg-4">
-                        <f:for each="{productSet.productSets}" as="accessoryKit" iteration="iteration">
-                            <f:if condition="({iteration.cycle} > 3) && {iteration.cycle} <= 6 ">
-                                <f:render section="accessoryKit-item" arguments="{accessoryKit: accessoryKit}"/>
-                            </f:if>
-                        </f:for>
-                    </div>
-                </f:if>
-
-                <f:if condition="({productSet.productSets -> f:count()} > 6) && ({productSet.productSets -> f:count()} <= 9) ">
-                    <div class="col-lg-4">
-                        <f:for each="{productSet.productSets}" as="accessoryKit" iteration="iteration">
-                            <f:if condition="{iteration.cycle} <= 3 ">
-                                <f:render section="accessoryKit-item" arguments="{accessoryKit: accessoryKit}"/>
-                            </f:if>
-                        </f:for>
-                    </div>
-                    <div class="col-lg-4">
-                        <f:for each="{productSet.productSets}" as="accessoryKit" iteration="iteration">
-                            <f:if condition="({iteration.cycle} > 3) && {iteration.cycle} <= 6 ">
-                                <f:render section="accessoryKit-item" arguments="{accessoryKit: accessoryKit}"/>
-                            </f:if>
-                        </f:for>
-                    </div>
-                    <div class="col-lg-4">
-                        <f:for each="{productSet.productSets}" as="accessoryKit" iteration="iteration">
-                            <f:if condition="({iteration.cycle} > 6) && {iteration.cycle} <= 9 ">
-                                <f:render section="accessoryKit-item" arguments="{accessoryKit: accessoryKit}"/>
-                            </f:if>
-                        </f:for>
-                    </div>
-                </f:if>
+        <div class="d-flex">
+            <ul class="nav" id="myTab" role="tablist">
+                <f:for each="{productSet.productSets}" as="accessoryKit" iteration="iteration">
+                    <f:render section="accessoryKit-item" arguments="{accessoryKit: accessoryKit}"/>
+                </f:for>
             </ul>
         </div>
+
+        <!-- Nav tabs -->
+
 
         <!-- Tab panes -->
         <div class="row">
@@ -593,24 +551,22 @@
 
     <f:section name="accessoryKit-item">
 
-        <div class="col-lg-4">
-            <li role="presentation" class="accessoryKit-item">
-                <a href="#id_{accessoryKit.uid}" aria-controls="id_{accessoryKit.uid}" role="tab" data-toggle="tab">
-                    <f:for each="{accessoryKit.icon}" as="image">
-                        <f:image src="{image.uid}"
-                                 treatIdAsReference="1"
-                                 class="accessoryKit-icon"
-                                 width="120"
-                        />
-                        <div class="accessoryKit-text">
-                            <span>{image.originalResource.title}</span>
-                        </div>
-                    </f:for>
+        <li class="nav-item accessoryKit-item mr-2">
+            <a href="#id_{accessoryKit.uid}" class="nav-link" aria-controls="id_{accessoryKit.uid}" role="tab" data-toggle="tab">
+                <f:for each="{accessoryKit.icon}" as="image">
+                    <f:image src="{image.uid}"
+                             treatIdAsReference="1"
+                             class="accessoryKit-icon"
+                             width="120"
+                    />
+                    <div class="accessoryKit-text">
+                        <span>{image.originalResource.title}</span>
+                    </div>
+                </f:for>
 
-                </a>
-            </li>
+            </a>
+        </li>
 
-        </div>
 
     </f:section>
 
