@@ -23,6 +23,8 @@ $EM_CONF[$_EXTKEY] = array(
             'typo3' => '7.6-8.7.99'
         ),
         'conflicts' => array(),
-        'suggests' => array(),
+        'suggests' => array(
+            'gjo_introduction' => ''
+        ),
     ),
 );
