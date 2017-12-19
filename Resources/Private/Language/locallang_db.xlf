@@ -134,6 +134,9 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.name">
                 <source>Name</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.aimeos_product_id">
+                <source>Aimeos Product UID</source>
+            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.is_accessory_kit">
                 <source>Ist Ergänzungs-Set</source>
             </trans-unit>
