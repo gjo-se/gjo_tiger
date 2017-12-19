@@ -67,7 +67,7 @@ class ProductSetRepository extends AbstractRepository
     public function findByFilter($productFinderFilter = '', $offset = 0, $limit = 0)
     {
 
-        $pluginSignature = 'tx_gjotiger_product[';
+        $pluginSignature = '';
         $query           = $this->createQuery();
 
         //        https://docs.typo3.org/typo3cms/ExtbaseFluidBook/6-Persistence/3-implement-individual-database-queries.html
