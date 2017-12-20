@@ -267,4 +267,14 @@ class ProductSetRepository extends AbstractRepository
 
         return $query->execute();
     }
+
+    public function findByAimeosProductId($aimeosPoductId)
+    {
+        $query           = $this->createQuery();
+        $query->matching(
+            $query->equals('aimeosProductId', $aimeosPoductId)
+        );
+
+        return $query->execute();
+    }
 }
