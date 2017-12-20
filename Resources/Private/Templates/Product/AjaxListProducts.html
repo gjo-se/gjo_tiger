@@ -28,7 +28,11 @@
         <div class="border-gray-300 p-3 mb-3">
             <div id="productItem_{productSet.aimeosProductId}" class="row">
                 <div class="col-4">
-                    <f:link.page pageUid="{productSet.pages.uid}">
+                    <f:link.page pageUid="{settings.pages.productDetail}"
+                                 additionalParams="{
+                                             'ai%5Bd_prodid%5D': '{productSet.aimeosProductId}',
+                                             'ai[d_pos]': '{iteration.cycle}'
+                                             }">
                         <f:render partial="Utilities/Image"
                                   section="main"
                                   arguments="{
@@ -43,7 +47,11 @@
                 <div class="col-8">
                     <div class="row">
                         <div class="col-8">
-                            <f:link.page pageUid="{productSet.pages.uid}">
+                            <f:link.page pageUid="{settings.pages.productDetail}"
+                                         additionalParams="{
+                                             'ai%5Bd_prodid%5D': '{productSet.aimeosProductId}',
+                                             'ai[d_pos]': '{iteration.cycle}'
+                                             }">
                                 <f:render partial="Utilities/Headline"
                                           section="h4"
                                           arguments="{
@@ -175,9 +183,12 @@
                     <div class="row">
                         <div class="col text-right m-2">
                             <button type="button" class="btn btn-outline-secondary mx-2">
-                                <f:link.page pageUid="{productSet.pages.uid}">Details</f:link.page>
+                                <f:link.page pageUid="{settings.pages.productDetail}"
+                                             additionalParams="{
+                                             'ai%5Bd_prodid%5D': '{productSet.aimeosProductId}',
+                                             'ai[d_pos]': '{iteration.cycle}'
+                                             }">Detailansicht Shop</f:link.page>
                             </button>
-                            <!--<button type="button" class="btn btn-outline-secondary">Anfragen</button>-->
                         </div>
                     </div>
 
