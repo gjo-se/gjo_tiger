@@ -33,18 +33,18 @@
     </f:section>
 
     <f:section name="javaScriptExternal">
+        <v:asset.script name="noUISlider.js"
+                        path="//cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.min.js"
+                        external="true"
+                        standalone="true"
+                        movable="1"
+        />
         <v:asset.script name="loadAjaxList.js"
                         path="{v:extension.path.resources(path: 'Component/LoadAjaxList/loadAjaxList.js', extensionName: 'gjo_boilerplate')}"
                         external="true"
                         standalone="true"
                         movable="1"
                         dependencies="jquery-3.2.1.min.js"
-        />
-        <v:asset.script name="noUISlider.js"
-                        path="{v:extension.path.resources(path: 'Component/noUISlider/noUISlider.js', extensionName: 'gjo_boilerplate')}"
-                        external="true"
-                        standalone="true"
-                        movable="1"
         />
     </f:section>
 
