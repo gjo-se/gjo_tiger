@@ -25,14 +25,11 @@
     </f:section>
 
     <f:section name="listItem">
+
         <div class="border-gray-300 p-3 mb-3">
             <div id="productItem_{productSet.aimeosProductId}" class="row">
                 <div class="col-4">
-                    <f:link.page pageUid="{settings.pages.productDetail}"
-                                 additionalParams="{
-                                             'ai%5Bd_prodid%5D': '{productSet.aimeosProductId}',
-                                             'ai[d_pos]': '{iteration.cycle}'
-                                             }">
+                    <f:link.page pageUid="{productSet.pages.uid}">
                         <f:render partial="Utilities/Image"
                                   section="main"
                                   arguments="{
@@ -47,11 +44,7 @@
                 <div class="col-8">
                     <div class="row">
                         <div class="col-8">
-                            <f:link.page pageUid="{settings.pages.productDetail}"
-                                         additionalParams="{
-                                             'ai%5Bd_prodid%5D': '{productSet.aimeosProductId}',
-                                             'ai[d_pos]': '{iteration.cycle}'
-                                             }">
+                            <f:link.page pageUid="{productSet.pages.uid}">
                                 <f:render partial="Utilities/Headline"
                                           section="h4"
                                           arguments="{
@@ -60,7 +53,20 @@
                             </f:link.page>
                         </div>
                         <div class="col-4">
-                            <div class="price"></div>
+
+                            <div class="price">
+                                <f:if condition="{gjoSe:getLowestPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}')}">
+                                    <f:then>
+                                        ab {gjoSe:getLowestPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}') ->
+                                        f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
+                                        inkl. MWST
+                                    </f:then>
+                                    <f:else>
+                                        auf Anfrage
+                                    </f:else>
+                                </f:if>
+                            </div>
+
                         </div>
                     </div>
                     <div class="row">
@@ -183,11 +189,8 @@
                     <div class="row">
                         <div class="col text-right m-2">
                             <button type="button" class="btn btn-outline-secondary mx-2">
-                                <f:link.page pageUid="{settings.pages.productDetail}"
-                                             additionalParams="{
-                                             'ai%5Bd_prodid%5D': '{productSet.aimeosProductId}',
-                                             'ai[d_pos]': '{iteration.cycle}'
-                                             }">Detailansicht Shop</f:link.page>
+                                <f:link.page pageUid="{productSet.pages.uid}">Details</f:link.page>
+
                             </button>
                         </div>
                     </div>
