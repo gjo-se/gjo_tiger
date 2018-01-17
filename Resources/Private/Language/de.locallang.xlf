@@ -19,6 +19,18 @@
                 <source>Accessory Kits</source>
                 <target>Ergänzungs Sets</target>
             </trans-unit>
+            <trans-unit id="productSetVariantGroup.price" >
+                <source>Price</source>
+                <target>Preis</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.price_brutto" >
+                <source>incl. Tax</source>
+                <target>inkl. MWST</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.add_to_cart" >
+                <source>Add to Cart</source>
+                <target>Bestellen</target>
+            </trans-unit>
 
 
 		</body>

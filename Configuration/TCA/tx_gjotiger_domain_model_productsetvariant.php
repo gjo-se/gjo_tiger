@@ -78,6 +78,21 @@ return array(
             )
         ),
 
+        'price' => [
+            'label'  => $lll . $table . '.price',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'double2'
+            ]
+        ],
+
+        'tax' => [
+            'label'  => $lll . $table . '.tax',
+            'config' => [
+                'type' => 'input'
+            ]
+        ],
+
         ###############################################################################
 
         'sys_language_uid' => array(
@@ -129,6 +144,8 @@ return array(
             name, 
             system_set,
             article_number, 
+            price,
+            tax,
 
             sys_language_uid,
             hide
@@ -142,6 +159,9 @@ return array(
                             name, 
                             system_set,
                             article_number, 
+                        --div--;' . $lll . $table . '.tabs.price, 
+                            price,
+                            tax, 
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, 
                             hidden,
             ',

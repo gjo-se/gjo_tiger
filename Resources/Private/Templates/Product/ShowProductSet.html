@@ -16,8 +16,13 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-8 px-3">
+                    <div class="col-12 px-3">
                         <f:render section="variants" arguments="{_all}"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8 px-3">
                         <f:render section="technicalnots" arguments="{_all}"/>
                     </div>
                     <div class="col-lg-4 px-3">
@@ -193,6 +198,13 @@
                         <th>
                             {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.article_number')}
                         </th>
+                        <th>
+                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.price')}
+                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.price_brutto')}
+                        </th>
+                        <th>
+                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.add_to_cart')}
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -200,6 +212,25 @@
                         <tr>
                             <td>{productSetVariant.name}</td>
                             <td>{productSetVariant.articleNumber}</td>
+                            <td>
+                                <f:if condition="{productSetVariant.price}">
+                                    <f:then>
+                                        <f:format.currency decimalSeparator="," thousandsSeparator="." currencySign="€">{gjoSe:getDisplayPrice(productSetVariant: '{productSetVariant}')}</f:format.currency>
+                                    </f:then>
+                                    <f:else>
+                                        auf Anfrage
+                                    </f:else>
+                                </f:if>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="number" class="form-control mr-3" name="ai[b_prod][0][quantity]" min="1" max="10" maxlength="2" step="1" required="required"
+                                           value="1" >
+                                    <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">In den Warenkorb</button>
+                            </span>
+                                </div>
+                            </td>
                         </tr>
                     </f:for>
                     </tbody>

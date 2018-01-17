@@ -50,7 +50,15 @@ class ProductSetVariant extends AbstractModel
      */
     protected $articleNumber = '';
 
+    /**
+     * @var double
+     */
+    protected $price = 0;
 
+    /**
+     * @var int
+     */
+    protected $tax = 0;
 
     public function __construct()
     {
@@ -95,5 +103,21 @@ class ProductSetVariant extends AbstractModel
     public function getArticleNumber()
     {
         return $this->articleNumber;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTax()
+    {
+        return $this->tax;
     }
 }

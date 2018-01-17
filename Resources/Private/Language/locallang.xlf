@@ -15,6 +15,15 @@
             <trans-unit id="productSetVariantGroup.accessoryKit" >
                 <source>Accessory Kits</source>
             </trans-unit>
+            <trans-unit id="productSetVariantGroup.price" >
+                <source>Price</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.price_brutto" >
+                <source>incl. tax</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.add_to_cart" >
+                <source>Add to Cart</source>
+            </trans-unit>
 
 
             <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWeight" >

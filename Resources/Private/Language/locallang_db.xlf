@@ -112,6 +112,10 @@
 
             ### ProductSetVariant ####
 
+            <trans-unit id="tx_gjotiger_domain_model_productsetvariant.tabs.price">
+                <source>Preise</source>
+            </trans-unit>
+
             <trans-unit id="tx_gjotiger_domain_model_productsetvariant">
                 <source>ProductSetVariant</source>
             </trans-unit>
@@ -123,6 +127,12 @@
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productsetvariant.article_number">
                 <source>Artikel-Nummer</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productsetvariant.price" >
+                <source>Preis</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productsetvariant.tax" >
+                <source>MWST-Satz</source>
             </trans-unit>
 
 
