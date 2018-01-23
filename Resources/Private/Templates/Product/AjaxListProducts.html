@@ -57,9 +57,9 @@
                             <div class="price">
                                 <f:if condition="{gjoSe:getLowestPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}')}">
                                     <f:then>
-                                        ab {gjoSe:getLowestPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}') ->
+                                        ab {gjoSe:feUser.vatPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}', lowestPrice: 1) ->
                                         f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
-                                        inkl. MWST
+                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.{gjoSe:feUser.vatText()}')}
                                     </f:then>
                                     <f:else>
                                         auf Anfrage

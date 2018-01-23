@@ -18,11 +18,17 @@
             <trans-unit id="productSetVariantGroup.price" >
                 <source>Price</source>
             </trans-unit>
-            <trans-unit id="productSetVariantGroup.price_brutto" >
-                <source>incl. tax</source>
+            <trans-unit id="productSetVariantGroup.priceInclVat" >
+                <source>incl. VAT</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.priceExclVat" >
+                <source>excl. VAT</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.add_to_cart" >
                 <source>Add to Cart</source>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.discount" >
+                <source>Discount</source>
             </trans-unit>
 
 

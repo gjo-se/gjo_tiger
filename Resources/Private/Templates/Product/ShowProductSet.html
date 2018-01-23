@@ -200,7 +200,12 @@
                         </th>
                         <th>
                             {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.price')}
-                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.price_brutto')}
+                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.{gjoSe:feUser.vatText()}')}
+                        </th>
+                        <th>
+                            <f:if condition="{gjoSe:feUser.discount()}">
+                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.discount')}
+                            </f:if>
                         </th>
                         <th>
                             {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.add_to_cart')}
@@ -215,12 +220,20 @@
                             <td>
                                 <f:if condition="{productSetVariant.price}">
                                     <f:then>
-                                        <f:format.currency decimalSeparator="," thousandsSeparator="." currencySign="€">{gjoSe:getDisplayPrice(productSetVariant: '{productSetVariant}')}</f:format.currency>
+                                        {gjoSe:feUser.vatPrice(productSetVariant: '{productSetVariant}') ->
+                                        f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
                                     </f:then>
                                     <f:else>
                                         auf Anfrage
                                     </f:else>
                                 </f:if>
+                            </td>
+                            <td>
+                                <f:if condition="{gjoSe:feUser.discount()}">
+                                    {gjoSe:feUser.discount() ->
+                                    f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '%')}
+                                </f:if>
+
                             </td>
                             <td>
                                 <div class="input-group">
