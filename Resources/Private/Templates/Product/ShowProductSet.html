@@ -6,6 +6,7 @@
 
     <f:section name="main">
 
+        <f:render section="javaScriptExternal"/>
         <f:render section="description" arguments="{_all}"/>
 
         <div class="content">
@@ -44,6 +45,16 @@
         </div>
 
 
+    </f:section>
+
+    <f:section name="javaScriptExternal">
+        <v:asset.script name="addToCartAjax.js"
+                        path="{v:extension.path.resources(path: 'Component/Shop/addToCartAjax.js', extensionName: 'gjo_boilerplate')}"
+                        external="true"
+                        standalone="true"
+                        movable="1"
+                        dependencies="jquery-3.2.1.min.js"
+        />
     </f:section>
 
     <f:section name="description">
@@ -237,11 +248,18 @@
                             </td>
                             <td>
                                 <div class="input-group">
-                                    <input type="number" class="form-control mr-3" name="ai[b_prod][0][quantity]" min="1" max="10" maxlength="2" step="1" required="required"
-                                           value="1" >
+                                    <f:form.hidden class="productSetVariantUid" name="productSetVariantUid" value="{productSetVariant.uid}" />
+                                    <f:form.textfield type="number"
+                                                      class="quantity form-control mr-3"
+                                                      value="1"
+                                                      additionalAttributes="{
+                                                        min:1,
+                                                        max:10,
+                                                        step:1
+                                                        }"/>
                                     <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit">In den Warenkorb</button>
-                            </span>
+                                        <button class="btn btn-primary add-to-cart-button" type="submit">In den Warenkorb</button>
+                                    </span>
                                 </div>
                             </td>
                         </tr>
