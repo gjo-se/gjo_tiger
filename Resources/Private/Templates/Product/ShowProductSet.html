@@ -191,6 +191,10 @@
         <h3 class="border-bottom">
             {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.variants')}</h3>
 
+        <div class="alert alert-success alert-success-add-to-cart d-none" role="alert">
+            Der Artikel wurde erfolgreich in den Warenkorb gelegt.
+        </div>
+
         <f:for each="{productSet.productSetVariantGroups}" as="productSetVariantGroup">
 
             <f:if condition="{productSetVariantGroup.headline}">
