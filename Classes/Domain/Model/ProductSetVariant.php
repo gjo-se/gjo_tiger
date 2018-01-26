@@ -33,7 +33,7 @@ class ProductSetVariant extends AbstractModel
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GjoSe\GjoTiger\Domain\Model\ProductSetVariantGroup>
      * @lazy
      */
-    protected $productSetVariantGroups = null;
+    protected $productSetVariantGroup = null;
 
     /**
      * @var string
@@ -70,15 +70,15 @@ class ProductSetVariant extends AbstractModel
      */
     protected function initStorageObjects()
     {
-        $this->productSetVariantGroups = new ObjectStorage();
+        $this->productSetVariantGroup = new ObjectStorage();
     }
 
     /**
      * @return ObjectStorage
      */
-    public function getProductSetVariantGroups()
+    public function getProductSetVariantGroup()
     {
-        return $this->productSetVariantGroups;
+        return $this->productSetVariantGroup;
     }
 
     /**
