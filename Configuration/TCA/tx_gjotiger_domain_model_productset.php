@@ -125,13 +125,6 @@ return array(
             ]
         ],
 
-        'aimeos_product_id' => [
-            'label'  => $lll . $table . '.aimeos_product_id',
-            'config' => [
-                'type' => 'input'
-            ]
-        ],
-
         'name' => array(
             'label'  => $lll . $table . '.name',
             'config' => array(
@@ -573,7 +566,6 @@ return array(
     'interface' => array(
         'showRecordFieldList' => '
               name,
-              aimeos_product_id,
               is_accessory_kit,
               is_featured,
               description,
@@ -634,7 +626,6 @@ return array(
             'showitem' => '
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, 
                               name,
-                              aimeos_product_id,
                               is_accessory_kit,
                               is_featured,
                               description,                                                            

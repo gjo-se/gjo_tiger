@@ -4,7 +4,7 @@ CREATE TABLE tx_gjotiger_domain_model_productset (
   pid int(11) DEFAULT '0' NOT NULL,
 
   name VARCHAR(150) NOT NULL DEFAULT '',
-  aimeos_product_id TINYINT(4) NOT NULL DEFAULT '0',
+--   aimeos_product_id TINYINT(4) NOT NULL DEFAULT '0',
   is_accessory_kit TINYINT(4) NOT NULL DEFAULT '0',
   is_featured TINYINT(4) NOT NULL DEFAULT '0',
   description TEXT NULL,
@@ -196,7 +196,7 @@ CREATE TABLE tx_gjotiger_domain_model_productsetvariant (
   price DOUBLE NOT NULL DEFAULT '0',
   tax TINYINT(4) NOT NULL DEFAULT '0',
 
-  product_set_variant_groups int(11) unsigned NOT NULL default '0',
+  product_set_variant_group int(11) unsigned NOT NULL default '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
