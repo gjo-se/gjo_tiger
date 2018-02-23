@@ -14,9 +14,6 @@ if (!defined('TYPO3_MODE')) {
     ]
 );
 
-
-///* ===========================================================================
-//    Add TSconfig
-//=========================================================================== */
-//
-//\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TSconfig/ContentElementWizard.txt">');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+    '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTS/Mod/Wizards/newContentElement.t3s">'
+);
