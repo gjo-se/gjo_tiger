@@ -7,38 +7,42 @@
     <f:section name="main">
 
         <f:if condition="{productGroup}">
-
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-xl-8">
+                <div class="row mb-32 bg-gray-100">
+                    <div class="col-12 col-lg-8">
                         <f:for each="{productGroup.image}" as="image" iteration="iteration">
                             <f:if condition="{iteration.cycle} == '1' ">
-                                <gjoSe:media.media file="{image}"
-                                                   class="img-fluid"
-                                                   alt="{productGroup.header}"
-                                                   width="700"
-                                                   breakpoints="{
-                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 1020, 1: 1100, 2: 1200, 3: 1300, 4: 1400, 5: 1800, 6: 2200, 7: 2600}},
-                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 660, 1: 770, 2: 900, 3: 1000, 4: 1200, 5: 1400, 6: 1700, 7: 2000}},
-                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 660, 1: 770, 2: 900, 3: 1000, 4: 1200, 5: 1400, 6: 1700, 7: 2000}},
-                                                    3: {cropVariant: 'mobile', srcset: {0: 400, 1: 500, 2: 600, 3: 700, 4: 800, 5: 1000, 6: 1200}}
+                                <f:link.page pageUid="{productGroup.pages.uid}">
+                                    <gjoSe:media.media file="{image}"
+                                                       class="img-fluid"
+                                                       alt="{productGroup.header}"
+                                                       width="720"
+                                                       breakpoints="{
+                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 640}},
+                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
+                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
+                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
                                          		}"/>
+
+                                </f:link.page>
                             </f:if>
                         </f:for>
                     </div>
-                    <div class="col-md-12 col-xl-4">
-                        <div class="product-info">
-
-                            <div class="product-margin">
-                                <h2>
-                                    <div>{productGroup.header}</div>
+                    <div class="col-12 col-lg-4">
+                        <div class="">
+                            <f:link.page pageUid="{productGroup.pages.uid}">
+                                <h2 class="text-center pt-32 mb-32">
+                                    {productGroup.header}
                                 </h2>
-                                <h3>
-                                    <div>{productGroup.subHeader}</div>
-                                </h3>
-                                <f:format.html>
-                                    <f:format.crop maxCharacters="150">{productGroup.description}</f:format.crop>
-                                </f:format.html>
+                            </f:link.page>
+                            <h3 class="text-center mb-32">
+                                {productGroup.subHeader}
+                            </h3>
+                            <div class="p-8">
+                                <f:format.raw>
+                                    <f:format.crop maxCharacters="120">{productGroup.description}</f:format.crop>
+                                </f:format.raw>
+
                             </div>
                         </div>
 

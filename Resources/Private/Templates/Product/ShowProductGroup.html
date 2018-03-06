@@ -6,34 +6,45 @@
 
     <f:section name="main">
 
-        <div class="head-image">
+        <div class="container mb-32">
             <f:for each="{productGroup.image}" as="image" iteration="iteration">
                 <f:if condition="{iteration.cycle} == '2' ">
-                    <f:image src="{image.uid}"
-                             treatIdAsReference="1"
-                             alt="{productGroup.header}"
-                             width="1104"
-                    />
+                    <gjoSe:media.media file="{image}"
+                                       class="img-fluid"
+                                       alt="{productGroup.header}"
+                                       width="720"
+                                       breakpoints="{
+                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 640}},
+                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
+                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
+                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
+                                         		}"/>
                 </f:if>
             </f:for>
         </div>
 
-        <div class="section-header-three">
-            <h2>{productGroup.header}</h2>
-            <h3>{productGroup.subheader}</h3>
-            <f:format.html>{productGroup.description}</f:format.html>
+
+        <div class="container mb-32">
+            <h2 class="text-center mb-32">{productGroup.header}</h2>
+            <h3 class="text-center mb-32">{productGroup.subheader}</h3>
+            <div class="mb-32">
+                <f:format.html>{productGroup.description}</f:format.html>
+            </div>
         </div>
 
-        <div class="anchor-buttons">
-            <div class="neos-contentcollection">
-                <div class="">
-                    <div><h3>Sofort zum richtigen Produkt:<br></h3></div>
+
+        <f:debug inline="false" title="">{productGroup.productSetTypes}</f:debug>
+
+        <f:if condition="{productGroup.productSetTypes}">
+            <div class="container mb-32">
+                <div class="text-center">
+                    <h3 class="mb-32">Sofort zum richtigen Produkt:</h3>
                 </div>
 
                 <div class="row">
                     <f:for each="{productGroup.productSetTypes}" as="productSetType">
-                        <div class="col-lg-6 orange-tick">
-                            <h4>{productSetType.name}</h4>
+                        <div class="col-12 col-md-6">
+                            <h4 class="text-center mb-32">{productSetType.name}</h4>
                             <ul>
                                 <f:for each="{productSetType.productSets}" as="productSet">
                                     <li>
@@ -45,26 +56,34 @@
                     </f:for>
                 </div>
             </div>
-        </div>
 
-        <div class="grey-box">
-            <div class="gbox-text-and-image">
-                <div class="gbox-text">
-                    <div class="orange-tick">
-                        <h2>{productGroup.teaserHeader}</h2>
+        </f:if>
+
+        <div class="container-fluid bg-gray-100 mb-32">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-5 order-lg-2">
+                        <f:for each="{productGroup.teaserImage}" as="image">
+                            <gjoSe:media.media file="{image}"
+                                               class="img-fluid"
+                                               alt="{productGroup.header}"
+                                               width="720"
+                                               breakpoints="{
+                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 570}},
+                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
+                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
+                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
+                                         		}"/>
+                        </f:for>
+
+                    </div>
+                    <div class="col-12 col-lg-7 order-lg-1">
+                        <h4 class="text-center pt-16 mb-32">{productGroup.teaserHeader}</h4>
                         <f:format.html>{productGroup.teaserDescription}</f:format.html>
                     </div>
                 </div>
-
-                <div class="gbox-image">
-                    <f:for each="{productGroup.teaserImage}" as="image">
-                        <f:image src="{image.uid}"
-                                 treatIdAsReference="1"
-                        />
-                    </f:for>
-                </div>
-
             </div>
+
         </div>
 
     </f:section>
