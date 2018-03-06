@@ -29,15 +29,15 @@ $table = 'tx_gjotiger_domain_model_productset';
 return array(
 
     'ctrl' => array(
-        'title'           => $lll . $table,
-        'label'           => 'name',
-        'tstamp'          => 'tstamp',
-        'crdate'          => 'crdate',
-        'cruser_id'       => 'cruser_id',
-        'dividers2tabs'   => true,
-        'searchFields'    => 'name',
-        'iconfile'        => 'EXT:' . $ext . '/Resources/Public/Icons/tiger_icon.png',
-        'default_sortby'  => 'ORDER BY name ASC',
+        'title'          => $lll . $table,
+        'label'          => 'name',
+        'tstamp'         => 'tstamp',
+        'crdate'         => 'crdate',
+        'cruser_id'      => 'cruser_id',
+        'dividers2tabs'  => true,
+        'searchFields'   => 'name',
+        'iconfile'       => 'EXT:' . $ext . '/Resources/Public/Icons/tiger_icon.png',
+        'default_sortby' => 'ORDER BY name ASC',
 
         'languageField'            => 'sys_language_uid',
         'transOrigPointerField'    => 'l10n_parent',
@@ -114,14 +114,14 @@ return array(
         ],
 
         'pages' => [
-            'label' => $lll . $table . '.pages',
+            'label'  => $lll . $table . '.pages',
             'config' => [
-                'type' => 'group',
+                'type'          => 'group',
                 'internal_type' => 'db',
-                'allowed' => 'pages',
-                'size' => 1,
-                'maxitems' => 1,
-                'minitems' => 0
+                'allowed'       => 'pages',
+                'size'          => 1,
+                'maxitems'      => 1,
+                'minitems'      => 0
             ]
         ],
 
@@ -134,14 +134,14 @@ return array(
 
         'is_accessory_kit' => array(
             'label'  => $lll . $table . '.is_accessory_kit',
-            'config'  => array(
+            'config' => array(
                 'type' => 'check',
             ),
         ),
 
         'is_featured' => array(
             'label'  => $lll . $table . '.is_featured',
-            'config'  => array(
+            'config' => array(
                 'type' => 'check',
             ),
         ),
@@ -156,27 +156,48 @@ return array(
             ),
         ),
 
-        'image' => array(
+        'image' => [
             'label'  => $lll . $table . '.image',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
-                array(
-                    'maxitems' => 10
-                ),
+                [
+                    'maxitems'         => 2,
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                            --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
+
+                ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
-        ),
+        ],
 
-        'icon' => array(
+        'icon' => [
             'label'  => $lll . $table . '.icon',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'icon',
-                array(
-                    'maxitems' => 1
-                ),
+                [
+                    'maxitems'         => 1,
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                            --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
+
+                ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
-        ),
+        ],
+
 
         'show_technicalnots' => [
             'label'    => $lll . $table . '.show_technicalnots',
@@ -388,16 +409,26 @@ return array(
             ),
         ],
 
-        'image_engineering_drawing' => array(
+        'image_engineering_drawing' => [
             'label'  => $lll . $table . '.image_engineering_drawing',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image_engineering_drawing',
-                array(
-                    'maxitems' => 10
-                ),
+                [
+                    'maxitems'         => 10,
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                            --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
+
+                ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
-        ),
+        ],
 
         'filter_montage_ahead' => [
             'label'  => $lll . $table . '.filter_montage_ahead',
@@ -486,11 +517,11 @@ return array(
         ],
 
         'filter_wingcount' => [
-            'label' => $lll . $table . '.filter_wingcount',
+            'label'  => $lll . $table . '.filter_wingcount',
             'config' => [
-                'type' => 'select',
+                'type'       => 'select',
                 'renderType' => 'selectSingleBox',
-                'items' => [
+                'items'      => [
                     ['1-flügelig', 1],
                     ['2-flügelig', 2],
                     ['3-flügelig', 3]
@@ -679,30 +710,38 @@ return array(
     ],
 
     'palettes' => array(
-        'material' => array('showitem' => '
+        'material'      => array(
+            'showitem' => '
                 filter_material_wood,
                 filter_material_glas
-        '),
-        'design' => array('showitem' => '
+        '
+        ),
+        'design'        => array(
+            'showitem' => '
                 filter_design_customer,
                 filter_design_alu,
                 filter_design_design
       
-         '),
-        'configuration' => array('showitem' => '
+         '
+        ),
+        'configuration' => array(
+            'showitem' => '
                   filter_soft_close,
                   filter_et3,
                   filter_tfold,
                   filter_synchron,
                   filter_telescop2,
                   filter_telescop3
-        '),
-        'montage' => array('showitem' => '
+        '
+        ),
+        'montage'       => array(
+            'showitem' => '
                 filter_montage_ahead,
                 filter_montage_in,
                 filter_montage_wall,
                 filter_montage_ceiling,
-        '),
+        '
+        ),
     ),
 
 );

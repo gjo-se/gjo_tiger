@@ -87,18 +87,26 @@ return array(
             )
         ),
 
-        //        TODO: Array-Schreibweise umstellen auf []
-        //        imageManipulation anpassen - https://docs.typo3.org/typo3cms/TCAReference/ColumnsConfig/Type/ImageManipulation.html
-        'image'                  => array(
+        'image' => [
             'label'  => $lll . $table . '.image',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
-                array(
-                    'maxitems' => 1
-                ),
+                [
+                    'maxitems'         => 1,
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                            --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
+
+                ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
-        ),
+        ],
 
         ###############################################################################
 

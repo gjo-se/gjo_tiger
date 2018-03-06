@@ -7,43 +7,37 @@
     <f:section name="main">
 
         <f:render section="javaScriptExternal"/>
+
         <f:render section="description" arguments="{_all}"/>
+        <f:render section="images" arguments="{_all}"/>
+        <f:render section="variants" arguments="{_all}"/>
 
-        <div class="content">
-            <div class="container">
-
-                <div class="row">
-                    <f:render section="images" arguments="{_all}"/>
+        <div class="container mb-32">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <f:render section="technicalnots" arguments="{_all}"/>
                 </div>
-
-                <div class="row">
-                    <div class="col-12 px-3">
-                        <f:render section="variants" arguments="{_all}"/>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-8 px-3">
-                        <f:render section="technicalnots" arguments="{_all}"/>
-                    </div>
-                    <div class="col-lg-4 px-3">
-                        <f:render section="downloads" arguments="{productSet: productSet, accordionId: 'productSetaccordion'}"/>
-                        <f:render section="productGroupLinks" arguments="{_all}"/>
+                <div class="col-12 col-lg-4">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-12">
+                            <f:render section="downloads" arguments="{productSet: productSet, accordionId: 'productSetaccordion'}"/>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-12">
+                            <f:render section="productGroupLinks" arguments="{_all}"/>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 px-3">
-                        <f:render section="accessoryKit" arguments="{_all}"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <!--TODO: hier gehts weiter:
+        - da das layout ds Selbe wie oben ist, sollte ich hier mit den Sections von oben arbeiten können
+        -->
+        <f:if condition="{productSet.productSets}">
+            <f:render section="accessoryKitHeadline"/>
+            <f:render section="accessoryKitNavTabs" arguments="{_all}"/>
+            <f:render section="accessoryKitTabPanes" arguments="{_all}"/>
+        </f:if>
 
     </f:section>
 
@@ -58,437 +52,482 @@
     </f:section>
 
     <f:section name="description">
-        <div class="section-header-three">
-            <h1>{productSet.name}</h1>
-            <f:format.html>{productSet.description}</f:format.html>
+        <div class="container">
+            <h1 class="mb-32 text-center">{productSet.name}</h1>
+            <div class="mb-32">
+                <f:format.raw>{productSet.description}</f:format.raw>
+            </div>
         </div>
     </f:section>
 
     <f:section name="images">
-
-        <div class="col-lg-5 pr-3">
-            <div class="productset-image-main-slider">
-
-                <f:for each="{productSet.image}" as="image">
-                    <a class="productset-image-main-fancy" href="{image.originalResource.publicUrl}">
-                        <div class="productset-slide">
-                            <f:image src="{image.uid}"
-                                     treatIdAsReference="1"
-                                     width="455c"
-                                     height="300"
-                            />
-                        </div>
-                    </a>
-                </f:for>
-
-                <f:for each="{productSet.imageEngineeringDrawing}" as="image">
-                    <a class="productset-image-main-fancy" href="{image.originalResource.publicUrl}">
-                        <div class="productset-slide">
-                            <f:image src="{image.uid}"
-                                     treatIdAsReference="1"
-                                     width="455c"
-                                     height="300"
-                            />
-                        </div>
-                    </a>
-                </f:for>
-
-            </div>
-
-            <div class="productset-product-main-slider d-none">
-
-                <f:for each="{productSet.products}" as="product">
-                    <f:for each="{product.image}" as="image">
-                        <a class="productset-product-main-fancy"
-                           href="{image.originalResource.publicUrl}">
-                            <div class="productset-slide">
-                                <f:image src="{image.uid}"
-                                         treatIdAsReference="1"
-                                         width="455c"
-                                         height="300"
-                                         alt="{product.name} - {product.articleNumber}"
-                                />
-                                <br/>
-                                <p><strong>{product.name}</strong>
-                                    <f:if condition="{product.articleNumber}">
-                                        - {product.articleNumber}
-                                    </f:if>
-                                    <f:if condition="{product.additionalInformation}">
-                                        , {product.additionalInformation}
-                                    </f:if>
-                                </p>
-                            </div>
-                        </a>
-                    </f:for>
-                </f:for>
-
-            </div>
-
-        </div>
-
-        <div class="col-lg-7 pl-3">
-
+        <div class="container mb-32">
             <div class="row">
-                <div class="col-lg-12">
-                    <h4 class="mb-2">Abbildungen & Technische Zeichnungen</h4>
-                    <div class="productset-image-slider vcenter mb-3">
-
+                <div class="col-12 col-lg-6">
+                    <div class="productset-image-main-slider{f:if(condition: slider, then:'-{slider}', else:'')}">
                         <f:for each="{productSet.image}" as="image">
-                            <div class="productset-slide">
-                                <f:image src="{image.uid}"
-                                         treatIdAsReference="1"
-                                         height="118"
-                                         width="202"
-                                         alt="{productSet.name}"
-                                />
-                            </div>
-                        </f:for>
+                            <f:alias map="{imageUri: '{f:uri.image(image: \'{image}\', treatIdAsReference:\'1\', width:\'720\')}'}">
+                                <a class="productset-image-main-fancy" href="{imageUri}"
+                                   data-fancybox="{f:if(condition: data-fancybox, then:'{data-fancybox}', else:'productSet')}">
+                                    <gjoSe:media.media file="{image}"
+                                                       class="img-fluid border-gray-200"
+                                                       alt="{productGroup.header}"
+                                                       width="720"
+                                                       breakpoints="{
+                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 570}},
+                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
+                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
+                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
+                                         		}"/>
+                                </a>
+                            </f:alias>
 
+                        </f:for>
                         <f:for each="{productSet.imageEngineeringDrawing}" as="image">
-                            <div class="productset-slide">
-                                <f:image src="{image.uid}"
-                                         treatIdAsReference="1"
-                                         height="118"
-                                         width="202"
-                                />
-                            </div>
+                            <f:alias map="{imageUri: '{f:uri.image(image: \'{image}\', treatIdAsReference:\'1\', width:\'720\')}'}">
+                                <a class="productset-image-main-fancy" href="{imageUri}"
+                                   data-fancybox="{f:if(condition: data-fancybox, then:'{data-fancybox}', else:'productSet')}">
+                                    <gjoSe:media.media file="{image}"
+                                                       class="img-fluid border-gray-200"
+                                                       alt="{productGroup.header}"
+                                                       width="720"
+                                                       breakpoints="{
+                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 570}},
+                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
+                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
+                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
+                                         		}"/>
+                                </a>
+                            </f:alias>
                         </f:for>
-
-
                     </div>
-
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <h4 class="mb-2">Produkte</h4>
-                    <div class="productset-product-slider vcenter">
-
+                <div class="col-12 col-lg-6 d-none">
+                    <div class="productset-product-main-slider{f:if(condition: slider, then:'-{slider}', else:'')}">
                         <f:for each="{productSet.products}" as="product">
                             <f:for each="{product.image}" as="image">
-                                <div class="productset-slide">
-                                    <f:image src="{image.uid}"
-                                             treatIdAsReference="1"
-                                             height="118"
-                                             width="202"
-                                             alt="{product.name} - {product.articleNumber}"
-                                    />
-                                </div>
+                                <f:alias map="{imageUri: '{f:uri.image(image: \'{image}\', treatIdAsReference:\'1\', width:\'720\')}'}">
+                                    <a class="productset-product-main-fancy"
+                                       href="{imageUri}"
+                                       data-fancybox="{f:if(condition: data-fancybox, then:'{data-fancybox}', else:'productSet')}">
+                                        <div>
+                                            <gjoSe:media.media file="{image}"
+                                                               class="img-fluid border-gray-200"
+                                                               alt="{productGroup.header}"
+                                                               width="720"
+                                                               breakpoints="{
+                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 570}},
+                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
+                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
+                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
+                                         		}"/>
+                                            <p><strong>{product.name}</strong>
+                                                <f:if condition="{product.articleNumber}">
+                                                    - {product.articleNumber}
+                                                </f:if>
+                                                <f:if condition="{product.additionalInformation}">
+                                                    , {product.additionalInformation}
+                                                </f:if>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </f:alias>
                             </f:for>
                         </f:for>
                     </div>
+                </div>
 
+                <div class="col-12 col-lg-6">
+                    <div class="row">
+                        <f:if condition="{productSet.image}">
+                            <div class="col-12">
+                                <h4 class="mb-2">Abbildungen & Technische Zeichnungen</h4>
+                                <div class="productset-image-slider{f:if(condition: slider, then:'-{slider}', else:'')}">
+
+                                    <f:for each="{productSet.image}" as="image">
+                                        <gjoSe:media.media file="{image}"
+                                                           class=" border-gray-200"
+                                                           alt="{productGroup.header}"
+                                                           width="180"
+                                                           breakpoints="{
+                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 190}},
+                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 240}},
+                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 180}},
+                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 120}}
+                                         		}"/>
+                                    </f:for>
+
+                                    <f:for each="{productSet.imageEngineeringDrawing}" as="image">
+                                        <gjoSe:media.media file="{image}"
+                                                           class=" border-gray-200"
+                                                           alt="{productGroup.header}"
+                                                           width="180"
+                                                           breakpoints="{
+                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 190}},
+                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 240}},
+                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 180}},
+                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 120}}
+                                         		}"/>
+                                    </f:for>
+                                </div>
+                            </div>
+                        </f:if>
+                        <div class="col-12">
+                            <h4 class="mb-2">Produkte</h4>
+                            <div class="productset-product-slider{f:if(condition: slider, then:'-{slider}', else:'')}">
+
+                                <f:for each="{productSet.products}" as="product">
+                                    <f:for each="{product.image}" as="image">
+                                        <gjoSe:media.media file="{image}"
+                                                           class="img-fluid border-gray-200"
+                                                           alt="{productGroup.header}"
+                                                           width="180"
+                                                           breakpoints="{
+                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 190}},
+                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 240}},
+                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 180}},
+                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 120}}
+                                         		}"/>
+                                    </f:for>
+                                </f:for>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
-
 
     </f:section>
 
     <f:section name="variants">
-        <h3 class="border-bottom">
-            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.variants')}</h3>
+        <!--https://getbootstrap.com/docs/4.0/content/tables/#responsive-tables-->
 
-        <div class="alert alert-success alert-success-add-to-cart d-none" role="alert">
-            Der Artikel wurde erfolgreich in den Warenkorb gelegt.
-        </div>
+        <div class="container mb-32">
+            <div class="row mb-16">
+                <div class="col-12">
+                    <h3 class="border-bottom-gray-200">
+                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.variants')}
+                    </h3>
+                </div>
+            </div>
 
-        <f:for each="{productSet.productSetVariantGroups}" as="productSetVariantGroup">
+            <div class="row mb-16">
+                <div class="col-12">
+                    <div class="alert alert-success alert-success-add-to-cart d-none" role="alert">
+                        Der Artikel wurde erfolgreich in den Warenkorb gelegt.
+                    </div>
+                </div>
+            </div>
 
-            <f:if condition="{productSetVariantGroup.headline}">
-                <h4>{productSetVariantGroup.headline}</h4>
-            </f:if>
-            <f:if condition="{productSetVariantGroup.description}">
-                <f:format.html>{productSetVariantGroup.description}</f:format.html>
-            </f:if>
+            <div class="row mb-16">
+                <div class="col-12">
+                    <f:for each="{productSet.productSetVariantGroups}" as="productSetVariantGroup">
+
+                        <f:if condition="{productSetVariantGroup.headline}">
+                            <h4>{productSetVariantGroup.headline}</h4>
+                        </f:if>
+                        <f:if condition="{productSetVariantGroup.description}">
+                            <f:format.html>{productSetVariantGroup.description}</f:format.html>
+                        </f:if>
 
 
-            <div class="mb-5">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>{productSetVariantGroup.tableHeadline}<br></th>
-                        <th>
-                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.article_number')}
-                        </th>
-                        <th>
-                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.price')}
-                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.{gjoSe:feUser.vatText()}')}
-                        </th>
-                        <th>
-                            <f:if condition="{gjoSe:feUser.discount()}">
-                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.discount')}
-                            </f:if>
-                        </th>
-                        <th>
-                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.add_to_cart')}
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <f:for each="{productSetVariantGroup.productSetVariants}" as="productSetVariant">
-                        <tr>
-                            <td>{productSetVariant.name}</td>
-                            <td>{productSetVariant.articleNumber}</td>
-                            <td>
-                                <f:if condition="{productSetVariant.price}">
-                                    <f:then>
-                                        {gjoSe:feUser.vatPrice(productSetVariant: '{productSetVariant}') ->
-                                        f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
-                                    </f:then>
-                                    <f:else>
-                                        auf Anfrage
-                                    </f:else>
-                                </f:if>
-                            </td>
-                            <td>
-                                <f:if condition="{gjoSe:feUser.discount()}">
-                                    {gjoSe:feUser.discount() ->
-                                    f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '%')}
-                                </f:if>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th style="width: 33.33%">{productSetVariantGroup.tableHeadline}<br></th>
+                                    <th style="width: 16.66%">
+                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.article_number')}
+                                    </th>
+                                    <th style="width: 8.44%">
+                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.price')}
+                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.{gjoSe:feUser.vatText()}')}
+                                    </th>
+                                    <f:if condition="{gjoSe:feUser.discount()}">
+                                        <th style="width: 8.44%">
+                                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.discount')}
+                                        </th>
+                                    </f:if>
+                                    <th style="width: 33.33%">
+                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.add_to_cart')}
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <f:for each="{productSetVariantGroup.productSetVariants}" as="productSetVariant">
+                                    <tr>
+                                        <td class="">{productSetVariant.name}</td>
+                                        <td>{productSetVariant.articleNumber}</td>
+                                        <td>
+                                            <f:if condition="{productSetVariant.price}">
+                                                <f:then>
+                                                    {gjoSe:feUser.vatPrice(productSetVariant: '{productSetVariant}') ->
+                                                    f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
+                                                </f:then>
+                                                <f:else>
+                                                    auf Anfrage
+                                                </f:else>
+                                            </f:if>
+                                        </td>
 
-                            </td>
-                            <td>
-                                <div class="input-group">
-                                    <f:form.hidden class="productSetVariantUid" name="productSetVariantUid" value="{productSetVariant.uid}" />
-                                    <f:form.textfield type="number"
-                                                      class="quantity form-control mr-3"
-                                                      value="1"
-                                                      additionalAttributes="{
+                                        <f:if condition="{gjoSe:feUser.discount()}">
+                                            <td> {gjoSe:feUser.discount() ->
+                                                f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '%')}
+                                            </td>
+                                        </f:if>
+
+                                        <td>
+                                            <div class="input-group">
+                                                <f:form.hidden class="productSetVariantUid" name="productSetVariantUid"
+                                                               value="{productSetVariant.uid}"/>
+                                                <f:form.textfield type="number"
+                                                                  class="quantity form-control mr-3"
+                                                                  value="1"
+                                                                  additionalAttributes="{
                                                         min:1,
                                                         max:10,
                                                         step:1
                                                         }"/>
-                                    <span class="input-group-btn">
+                                                <span class="input-group-btn">
                                         <button class="btn btn-primary add-to-cart-button" type="submit">In den Warenkorb</button>
                                     </span>
-                                </div>
-                            </td>
-                        </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </f:for>
+                                </tbody>
+                            </table>
+                        </div>
                     </f:for>
-                    </tbody>
-                </table>
-            </div>
-        </f:for>
-    </f:section>
-
-    <f:section name="technicalnots">
-        <f:if condition="{productSet.showTechnicalnots}">
-            <h3 class="border-bottom">
-                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots')}
-            </h3>
-        </f:if>
-
-        <div class="mb-5">
-
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs nav-justified" role="tablist" id="technicalnots">
-                <f:if condition="{productSet.showTechnicalnots}">
-                    <li role="presentation" class="nav-item">
-                        <a href="#technical_nots" class="nav-link active" aria-controls="home" role="tab" data-toggle="tab">
-                            Technische Hinweise
-                        </a>
-                    </li>
-                </f:if>
-                <f:if condition="{productSet.showDin}">
-                    <li role="presentation" class="nav-item">
-                        <a href="#din" class="nav-link" aria-controls="profile" role="tab" data-toggle="tab">
-                            DIN EN 1527
-                        </a>
-                    </li>
-                </f:if>
-                <f:if condition="{productSet.invitationToTender}">
-                    <li role="presentation" class="nav-item">
-                        <a href="#invitationToTender" class="nav-link" aria-controls="messages" role="tab" data-toggle="tab">
-                            Ausschreibungstext
-                        </a>
-                    </li>
-                </f:if>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <f:if condition="{productSet.showTechnicalnots}">
-                    <div role="tabpanel" class="tab-pane fade show active tab-pane-technicalnots" id="technical_nots">
-                        <table>
-                            <tbody>
-                            <f:if condition="{productSet.maximumDoorWeight}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.maximumDoorWeight')}
-                                    </td>
-                                    <td>{productSet.maximumDoorWeight}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.height}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.height')}
-                                    </td>
-                                    <td>{productSet.height}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.doorLeafThickness}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.doorLeafThickness')}
-                                    </td>
-                                    <td>{productSet.doorLeafThickness}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.minimumDoorWidth}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.minimumDoorWidth')}
-                                    </td>
-                                    <td>{productSet.minimumDoorWidth}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.minimumDoorWidthSoftClose}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.minimumDoorWidthSoftClose')}
-                                    </td>
-                                    <td>{productSet.minimumDoorWidthSoftClose}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.minimumDoorWidthSoftCloseLong}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.minimumDoorWidthSoftCloseLong')}
-                                    </td>
-                                    <td>{productSet.minimumDoorWidthSoftCloseLong}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.minimumDoorWidthSoftCloseBoth}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.minimumDoorWidthSoftCloseBoth')}
-                                    </td>
-                                    <td>{productSet.minimumDoorWidthSoftCloseBoth}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.maximumDoorWidth}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.maximumDoorWidth')}
-                                    </td>
-                                    <td>{productSet.maximumDoorWidth}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.voltage}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.voltage')}
-                                    </td>
-                                    <td>{productSet.voltage}</td>
-                                </tr>
-                            </f:if>
-                            </tbody>
-                        </table>
-                    </div>
-                </f:if>
-
-                <f:if condition="{productSet.showDin}">
-                    <div role="tabpanel" class="tab-pane fade tab-pane-technicalnots" id="din">
-                        <table>
-                            <tbody>
-                            <f:if condition="{productSet.useCategorie}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.useCategorie')}
-                                    </td>
-                                    <td>{productSet.useCategorie}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.durability}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.durability')}
-                                    </td>
-                                    <td>{productSet.durability}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.doorWeight}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.doorWeight')}
-                                    </td>
-                                    <td>{productSet.doorWeight}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.fireResistance}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.fireResistance')}
-                                    </td>
-                                    <td>{productSet.fireResistance}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.safety}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.safety')}
-                                    </td>
-                                    <td>{productSet.safety}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.corrosionResistance}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.corrosionResistance')}
-                                    </td>
-                                    <td>{productSet.corrosionResistance}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.security}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.security')}
-                                    </td>
-                                    <td>{productSet.security}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.doorType}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.doorType')}
-                                    </td>
-                                    <td>{productSet.doorType}</td>
-                                </tr>
-                            </f:if>
-                            <f:if condition="{productSet.initialFriction}">
-                                <tr>
-                                    <td>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.initialFriction')}
-                                    </td>
-                                    <td>{productSet.initialFriction}</td>
-                                </tr>
-                            </f:if>
-                            </tbody>
-                        </table>
-                    </div>
-                </f:if>
-
-                <f:if condition="{productSet.invitationToTender}">
-                    <div role="tabpanel" class="tab-pane fade tab-pane-technicalnots" id="invitationToTender">
-                        <f:format.html>{productSet.invitationToTender}</f:format.html>
-                    </div>
-                </f:if>
-
+                </div>
             </div>
 
         </div>
 
+
+    </f:section>
+
+    <f:section name="technicalnots">
+
+        <f:if condition="{productSet.showTechnicalnots}">
+            <h3 class="border-bottom-gray-200">
+                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots')}
+            </h3>
+
+            <div class="row">
+                <div class="col-12">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs nav-justified" role="tablist" id="technicalnots">
+                        <f:if condition="{productSet.showTechnicalnots}">
+                            <li role="presentation" class="nav-item">
+                                <a href="#technical_nots" class="nav-link active" aria-controls="home" role="tab" data-toggle="tab">
+                                    Technische Hinweise
+                                </a>
+                            </li>
+                        </f:if>
+                        <f:if condition="{productSet.showDin}">
+                            <li role="presentation" class="nav-item">
+                                <a href="#din" class="nav-link" aria-controls="profile" role="tab" data-toggle="tab">
+                                    DIN EN 1527
+                                </a>
+                            </li>
+                        </f:if>
+                        <f:if condition="{productSet.invitationToTender}">
+                            <li role="presentation" class="nav-item">
+                                <a href="#invitationToTender" class="nav-link" aria-controls="messages" role="tab" data-toggle="tab">
+                                    Ausschreibungstext
+                                </a>
+                            </li>
+                        </f:if>
+                    </ul>
+                </div>
+            </div>
+        </f:if>
+
+        <!--<div class="mb-5">-->
+
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <f:if condition="{productSet.showTechnicalnots}">
+                <div role="tabpanel" class="tab-pane fade show active tab-pane-technicalnots" id="technical_nots">
+                    <table>
+                        <tbody>
+                        <f:if condition="{productSet.maximumDoorWeight}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.maximumDoorWeight')}
+                                </td>
+                                <td>{productSet.maximumDoorWeight}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.height}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.height')}
+                                </td>
+                                <td>{productSet.height}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.doorLeafThickness}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.doorLeafThickness')}
+                                </td>
+                                <td>{productSet.doorLeafThickness}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.minimumDoorWidth}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.minimumDoorWidth')}
+                                </td>
+                                <td>{productSet.minimumDoorWidth}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.minimumDoorWidthSoftClose}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.minimumDoorWidthSoftClose')}
+                                </td>
+                                <td>{productSet.minimumDoorWidthSoftClose}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.minimumDoorWidthSoftCloseLong}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.minimumDoorWidthSoftCloseLong')}
+                                </td>
+                                <td>{productSet.minimumDoorWidthSoftCloseLong}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.minimumDoorWidthSoftCloseBoth}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.minimumDoorWidthSoftCloseBoth')}
+                                </td>
+                                <td>{productSet.minimumDoorWidthSoftCloseBoth}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.maximumDoorWidth}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.maximumDoorWidth')}
+                                </td>
+                                <td>{productSet.maximumDoorWidth}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.voltage}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.voltage')}
+                                </td>
+                                <td>{productSet.voltage}</td>
+                            </tr>
+                        </f:if>
+                        </tbody>
+                    </table>
+                </div>
+            </f:if>
+
+            <f:if condition="{productSet.showDin}">
+                <div role="tabpanel" class="tab-pane fade tab-pane-technicalnots" id="din">
+                    <table>
+                        <tbody>
+                        <f:if condition="{productSet.useCategorie}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.useCategorie')}
+                                </td>
+                                <td>{productSet.useCategorie}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.durability}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.durability')}
+                                </td>
+                                <td>{productSet.durability}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.doorWeight}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.doorWeight')}
+                                </td>
+                                <td>{productSet.doorWeight}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.fireResistance}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.fireResistance')}
+                                </td>
+                                <td>{productSet.fireResistance}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.safety}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.safety')}
+                                </td>
+                                <td>{productSet.safety}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.corrosionResistance}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.corrosionResistance')}
+                                </td>
+                                <td>{productSet.corrosionResistance}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.security}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.security')}
+                                </td>
+                                <td>{productSet.security}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.doorType}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.doorType')}
+                                </td>
+                                <td>{productSet.doorType}</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.initialFriction}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.initialFriction')}
+                                </td>
+                                <td>{productSet.initialFriction}</td>
+                            </tr>
+                        </f:if>
+                        </tbody>
+                    </table>
+                </div>
+            </f:if>
+
+            <f:if condition="{productSet.invitationToTender}">
+                <div role="tabpanel" class="tab-pane fade tab-pane-technicalnots" id="invitationToTender">
+                    <f:format.html>{productSet.invitationToTender}</f:format.html>
+                </div>
+            </f:if>
+
+        </div>
+
+
     </f:section>
 
     <f:section name="downloads">
-        <h3 class="border-bottom">
-            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.downloads')}
-        </h3>
-
+        <f:if condition="{productSet.download}">
+            <h3 class="border-bottom">
+                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.downloads')}
+            </h3>
+        </f:if>
 
         <div class="mb-3" id="{accordionId}" role="tablist" aria-multiselectable="true">
 
@@ -546,7 +585,7 @@
 
     <f:section name="productGroupLinks">
 
-        <f:if condition="{productGroup.productSetTypes}">
+        <f:if condition="{productGroup.productSetTypes -> f:count()} > 1">
             <h3 class="border-bottom">
                 {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.productGroupLinks')}
             </h3>
@@ -584,81 +623,89 @@
 
     </f:section>
 
-    <f:section name="accessoryKit">
-
-        <f:if condition="{productSet.productSets}">
-            <h3 class="border-bottom" id="accessoryKitHeadline">
-                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.accessoryKit')}
-            </h3>
-        </f:if>
-
-        <div class="d-flex">
-            <ul class="nav" id="myTab" role="tablist">
-                <f:for each="{productSet.productSets}" as="accessoryKit" iteration="iteration">
-                    <f:render section="accessoryKit-item" arguments="{accessoryKit: accessoryKit}"/>
-                </f:for>
-            </ul>
-        </div>
-
-        <!-- Nav tabs -->
-
-
-        <!-- Tab panes -->
-        <div class="row">
-            <div class="tab-content">
-                <f:for each="{productSet.productSets}" as="accessoryKit">
-                    <f:render section="accessoryKit-content" arguments="{accessoryKit: accessoryKit}"/>
-                </f:for>
+    <f:section name="accessoryKitHeadline">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3 class="border-bottom" id="accessoryKitHeadline">
+                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.accessoryKit')}
+                    </h3>
+                </div>
             </div>
         </div>
-
-
     </f:section>
 
-    <f:section name="accessoryKit-item">
-
-        <li class="nav-item accessoryKit-item mr-2">
-            <a href="#id_{accessoryKit.uid}" class="nav-link" aria-controls="id_{accessoryKit.uid}" role="tab" data-toggle="tab">
-                <f:for each="{accessoryKit.icon}" as="image">
-                    <f:image src="{image.uid}"
-                             treatIdAsReference="1"
-                             class="accessoryKit-icon"
-                             width="120"
-                    />
-                    <div class="accessoryKit-text">
-                        <span>{image.originalResource.title}</span>
-                    </div>
-                </f:for>
-
-            </a>
-        </li>
-
-
+    <f:section name="accessoryKitNavTabs">
+        <div class="container">
+            <div class="d-flex">
+                <ul class="nav" id="myTab" role="tablist">
+                    <f:for each="{productSet.productSets}" as="accessoryKit">
+                        <li class="nav-item accessoryKit-item mr-2">
+                            <a href="#id_{accessoryKit.uid}" class="nav-link" aria-controls="id_{accessoryKit.uid}" role="tab"
+                               data-toggle="tab">
+                                <f:for each="{accessoryKit.icon}" as="image">
+                                    <gjoSe:media.media file="{image}"
+                                                       class="img-fluid border-gray-200"
+                                                       alt="{productGroup.header}"
+                                                       width="120"
+                                                       breakpoints="{
+                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 120}},
+                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 120}},
+                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 120}},
+                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 120}}
+                                         		}"/>
+                                    <div class="accessoryKit-text">
+                                        <span>{image.originalResource.title}</span>
+                                    </div>
+                                </f:for>
+                            </a>
+                        </li>
+                    </f:for>
+                </ul>
+            </div>
+        </div>
     </f:section>
 
-    <f:section name="accessoryKit-content">
+    <f:section name="accessoryKitTabPanes">
+        <div class="tab-content">
+            <f:for each="{productSet.productSets}" as="accessoryKit">
+                <f:render section="accessoryKitTabPanesContent" arguments="{accessoryKit: accessoryKit}"/>
+            </f:for>
+        </div>
+    </f:section>
+
+    <f:section name="accessoryKitTabPanesContent">
 
         <div role="tabpanel" class="tab-pane fade" id="id_{accessoryKit.uid}">
-            <f:render section="description" arguments="{productSet: accessoryKit}"/>
 
-            <div class="content">
-                <div class="container">
-                    <div class="row">
-                        <f:render section="images" arguments="{productSet: accessoryKit}"/>
+            <f:render section="description" arguments="{productSet: accessoryKit}"/>
+            <f:render section="images"
+                      arguments="{
+                        productSet: accessoryKit,
+                        data-fancybox: 'accessoryKit',
+                        slider: 'accessory-kit'
+                        }"/>
+
+            <f:render section="variants" arguments="{productSet: accessoryKit}"/>
+
+            <div class="container mb-32">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <f:render section="technicalnots" arguments="{productSet: accessoryKit}"/>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <f:render section="variants" arguments="{productSet: accessoryKit}"/>
-                            <f:render section="technicalnots" arguments="{productSet: accessoryKit}"/>
-                        </div>
-                        <div class="col-lg-4">
-                            <f:render section="downloads"
-                                      arguments="{productSet: accessoryKit, accordionId: 'accessoryKitaccordion_{accessoryKit.uid}'}"/>
+                    <div class="col-12 col-lg-4">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-12">
+                                <f:render section="downloads"
+                                          arguments="{
+                                          productSet: accessoryKit,
+                                          accordionId: 'accessoryKitaccordion_{accessoryKit.uid}'
+                                          }"/>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </f:section>
