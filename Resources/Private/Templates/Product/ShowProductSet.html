@@ -172,26 +172,28 @@
                                 </div>
                             </div>
                         </f:if>
-                        <div class="col-12">
-                            <h4 class="mb-2">Produkte</h4>
-                            <div class="productset-product-slider{f:if(condition: slider, then:'-{slider}', else:'')}">
+                        <f:if condition="{productSet.products}">
+                            <div class="col-12">
+                                <h4 class="mb-2">Produkte</h4>
+                                <div class="productset-product-slider{f:if(condition: slider, then:'-{slider}', else:'')}">
 
-                                <f:for each="{productSet.products}" as="product">
-                                    <f:for each="{product.image}" as="image">
-                                        <gjoSe:media.media file="{image}"
-                                                           class="img-fluid border-gray-200"
-                                                           alt="{productGroup.header}"
-                                                           width="180"
-                                                           breakpoints="{
+                                    <f:for each="{productSet.products}" as="product">
+                                        <f:for each="{product.image}" as="image">
+                                            <gjoSe:media.media file="{image}"
+                                                               class="img-fluid border-gray-200"
+                                                               alt="{productGroup.header}"
+                                                               width="180"
+                                                               breakpoints="{
                                                     0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 190}},
                                                     1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 240}},
                                                     2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 180}},
                                                     3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 120}}
                                          		}"/>
+                                        </f:for>
                                     </f:for>
-                                </f:for>
+                                </div>
                             </div>
-                        </div>
+                        </f:if>
                     </div>
                 </div>
             </div>
@@ -344,9 +346,6 @@
             </div>
         </f:if>
 
-        <!--<div class="mb-5">-->
-
-
         <!-- Tab panes -->
         <div class="tab-content">
             <f:if condition="{productSet.showTechnicalnots}">
@@ -367,14 +366,6 @@
                                     {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.height')}
                                 </td>
                                 <td>{productSet.height}</td>
-                            </tr>
-                        </f:if>
-                        <f:if condition="{productSet.doorLeafThickness}">
-                            <tr>
-                                <td>
-                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.doorLeafThickness')}
-                                </td>
-                                <td>{productSet.doorLeafThickness} mm</td>
                             </tr>
                         </f:if>
                         <f:if condition="{productSet.minimumDoorWidth}">
@@ -415,6 +406,22 @@
                                     {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.maximumDoorWidth')}
                                 </td>
                                 <td>{productSet.maximumDoorWidth} mm</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.minimumDoorThickness}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.minimumDoorThickness')}
+                                </td>
+                                <td>{productSet.minimumDoorThickness} mm</td>
+                            </tr>
+                        </f:if>
+                        <f:if condition="{productSet.maximumDoorThickness}">
+                            <tr>
+                                <td>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots.maximumDoorThickness')}
+                                </td>
+                                <td>{productSet.maximumDoorThickness} mm</td>
                             </tr>
                         </f:if>
                         <f:if condition="{productSet.voltage}">
@@ -458,7 +465,7 @@
                                 <td>{productSet.doorWeight}</td>
                             </tr>
                         </f:if>
-                        <f:if condition="{productSet.fireResistance}">
+                        <f:if condition="{productSet.fireResistance} || {productSet.fireResistance} == 0">
                             <tr>
                                 <td>
                                     {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.fireResistance')}
@@ -474,7 +481,7 @@
                                 <td>{productSet.safety}</td>
                             </tr>
                         </f:if>
-                        <f:if condition="{productSet.corrosionResistance}">
+                        <f:if condition="{productSet.corrosionResistance} || {productSet.corrosionResistance} == 0">
                             <tr>
                                 <td>
                                     {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.din.corrosionResistance')}
