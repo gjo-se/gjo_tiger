@@ -43,11 +43,6 @@ class ProductSetVariant extends AbstractModel
     /**
      * @var string
      */
-    protected $systemSet = '';
-
-    /**
-     * @var string
-     */
     protected $articleNumber = '';
 
     /**
@@ -87,14 +82,6 @@ class ProductSetVariant extends AbstractModel
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSystemSet()
-    {
-        return $this->systemSet;
     }
 
     /**

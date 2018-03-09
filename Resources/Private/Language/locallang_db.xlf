@@ -122,9 +122,6 @@
             <trans-unit id="tx_gjotiger_domain_model_productsetvariant.name">
                 <source>Name</source>
             </trans-unit>
-            <trans-unit id="tx_gjotiger_domain_model_productsetvariant.system_set">
-                <source>System-Set</source>
-            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productsetvariant.article_number">
                 <source>Artikel-Nummer</source>
             </trans-unit>

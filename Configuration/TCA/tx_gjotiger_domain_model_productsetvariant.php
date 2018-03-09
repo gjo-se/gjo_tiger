@@ -64,13 +64,6 @@ return array(
             )
         ),
 
-        'system_set' => [
-            'label'  => $lll . $table . '.system_set',
-            'config' => [
-                'type' => 'input'
-            ]
-        ],
-
         'article_number' => array(
             'label'  => $lll . $table . '.article_number',
             'config' => array(
@@ -142,7 +135,6 @@ return array(
     'interface' => array(
         'showRecordFieldList' => '
             name, 
-            system_set,
             article_number, 
             price,
             tax,
@@ -157,7 +149,6 @@ return array(
             'showitem' => '
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, 
                             name, 
-                            system_set,
                             article_number, 
                         --div--;' . $lll . $table . '.tabs.price, 
                             price,
