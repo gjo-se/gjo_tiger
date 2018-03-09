@@ -12,9 +12,9 @@
                     <gjoSe:media.media file="{image}"
                                        class="img-fluid"
                                        alt="{productGroup.header}"
-                                       width="720"
+                                       width="1100"
                                        breakpoints="{
-                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 640}},
+                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 1100}},
                                                     1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
                                                     2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
                                                     3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
@@ -31,9 +31,6 @@
                 <f:format.html>{productGroup.description}</f:format.html>
             </div>
         </div>
-
-
-        <f:debug inline="false" title="">{productGroup.productSetTypes}</f:debug>
 
         <f:if condition="{productGroup.productSetTypes}">
             <div class="container mb-32">
