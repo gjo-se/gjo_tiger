@@ -18,20 +18,25 @@ call_user_func(function () {
     $laptopCropSettings['title']  = $lll . 'cropVariant.laptop';
     $desktopCropSettings          = $defaultCropSettings;
     $desktopCropSettings['title'] = $lll . 'cropVariant.desktop';
+    $wideScreenCropSettings          = $defaultCropSettings;
+    $wideScreenCropSettings['title'] = $lll . 'cropVariant.wideScreen';
 
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['image']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['mobile'] = $mobileCropSettings;
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['image']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['tablet'] = $tabletCropSettings;
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['image']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['laptop'] = $laptopCropSettings;
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['image']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['desktop'] = $desktopCropSettings;
+    $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['image']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['wideScreen'] = $wideScreenCropSettings;
 
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['image_engineering_drawing']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['mobile'] = $mobileCropSettings;
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['image_engineering_drawing']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['tablet'] = $tabletCropSettings;
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['image_engineering_drawing']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['laptop'] = $laptopCropSettings;
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['image_engineering_drawing']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['desktop'] = $desktopCropSettings;
+    $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['image_engineering_drawing']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['wideScreen'] = $wideScreenCropSettings;
 
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['icon']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['mobile'] = $mobileCropSettings;
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['icon']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['tablet'] = $tabletCropSettings;
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['icon']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['laptop'] = $laptopCropSettings;
     $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['icon']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['desktop'] = $desktopCropSettings;
+    $GLOBALS['TCA']['tx_gjotiger_domain_model_productset']['columns']['icon']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants']['wideScreen'] = $wideScreenCropSettings;
 
 });
