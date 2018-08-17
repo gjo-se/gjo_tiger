@@ -7,9 +7,9 @@
     <f:section name="main">
 
         <f:if condition="{productGroup}">
-            <div class="container">
-                <div class="row mb-32 bg-gray-100">
-                    <div class="col-12 col-lg-8">
+            <div class="product-set-group-teaser">
+                <div class="row">
+                    <div class="col-12">
                         <f:for each="{productGroup.image}" as="image" iteration="iteration">
                             <f:if condition="{iteration.cycle} == '1' ">
                                 <f:link.page pageUid="{productGroup.pages.uid}">
@@ -28,28 +28,31 @@
                             </f:if>
                         </f:for>
                     </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="">
+                    <div class="col-12">
+                        <f:link.page pageUid="{productGroup.pages.uid}">
+                            <h2>
+                                {productGroup.header}
+                            </h2>
+                        </f:link.page>
+                        <h4>
+                            {productGroup.subHeader}
+                        </h4>
+                            <f:format.raw>
+                                <f:format.crop maxCharacters="120">{productGroup.description}</f:format.crop>
+                            </f:format.raw>
+
+                        <div class="clearfix">
                             <f:link.page pageUid="{productGroup.pages.uid}">
-                                <h2 class="text-center pt-32 mb-32">
-                                    {productGroup.header}
-                                </h2>
+                                <button type="button"
+                                        class="btn btn-tiger mt-0 mr-24 mb-32 float-right waves-effect waves-light">
+                                    Zum Produkt
+                                </button>
                             </f:link.page>
-                            <h3 class="text-center mb-32">
-                                {productGroup.subHeader}
-                            </h3>
-                            <div class="p-8">
-                                <f:format.raw>
-                                    <f:format.crop maxCharacters="120">{productGroup.description}</f:format.crop>
-                                </f:format.raw>
-
-                            </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
+
         </f:if>
 
     </f:section>
