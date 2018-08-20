@@ -10,48 +10,52 @@
             <div class="product-set-group-teaser">
                 <div class="row">
                     <div class="col-12">
-                        <f:for each="{productGroup.image}" as="image" iteration="iteration">
-                            <f:if condition="{iteration.cycle} == '1' ">
-                                <f:link.page pageUid="{productGroup.pages.uid}">
-                                    <gjoSe:media.media file="{image}"
-                                                       class="img-fluid"
-                                                       alt="{productGroup.header}"
-                                                       width="720"
-                                                       breakpoints="{
+                        <div class="card">
+                            <div class="view">
+                                <f:for each="{productGroup.image}" as="image" iteration="iteration">
+                                    <f:if condition="{iteration.cycle} == '1' ">
+                                        <f:link.page pageUid="{productGroup.pages.uid}">
+                                            <gjoSe:media.media file="{image}"
+                                                               class="img-fluid"
+                                                               alt="{productGroup.header}"
+                                                               width="720"
+                                                               breakpoints="{
                                                     0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 640}},
                                                     1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
                                                     2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
                                                     3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
                                          		}"/>
+                                            <div class="mask rgba-white-slight"></div>
+                                        </f:link.page>
+                                    </f:if>
+                                </f:for>
+                            </div>
+                        </div>
 
-                                </f:link.page>
-                            </f:if>
-                        </f:for>
-                    </div>
-                    <div class="col-12">
-                        <f:link.page pageUid="{productGroup.pages.uid}">
-                            <h2>
+                        <div class="card-body">
+                            <h3>
                                 {productGroup.header}
-                            </h2>
-                        </f:link.page>
-                        <h4>
-                            {productGroup.subHeader}
-                        </h4>
+                            </h3>
+                            <h4>
+                                {productGroup.subHeader}
+                            </h4>
                             <f:format.raw>
                                 <f:format.crop maxCharacters="120">{productGroup.description}</f:format.crop>
                             </f:format.raw>
 
-                        <div class="clearfix">
-                            <f:link.page pageUid="{productGroup.pages.uid}">
-                                <button type="button"
-                                        class="btn btn-tiger mt-0 mr-24 mb-32 float-right waves-effect waves-light">
-                                    Zum Produkt
-                                </button>
-                            </f:link.page>
+                            <div class="clearfix">
+                                <f:link.page pageUid="{productGroup.pages.uid}">
+                                    <button type="button"
+                                            class="btn float-right waves-effect waves-light">
+                                        Zum Produkt
+                                    </button>
+                                </f:link.page>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
         </f:if>
 
