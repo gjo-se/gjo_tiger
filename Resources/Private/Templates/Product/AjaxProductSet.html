@@ -5,16 +5,15 @@
     <f:layout name="Default"/>
 
     <f:section name="main">
-
-        <f:for each="{productSets}" as="productSet" iteration="iteration">
-            <ul>
+        <ul class="productSets px-24 pt-12 pb-32">
+            <f:for each="{productSets}" as="productSet" iteration="iteration">
                 <li>
                     <f:link.page pageUid="{productSet.pages.uid}">
-                        {productSet.name}
+                        <i class="icon-cross align-middle"> </i>{productSet.name}
                     </f:link.page>
                 </li>
-            </ul>
-        </f:for>
+            </f:for>
+        </ul>
 
     </f:section>
 
