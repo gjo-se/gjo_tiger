@@ -10,14 +10,11 @@
         <f:render section="javaScriptExternal"/>
 
         <div class="container">
-
-            <h2 class="mb-5">Produkt-Konfigurator</h2>
-
             <div class="row">
-                <div class="col-4 px-2">
+                <div class="col-12">
                     <f:render section="filter" arguments="{_all}"/>
                 </div>
-                <div class="col-8">
+                <div class="col-12">
                     <f:render section="list" arguments="{_all}"/>
                 </div>
             </div>
@@ -61,159 +58,173 @@
     </f:section>
 
     <f:section name="material">
-        <div class="card mb-3">
-            <div class="card-header" role="tab" id="material">
-                <h5 class="mb-0">
-                    <a class="d-block" data-toggle="collapse" href="#collapseMaterial" aria-expanded="true"
-                       aria-controls="collapseMaterial">
-                        Material
-                    </a>
-                </h5>
-            </div>
 
-            <div id="collapseMaterial" class="collapse show" role="tabpanel" aria-labelledby="material"
-                 data-parent="#productFinderAccordion">
-                <div class="card-body">
-                    <div class="btn-group btn-group-justified">
-                        <label class="btn">
+
+        <div class="skin-gray">
+            <h2>Material</h2>
+
+            <div class="filter-material">
+                <div class="filter-material-body">
+                    <div class="d-flex justify-content-around pt-16 pb-16 ">
+                        <label>
                             <f:form.radio class="d-none" name="material" value="wood" checked="1"/>
-                            <img class="radio-icon border-tiger-orange"
-                                 src="fileadmin/user_upload/productgroup/accessory_kit/icon_sidestop_holz_1_1.jpg" width="145" alt="Holz">
+                            <img class="border-tiger-orange"
+                                 src="fileadmin/user_upload/productgroup/accessory_kit/icon_sidestop_holz_1_1.jpg" width="120" alt="Holz">
+                            <figcaption class="figure-caption pt-12">Holz</figcaption>
                         </label>
-                        <label class="btn">
+                        <label>
                             <f:form.radio class="d-none" name="material" value="glas"/>
-                            <img class="radio-icon"
-                                 src="fileadmin/user_upload/productgroup/accessory_kit/icon_glas_1_1.jpg" width="145" alt="Glas">
+                            <img src="fileadmin/user_upload/productgroup/accessory_kit/icon_glas_1_1.jpg" width="120" alt="Glas">
+                            <figcaption class="figure-caption pl-4 pt-12">Glas</figcaption>
                         </label>
                     </div>
+
                     <f:if condition="{specificMaterial}">
+
                         <div class="specific-material">
-                            <div class="d-flex justify-content-around">
+                            <div class="d-flex justify-content-around pb-16">
                                 <f:for each="{specificMaterial}" as="specificMaterialItem" iteration="iteration">
                                     <f:if condition="{specificMaterialItem.materialGroup} == '1' ">
-                                        <f:then>
-                                            <label class="btn p-0">
+                                        <f:if condition="{iteration.cycle} <= 3">
+                                            <label>
                                                 <f:form.radio
                                                         class="d-none specificMaterialItemWood {f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: 'default-material')}"
                                                         name="spezificMaterial"
                                                         value="{specificMaterialItem.materialWeight}"
                                                         checked="{f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: '1', else: '0')}"/>
                                                 <f:for each="{specificMaterialItem.image}" as="image">
-                                                    <div data-toggle="tooltip" data-placement="bottom" title="{specificMaterialItem.name}">
-                                                        <f:image src="{image.uid}"
-                                                                 treatIdAsReference="1"
-                                                                 width="45"
-                                                                 class="{f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: 'border-tiger-orange', else: 'border-gray-300')}"
-                                                        />
-                                                    </div>
+                                                    <f:image src="{image.uid}"
+                                                             treatIdAsReference="1"
+                                                             width="74"
+                                                             class="{f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: 'border-tiger-orange', else: 'border-gray-300')}"
+                                                    />
+                                                    <figcaption class="figure-caption pl-4 pt-12">{specificMaterialItem.name}</figcaption>
                                                 </f:for>
                                             </label>
-                                        </f:then>
-                                        <f:else>
-                                            <f:form.radio class="d-none" id="specificMaterialItemGlas" name="spezificMaterial"
-                                                          value="{specificMaterialItem.materialWeight}"/>
-                                        </f:else>
+
+                                        </f:if>
+                                    </f:if>
+
+                                </f:for>
+                            </div>
+                            <div class="d-flex justify-content-around pb-32">
+                                <f:for each="{specificMaterial}" as="specificMaterialItem" iteration="iteration">
+                                    <f:if condition="{specificMaterialItem.materialGroup} == '1' ">
+                                        <f:if condition="{iteration.cycle} > 3">
+                                            <label>
+                                                <f:form.radio
+                                                        class="d-none specificMaterialItemWood {f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: 'default-material')}"
+                                                        name="spezificMaterial"
+                                                        value="{specificMaterialItem.materialWeight}"
+                                                        checked="{f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: '1', else: '0')}"/>
+                                                <f:for each="{specificMaterialItem.image}" as="image">
+                                                    <f:image src="{image.uid}"
+                                                             treatIdAsReference="1"
+                                                             width="74"
+                                                             class="{f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: 'border-tiger-orange', else: 'border-gray-300')}"
+                                                    />
+                                                    <figcaption class="figure-caption pl-4 pt-12">{specificMaterialItem.name}</figcaption>
+                                                </f:for>
+                                            </label>
+
+                                        </f:if>
                                     </f:if>
 
                                 </f:for>
                             </div>
                         </div>
                     </f:if>
+
+
                 </div>
             </div>
         </div>
+
     </f:section>
 
     <f:section name="measure">
-        <div class="card mb-3">
-            <div class="card-header" role="tab" id="measure">
-                <h5 class="mb-0">
-                    <a class="d-block" data-toggle="collapse" href="#collapseMeasure" aria-expanded="true" aria-controls="collapseMeasure">
-                        Maße
-                    </a>
-                </h5>
-            </div>
 
-            <div id="collapseMeasure" class="collapse show" role="tabpanel" aria-labelledby="measure" data-parent="#productFinderAccordion">
-                <div class="card-body">
 
-                    <div class="form-group">
-                        <label for="wingCountInput">Anzahl Flügel: <span id="wingCountSpan"></span></label>
+        <div class="skin-gray">
+            <h2>Maße</h2>
+
+            <div class="filter-measure">
+                <div class="filter-measure-body pt-16 pb-32 px-16">
+                    <div class="form-group mb-48">
+                        <label for="wingCountInput" class="mb-24">Anzahl Flügel: <span id="wingCountSpan"></span></label>
                         <f:form.textfield class="d-none input-text" name="wingCount" id="wingCountInput"/>
                         <div id="wingCountSlider"></div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="doorWidthInput">Tür-Breite: <span id="doorWidthSpan"></span> mm</label>
+                    <div class="form-group mb-48">
+                        <label for="doorWidthInput" class="mb-24">Tür-Breite: <span id="doorWidthSpan"></span> mm</label>
                         <f:form.textfield class="d-none input-text" name="doorWidth" id="doorWidthInput"/>
                         <div id="doorWidthSlider"></div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="doorHeightInput">Tür-Höhe: <span id="doorHeightSpan"></span> mm</label>
+                    <div class="form-group mb-48">
+                        <label for="doorHeightInput" class="mb-24">Tür-Höhe: <span id="doorHeightSpan"></span> mm</label>
                         <f:form.textfield class="d-none input-text" name="doorHeight" id="doorHeightInput"/>
                         <div id="doorHeightSlider"></div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="doorThicknessInput">Türblatt-Dicke: <span id="doorThicknessSpan"></span> mm</label>
+                    <div class="form-group mb-48">
+                        <label for="doorThicknessInput" class="mb-24">Türblatt-Dicke: <span id="doorThicknessSpan"></span> mm</label>
                         <f:form.textfield class="d-none input-text" name="doorThickness" id="doorThicknessInput"/>
                         <div id="doorThicknessSlider"></div>
                     </div>
+
                     <div class="form-group">
-                        <div class="row">
-                            <div class="col">
-                                <label for="doorWeightInput">Tür-Gewicht: <span id="doorWeightSpan"></span> kg</label>
+                        <div class="row mb-24">
+                            <div class="col-12">
+                                <label for="doorWeightInput" class="">Tür-Gewicht: <span id="doorWeightSpan"></span> kg</label>
                                 <f:form.textfield class="d-none input-text" name="doorWeight" id="doorWeightInput"/>
                             </div>
-                            <div class="col ml-4">
-                                <f:form.checkbox class="form-check-input" name="automaticCompute" id="automaticCompute" value="1" checked="true"/>
-                                automatisch
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <f:form.checkbox class="form-check-input pull-right"
+                                                     name="automaticCompute"
+                                                     id="automaticCompute"
+                                                     value="1"
+                                                     checked="false"/>
+                                    <label class="form-check-label" for="automaticCompute">automatisch berechnen: </label>
+
+                                </div>
                             </div>
                         </div>
-
-
                         <div id="doorWeightSlider"></div>
                     </div>
 
-
                 </div>
-
             </div>
+
+
         </div>
+
     </f:section>
 
     <f:section name="design">
-        <div class="card mb-3">
-            <div class="card-header" role="tab" id="design">
-                <h5 class="mb-0">
-                    <a class="d-block" data-toggle="collapse" href="#collapseDesign" aria-expanded="true" aria-controls="collapseDesign">
-                        Verblendung / Optik
-                    </a>
-                </h5>
-            </div>
 
-            <div id="collapseDesign" class="collapse show" role="tabpanel" aria-labelledby="design"
-                 data-parent="#productFinderAccordion">
-                <div class="card-body">
+        <div class="skin-gray">
+            <h2>Verblendung / Optik</h2>
+
+            <div class="filter-design">
+                <div class="filter-design-body pt-16 pb-32 px-16">
                     <div class="d-flex justify-content-around">
-                        <label class="btn  px-1">
+                        <label>
                             <f:form.radio class="d-none" name="design" value="customer"/>
-                            <div data-toggle="tooltip" data-placement="bottom" title="bauseitige Verkleidung">
-                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
-                            </div>
+                            <img src="{settings.placeholder.imageDefault75}">
+                            <figcaption class="figure-caption pl-4 pt-12">bauseitig</figcaption>
                         </label>
-                        <label class="btn px-1">
+                        <label>
                             <f:form.radio class="d-none" name="design" value="alu"/>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Alu-Schiene">
-                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
-                            </div>
+                            <img src="{settings.placeholder.imageDefault75}">
+                            <figcaption class="figure-caption pl-4 pt-12">Alu</figcaption>
                         </label>
-                        <label class="btn px-1">
+                        <label>
                             <f:form.radio class="d-none" name="design" value="design"/>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Design-Beschlag">
-                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
-                            </div>
+                            <img src="{settings.placeholder.imageActive75}">
+                            <figcaption class="figure-caption pl-4 pt-12">Design</figcaption>
                         </label>
                     </div>
                 </div>
@@ -223,65 +234,46 @@
 
     <f:section name="configuration">
 
-        <div class="card mb-3">
-            <div class="card-header" role="tab" id="configuration">
-                <h5 class="mb-0">
-                    <a class="d-block" data-toggle="collapse" href="#collapseConfiguration" aria-expanded="true" aria-controls="collapseConfiguration">
-                        Ausstattung
-                    </a>
-                </h5>
-            </div>
+        <div class="skin-gray">
+            <h2>Ausstattung</h2>
 
-            <div id="collapseConfiguration" class="collapse show" role="tabpanel" aria-labelledby="configuration"
-                 data-parent="#productFinderAccordion">
-
-                <div class="soft-close-automatic card-body">
+            <div class="filter-configuration">
+                <div class="filter-configuration-body pt-16 pb-32 px-16">
                     <div class="d-flex justify-content-around">
-
-                        <label class="btn soft-close px-1">
+                        <label>
                             <f:form.checkbox class="d-none" name="soft-close" value="1"/>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Dämpfung">
-                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
-                            </div>
+                            <img class="border-gray-300" src="{settings.placeholder.imageDefault75}">
+                            <figcaption class="figure-caption pl-4 pt-12">Dämpfung</figcaption>
                         </label>
-                        <label class="btn et3 px-1">
+                        <label>
                             <f:form.checkbox class="d-none" name="et3" value="1"/>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Automatic ET3">
-                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
-                            </div>
+                            <img class="border-gray-300" src="{settings.placeholder.imageDefault75}">
+                            <figcaption class="figure-caption pl-4 pt-12">Automatic ET3</figcaption>
                         </label>
-                        <label class="btn t-fold px-1">
+                        <label>
                             <f:form.checkbox class="d-none" name="t-fold" value="1"/>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Falttür T-Fold">
-                                <img class="border-gray-300" src="{settings.placeholder.imageDefault100}">
-                            </div>
+                            <img class="border-gray-300" src="{settings.placeholder.imageDefault75}">
+                            <figcaption class="figure-caption pl-4 pt-12">Falttür T-Fold</figcaption>
                         </label>
                     </div>
 
-                    <div class="telescope-synchron ">
-                        <div class="d-flex justify-content-around">
-
-                            <label class="btn two-wings px-1">
-                                <f:form.checkbox class="d-none" name="synchron" value="1" disabled="disabled"/>
-                                <div data-toggle="tooltip" data-placement="bottom" title="Synchron">
-                                    <img class="border-gray-300" src="{settings.placeholder.imageDisabled100}">
-                                </div>
-                            </label>
-                            <label class="btn two-wings px-1">
-                                <f:form.checkbox class="d-none" name="telescop2" value="1" disabled="disabled"/>
-                                <div data-toggle="tooltip" data-placement="bottom" title="Teleskop 2-fach">
-                                    <img class="border-gray-300" src="{settings.placeholder.imageDisabled100}">
-                                </div>
-                            </label>
-                            <label class="btn three-wings px-1">
-                                <f:form.checkbox class="d-none" name="telescop3" value="1" disabled="disabled"/>
-                                <div data-toggle="tooltip" data-placement="bottom" title="Teleskop 3-fach">
-                                    <img class="border-gray-300" src="{settings.placeholder.imageDisabled100}">
-                                </div>
-                            </label>
-                        </div>
+                    <div class="telescope-synchron d-flex justify-content-around">
+                        <label class="two-wings">
+                            <f:form.checkbox class="d-none" name="synchron" value="1" disabled="disabled"/>
+                            <img class="border-gray-300" src="{settings.placeholder.imageDisabled75}">
+                            <figcaption class="figure-caption pl-4 pt-12">Synchron</figcaption>
+                        </label>
+                        <label class="two-wings">
+                            <f:form.checkbox class="d-none" name="telescop2" value="1" disabled="disabled"/>
+                            <img class="border-gray-300" src="{settings.placeholder.imageDisabled75}">
+                            <figcaption class="figure-caption pl-4 pt-12">Teleskop 2x</figcaption>
+                        </label>
+                        <label class="three-wings">
+                            <f:form.checkbox class="d-none" name="telescop3" value="1" disabled="disabled"/>
+                            <img class="border-gray-300" src="{settings.placeholder.imageDisabled75}">
+                            <figcaption class="figure-caption pl-4 pt-12">Teleskop 3x</figcaption>
+                        </label>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -289,64 +281,56 @@
 
     <f:section name="montage">
 
-        <div class="card">
-            <div class="card-header" role="tab" id="montage">
-                <h5 class="mb-0">
-                    <a class="d-block" data-toggle="collapse" href="#collapseMontage" aria-expanded="true" aria-controls="collapseMontage">
-                        Montage
-                    </a>
-                </h5>
-            </div>
+        <div class="skin-gray">
+            <h2>Montage</h2>
 
-            <div id="collapseMontage" class="collapse show" role="tabpanel" aria-labelledby="montage"
-                 data-parent="#productFinderAccordion">
-                <div class="card-body">
+            <div class="filter-configuration">
+                <div class="filter-configuration-body pt-16 pb-32 px-16">
+
                     <div class="d-flex justify-content-around">
-                        <label class="btn">
+                        <label>
                             <f:form.radio class="d-none" name="montage" value="wall"/>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Wand-Montage">
-                                <img class="border-gray-300" src="{settings.placeholder.imageDefault150}">
-                            </div>
+                            <img class="border-gray-300" src="{settings.placeholder.imageDefault120}">
+                            <figcaption class="figure-caption pl-4 pt-12">Wand-Montage</figcaption>
                         </label>
-                        <label class="btn">
+                        <label>
                             <f:form.radio class="d-none" name="montage" value="ceiling"/>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Decken-Montage">
-                                <img class="border-gray-300" src="{settings.placeholder.imageDefault150}">
-                            </div>
+                            <img class="border-gray-300" src="{settings.placeholder.imageDefault120}">
+                            <figcaption class="figure-caption pl-4 pt-12">Decken-Montage</figcaption>
                         </label>
 
                     </div>
                     <div class="d-flex justify-content-around">
-
-                        <label class="btn">
+                        <label>
                             <f:form.radio class="d-none" name="montageWall" value="ahead"/>
-                            <div data-toggle="tooltip" data-placement="bottom" title="Vor der Wand">
-                                <img class="border-gray-300" src="{settings.placeholder.imageDefault150}">
-                            </div>
+                            <img class="border-gray-300" src="{settings.placeholder.imageDefault120}">
+                            <figcaption class="figure-caption pl-4 pt-12">Vor der Wand</figcaption>
                         </label>
-                        <label class="btn">
+                        <label>
                             <f:form.radio class="d-none" name="montageWall" value="in"/>
-                            <div data-toggle="tooltip" data-placement="bottom" title="In der Wand">
-                                <img class="border-gray-300" src="{settings.placeholder.imageDefault150}">
-                            </div>
+                            <img class="border-gray-300" src="{settings.placeholder.imageDefault120}">
+                            <figcaption class="figure-caption pl-4 pt-12">In der Wand</figcaption>
                         </label>
                     </div>
                 </div>
             </div>
         </div>
+
     </f:section>
 
     <f:section name="list">
 
-        <div class="bg-gray-100 border-gray-300 py-1 mb-3 text-center">
-            <h3 class="ajax-list-products-count"></h3>
+        <div class="skin-black">
+            <h2 class="ajax-list-products-headline"></h2>
             <div id="loadingImage" class="text-center">
                 <img alt="AjaxLoader" src="typo3conf/ext/gjo_introduction/Resources/Public/Icons/ajax-loader.gif" width="20" height="20">
             </div>
+
+            <div class="ajax-lists-products"></div>
+
         </div>
 
 
-        <div class="ajax-lists-products"></div>
     </f:section>
 
 
