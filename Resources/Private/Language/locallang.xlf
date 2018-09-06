@@ -27,6 +27,9 @@
             <trans-unit id="productSetVariantGroup.add_to_cart" >
                 <source>Add to Cart</source>
             </trans-unit>
+            <trans-unit id="productSetVariantGroup.amount" >
+                <source>Amount</source>
+            </trans-unit>
             <trans-unit id="productSetVariantGroup.discount" >
                 <source>Discount</source>
             </trans-unit>

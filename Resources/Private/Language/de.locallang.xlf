@@ -35,6 +35,10 @@
                 <source>Add to Cart</source>
                 <target>Bestellen</target>
             </trans-unit>
+            <trans-unit id="productSetVariantGroup.amount" >
+                <source>Amount</source>
+                <target>Menge</target>
+            </trans-unit>
             <trans-unit id="productSetVariantGroup.discount" >
                 <source>Discount</source>
                 <target>Rabatt</target>
