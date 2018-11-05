@@ -5,15 +5,27 @@
     <f:layout name="Default"/>
 
     <f:section name="main">
-        <ul class="productSets px-24 pt-12 pb-32 mb-0">
-            <f:for each="{productSets}" as="productSet" iteration="iteration">
-                <li>
-                    <f:link.page pageUid="{productSet.pages.uid}">
-                        &#8594; {productSet.name}
-                    </f:link.page>
-                </li>
-            </f:for>
-        </ul>
+
+        <f:if condition="{productSets}">
+            <f:then>
+                <ul class="productSets px-24 pt-12 pb-32 mb-0">
+                    <f:for each="{productSets}" as="productSet" iteration="iteration">
+                        <li>
+                            <f:link.page pageUid="{productSet.pages.uid}">
+                                &#8594; {productSet.name}
+                            </f:link.page>
+                        </li>
+                    </f:for>
+                </ul>
+
+            </f:then>
+            <f:else>
+                <div class="px-24 pt-12 pb-32 mb-0 font-size-16 text-white">
+                    <p>Ihre Suche hat keine Treffer ergeben.</p>
+                    <p>Sie können nach Produktnamen oder Artikelnummern suchen.</p>
+                </div>
+            </f:else>
+        </f:if>
 
     </f:section>
 
