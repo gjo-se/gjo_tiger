@@ -8,28 +8,26 @@
 
         <div class="product-set-group">
 
-            <div class="card skin-black">
+            <div class="card px-16 pt-16">
                 <div class="view">
                     <f:for each="{productGroup.image}" as="image" iteration="iteration">
                         <f:if condition="{iteration.cycle} == '1' ">
-                            <f:link.page pageUid="{productGroup.pages.uid}">
-                                <gjoSe:media.media file="{image}"
-                                                   class="img-fluid"
-                                                   alt="{productGroup.header}"
-                                                   width="720"
-                                                   breakpoints="{
-                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 640}},
-                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
-                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
-                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
-                                         		}"/>
-                                <div class="mask rgba-white-slight"></div>
-                            </f:link.page>
+                            <gjoSe:media.media file="{image}"
+                                               class="img-fluid"
+                                               alt="{productGroup.header}"
+                                               width="1100"
+                                               breakpoints="{
+                                                0: {cropVariant: 'wideScreen', media: '(min-width: 1200px)', srcset: {0: 1100}},
+                                                1: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 950}},
+                                                2: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
+                                                3: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
+                                                4: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
+                                            }"/>
                         </f:if>
                     </f:for>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body pb-0">
                     <h3>
                         {productGroup.header}
                     </h3>
@@ -42,20 +40,20 @@
                 </div>
             </div>
 
-            <div class="skin-gray">
+            <div>
                 <h2>Sofort zum richtigen Produkt:</h2>
             </div>
 
             <f:for each="{productGroup.productSetTypes}" as="productSetType">
-                <div class="card skin-gray px-16 pb-32">
-                    <div class="card-body">
+                <div class="card px-16">
+                    <div class="card-body pt-0 pb-24">
                         <h4 class="card-title">
                             {productSetType.name}
                         </h4>
                         <ul class="font-size-16">
                             <f:for each="{productSetType.productSets}" as="productSet" iteration="iteration">
-                                <li class="{f:if(condition: iteration.isLast, then: '', else: 'border-bottom')}">
-                                    <f:link.page pageUid="{productSet.pages.uid}">{productSet.name} &#8599;</f:link.page>
+                                <li>
+                                    <f:link.page pageUid="{productSet.pages.uid}">{productSet.name} <i class="icon-pfeil font-size-12 pl-2 hover-tiger-orange"></i> </f:link.page>
                                 </li>
                             </f:for>
                         </ul>
@@ -64,7 +62,7 @@
                 </div>
             </f:for>
 
-            <div class="skin-white">
+            <div>
                 <h2>{productGroup.teaserHeader}</h2>
             </div>
 
@@ -76,12 +74,13 @@
                                 <gjoSe:media.media file="{image}"
                                                    class="img-fluid"
                                                    alt="{productGroup.header}"
-                                                   width="720"
+                                                   width="1100"
                                                    breakpoints="{
-                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 570}},
-                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
-                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
-                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
+                                                        0: {cropVariant: 'wideScreen', media: '(min-width: 1200px)', srcset: {0: 1100}},
+                                                        1: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 950}},
+                                                        2: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
+                                                        3: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
+                                                        4: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
                                          		}"/>
                             </f:for>
                         </f:if>

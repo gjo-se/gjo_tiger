@@ -9,23 +9,24 @@
         <f:if condition="{productGroup}">
             <div class="product-set-group-teaser">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 p-0 px-16 pt-16">
                         <div class="card">
-                            <div class="view">
+                            <div class="view overlay">
                                 <f:for each="{productGroup.image}" as="image" iteration="iteration">
                                     <f:if condition="{iteration.cycle} == '1' ">
                                         <f:link.page pageUid="{productGroup.pages.uid}">
                                             <gjoSe:media.media file="{image}"
                                                                class="img-fluid"
                                                                alt="{productGroup.header}"
-                                                               width="720"
+                                                               width="1100"
                                                                breakpoints="{
-                                                    0: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 640}},
-                                                    1: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
-                                                    2: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
-                                                    3: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
+                                                    0: {cropVariant: 'wideScreen', media: '(min-width: 1200px)', srcset: {0: 1100}},
+                                                    1: {cropVariant: 'desktop', media: '(min-width: 992px)', srcset: {0: 950}},
+                                                    2: {cropVariant: 'laptop', media: '(min-width: 768px)', srcset: {0: 720}},
+                                                    3: {cropVariant: 'tablet', media: '(min-width: 576px)', srcset: {0: 540}},
+                                                    4: {cropVariant: 'mobile', media: '(min-width: 300px)', srcset: {0: 350}}
                                          		}"/>
-                                            <div class="mask rgba-white-slight"></div>
+                                            <div class="mask rgba-orange-light"></div>
                                         </f:link.page>
                                     </f:if>
                                 </f:for>
@@ -46,7 +47,7 @@
                             <div class="clearfix">
                                 <f:link.page pageUid="{productGroup.pages.uid}">
                                     <button type="button"
-                                            class="btn float-right waves-effect waves-light">
+                                            class="btn btn-tiger-default float-right waves-effect waves-light">
                                         Zum Produkt
                                     </button>
                                 </f:link.page>
