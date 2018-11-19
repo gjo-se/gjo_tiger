@@ -4,7 +4,7 @@ CREATE TABLE tx_gjotiger_domain_model_productset (
   pid int(11) DEFAULT '0' NOT NULL,
 
   name VARCHAR(150) NOT NULL DEFAULT '',
---   aimeos_product_id TINYINT(4) NOT NULL DEFAULT '0',
+  anchor VARCHAR(150) NOT NULL DEFAULT '',
   is_accessory_kit TINYINT(4) NOT NULL DEFAULT '0',
   is_featured TINYINT(4) NOT NULL DEFAULT '0',
   description TEXT NULL,

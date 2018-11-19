@@ -141,6 +141,9 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.name">
                 <source>Name</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.anchor">
+                <source>Anchor-Link / Sprungmarke</source>
+            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.is_accessory_kit">
                 <source>Ist Ergänzungs-Set</source>
             </trans-unit>

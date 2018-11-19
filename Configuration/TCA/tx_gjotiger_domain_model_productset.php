@@ -132,6 +132,13 @@ return array(
             )
         ),
 
+        'anchor' => array(
+            'label'  => $lll . $table . '.anchor',
+            'config' => array(
+                'type' => 'input'
+            )
+        ),
+
         'is_accessory_kit' => array(
             'label'  => $lll . $table . '.is_accessory_kit',
             'config' => array(
@@ -657,6 +664,7 @@ return array(
             'showitem' => '
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, 
                               name,
+                              anchor,
                               is_accessory_kit,
                               is_featured,
                               description,                                                            

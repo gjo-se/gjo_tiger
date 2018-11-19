@@ -34,12 +34,33 @@
                         movable="1"
                         dependencies="jquery-3.2.1.min.js"
         />
+        <v:asset.script name="handleAnchorLinks.js"
+                        path="{v:extension.path.resources(path: 'Component/Products/handleAnchorLinks.js', extensionName: 'gjo_boilerplate')}"
+                        external="true"
+                        standalone="true"
+                        movable="1"
+                        dependencies="jquery-3.2.1.min.js"
+        />
     </f:section>
 
     <f:section name="startTeaser">
 
         <div class="skin-black">
-            <h1>{productSet.name}</h1>
+
+            <f:if condition="{productSet.anchor}">
+                <f:then>
+                    <h1>
+                        <a href="{f:uri.page()}#{productSet.anchor}" class="accessoryKit-anchor">
+                            {productSet.name}
+                        </a>
+                    </h1>
+                </f:then>
+                <f:else>
+                    <h1>
+                        {productSet.name}
+                    </h1>
+                </f:else>
+            </f:if>
 
             <div class="product-set-detail">
                 <div class="card">
@@ -354,7 +375,7 @@
             <f:then>
 
                 <div class="skin-gray">
-                    <h2>
+                    <h2 id="technik">
                         {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots')}
                     </h2>
 
@@ -723,7 +744,7 @@
                     <f:for each="{productSet.productSets}" as="accessoryKit" iteration="iteration">
                         <div class="card-header accessoryKit-item border-0 py-0 pl-16 pr-12">
                             <h4 class="{f:if(condition: iteration.isLast, then:'border-0')}">
-                                <a href="#id_{accessoryKit.uid}" class="nav-link p-0" aria-controls="id_{accessoryKit.uid}" role="tab"
+                                <a href="#{accessoryKit.anchor}" class="nav-link p-0 accessoryKit-anchor" aria-controls="{accessoryKit.anchor}" role="tab"
                                    data-toggle="tab">
                                     <f:for each="{accessoryKit.icon}" as="image">
                                         <div class="d-flex">
@@ -764,9 +785,13 @@
 
     <f:section name="accessoryKitTabPanesContent">
 
-        <div role="tabpanel" class="tab-pane fade" id="id_{accessoryKit.uid}">
+        <div role="tabpanel" class="tab-pane fade" id="{accessoryKit.anchor}">
 
-            <f:render section="startTeaser" arguments="{productSet: accessoryKit}"/>
+            <f:render section="startTeaser"
+                      arguments="{
+                        productSet: accessoryKit,
+                        anchor: accessoryKit.anchor
+                      }"/>
 
             <f:render section="carouselEngineeringDrawings" arguments="{_all}"/>
 

@@ -53,6 +53,11 @@ class ProductSet extends AbstractModel
     /**
      * @var string
      */
+    protected $anchor = '';
+
+    /**
+     * @var string
+     */
     protected $description = '';
 
     /**
@@ -341,6 +346,14 @@ class ProductSet extends AbstractModel
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnchor(): string
+    {
+        return $this->anchor;
     }
 
     /**
