@@ -4,12 +4,12 @@
 		<header/>
 		<body>
             <trans-unit id="productSetVariantGroup.article_number" >
-                <source>ContactForm</source>
-                <target>Artikelnummer</target>
+                <source>Art.</source>
+                <target>Art.</target>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.variants" >
-                <source>Variants</source>
-                <target>Varianten</target>
+                <source>Variants to order</source>
+                <target>Varianten bestellen</target>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots" >
                 <source>Technical Nots</source>

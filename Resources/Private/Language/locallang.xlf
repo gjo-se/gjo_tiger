@@ -4,10 +4,10 @@
 		<header/>
 		<body>
             <trans-unit id="productSetVariantGroup.article_number" >
-                <source>ArticleNumber</source>
+                <source>Art.</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.variants" >
-                <source>Variants</source>
+                <source>Variants to order</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots" >
                 <source>Technical Nots</source>
