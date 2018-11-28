@@ -268,13 +268,42 @@ class ProductSetRepository extends AbstractRepository
         return $query->execute();
     }
 
-//    public function findByAimeosProductId($aimeosPoductId)
-//    {
-//        $query           = $this->createQuery();
-//        $query->matching(
-//            $query->equals('aimeosProductId', $aimeosPoductId)
-//        );
-//
-//        return $query->execute();
-//    }
+    public function findAllWithVariants()
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()
+              ->setRespectStoragePage(false);
+
+        $query->setOrderings(
+            array(
+                'name'        => QueryInterface::ORDER_ASCENDING
+            )
+        );
+
+        $queryResult = $query->execute();
+
+        if($queryResult->count()){
+
+            $productSetWithVariants = array();
+            foreach ($queryResult as $productSet){
+
+                $productSetVariantGroups = $productSet->getProductSetVariantGroups();
+                if($productSetVariantGroups){
+                    foreach ($productSetVariantGroups as $productSetVariantGroup) {
+                        $productSetVariants = $productSetVariantGroup->getProductSetVariants();
+
+                        if($productSetVariants){
+                            foreach ($productSetVariants as $productSetVariant) {
+                                $productSetWithVariants [$productSetVariant->getArticleNumber()] = $productSet->getName() . ' - '  . $productSetVariant->getName();
+                            }
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+        return $productSetWithVariants;
+    }
 }
