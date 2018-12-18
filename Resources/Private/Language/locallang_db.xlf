@@ -258,9 +258,6 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.filter_wingcount" >
                 <source>Mögliche Anzahl Flügel</source>
             </trans-unit>
-            <trans-unit id="tx_gjotiger_domain_model_productset.filter_montage_ahead" >
-                <source>Montage VOR der Wand</source>
-            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.filter_montage_in" >
                 <source>Montage IN der Wand</source>
             </trans-unit>
@@ -285,8 +282,14 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.filter_et3" >
                 <source>Automatik</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_tclose" >
+                <source>T-Close</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_tmaster" >
+                <source>T-Master</source>
+            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.filter_tfold" >
-                <source>Faltbeschlag</source>
+                <source>T-Fold</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.filter_synchron" >
                 <source>Synchron</source>
@@ -323,7 +326,7 @@
                 <source>Filter</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.palettes.material">
-                <source>Montage</source>
+                <source>Material</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.palettes.design">
                 <source>Design</source>

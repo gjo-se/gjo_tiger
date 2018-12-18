@@ -258,7 +258,17 @@ class ProductSet extends AbstractModel
     /**
      * @var bool
      */
+
     protected $filterTfold = false;
+    /**
+     * @var bool
+     */
+
+    protected $filterTclose = false;
+    /**
+     * @var bool
+     */
+    protected $filterTmaster = false;
 
     /**
      * @var bool
@@ -274,11 +284,6 @@ class ProductSet extends AbstractModel
      * @var bool
      */
     protected $filterTelescop3 = false;
-
-    /**
-     * @var bool
-     */
-    protected $filterMontageAhead = false;
 
     /**
      * @var bool
@@ -671,14 +676,6 @@ class ProductSet extends AbstractModel
     /**
      * @return bool
      */
-    public function isFilterMontageAhead()
-    {
-        return $this->filterMontageAhead;
-    }
-
-    /**
-     * @return bool
-     */
     public function isFilterMontageIn()
     {
         return $this->filterMontageIn;
@@ -746,6 +743,22 @@ class ProductSet extends AbstractModel
     public function isFilterTfold()
     {
         return $this->filterTfold;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterTclose()
+    {
+        return $this->filterTclose;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterTmaster()
+    {
+        return $this->filterTmaster;
     }
 
     /**

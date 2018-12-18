@@ -437,20 +437,6 @@ return array(
             ),
         ],
 
-        'filter_montage_ahead' => [
-            'label'  => $lll . $table . '.filter_montage_ahead',
-            'config' => [
-                'type' => 'check'
-            ]
-        ],
-
-        'filter_montage_in' => [
-            'label'  => $lll . $table . '.filter_montage_in',
-            'config' => [
-                'type' => 'check',
-            ],
-        ],
-
         'filter_montage_wall' => [
             'label'  => $lll . $table . '.filter_montage_wall',
             'config' => [
@@ -460,6 +446,13 @@ return array(
 
         'filter_montage_ceiling' => [
             'label'  => $lll . $table . '.filter_montage_ceiling',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_montage_in' => [
+            'label'  => $lll . $table . '.filter_montage_in',
             'config' => [
                 'type' => 'check',
             ],
@@ -571,6 +564,20 @@ return array(
             ],
         ],
 
+        'filter_tclose' => [
+            'label'  => $lll . $table . '.filter_tclose',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
+        'filter_tmaster' => [
+            'label'  => $lll . $table . '.filter_tmaster',
+            'config' => [
+                'type' => 'check',
+            ],
+        ],
+
         'filter_tfold' => [
             'label'  => $lll . $table . '.filter_tfold',
             'config' => [
@@ -636,7 +643,6 @@ return array(
               filter_material_wood,
               filter_material_glas,
               filter_wingcount,
-              filter_montage_ahead,
               filter_montage_in,
               filter_montage_wall,
               filter_montage_ceiling,
@@ -645,6 +651,8 @@ return array(
               filter_design_design,
               filter_soft_close,
               filter_et3,
+              filter_tclose,
+              filter_tmaster,
               filter_tfold,
               filter_synchron,
               filter_telescop2,
@@ -741,15 +749,16 @@ return array(
                   filter_tfold,
                   filter_synchron,
                   filter_telescop2,
-                  filter_telescop3
+                  filter_telescop3,
+                  filter_tclose,
+                  filter_tmaster
         '
         ),
         'montage'       => array(
             'showitem' => '
-                filter_montage_ahead,
-                filter_montage_in,
                 filter_montage_wall,
                 filter_montage_ceiling,
+                filter_montage_in
         '
         ),
     ),

@@ -28,289 +28,329 @@
 
     <f:section name="listItem">
 
-        <f:comment>
-
-        </f:comment>
-
-        <div class="card">
+        <div class="card px-16 pt-16">
 
             <f:for each="{productSet.image}" as="file" iteration="iteration">
                 <f:render partial="ContentElements/Media/Type"
                           arguments="{
-                                      file: file
+                                      file: file,
+                                      link: '{productSet.pages.uid}'
                                   }"/>
             </f:for>
 
-            <div class="card-body">
+            <div class="card-body pb-8">
 
                 <f:link.page pageUid="{productSet.pages.uid}">
-                    <f:render partial="ContentElements/Header/All"
-                              arguments="{
-                                data: {
-                                    header_layout: 4,
-                                    header: '{productSet.name}'
-                                }
-                      }"/>
+                    <h4>{productSet.name}</h4>
                 </f:link.page>
 
                 <div class="row m-0">
                     <div class="col-6 p-0 pr-8">Flügel: {productSet.filterWingcount}</div>
                     <div class="col-6 p-0 pl-8">Breite: {productSet.minimumDoorWidth} - {productSet.maximumDoorWidth} mm</div>
                 </div>
-                <div class="row m-0 mb-16">
+                <div class="row m-0">
                     <div class="col-6 p-0 pr-8">Dicke: {productSet.minimumDoorThickness} - {productSet.maximumDoorThickness} mm</div>
                     <div class="col-6 p-0 pl-8">Gewicht: max. {productSet.maximumDoorWeight} kg</div>
                 </div>
-                <div class="row m-0">
-                    <div class="col-6 offset-6 p-0 pl-8">
-                        <div class="price">
-                            <f:if condition="{gjoSe:getLowestPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}')}">
-                                <f:then>
-                                    ab {gjoSe:feUser.vatPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}',
-                                    lowestPrice: 1) ->
-                                    f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
-                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.{gjoSe:feUser.vatText()}')}
-                                </f:then>
-                                <f:else>
-                                    auf Anfrage
-                                </f:else>
-                            </f:if>
-                        </div>
+                <div class="row m-0 mb-16">
+                    <div class="col-6 p-0 pr-8">
+                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.price')}
+                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.{gjoSe:feUser.vatText()}')}
                     </div>
                 </div>
-
-                <table class="table productset-configuration">
-                    <thead>
-                    <tr>
-                        <th scope="col" style="width: 70%">Ausstattung</th>
-                        <th scope="col" style="width: 15%">ja</th>
-                        <th scope="col" style="width: 15%">nein</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">Für Holz geeignet</th>
-                        <f:if condition="{productSet.filterMaterialWood}">
+                <div class="d-flex product-set-price">
+                    <p class="p-0 py-8">
+                        <f:if condition="{gjoSe:getLowestPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}')}">
                             <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
+                                ab {gjoSe:feUser.vatPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}',
+                                lowestPrice: 1) ->
+                                f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
                             </f:then>
                             <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
+                                auf Anfrage
                             </f:else>
                         </f:if>
-                    </tr>
-                    <tr>
-                        <th scope="row">Für Glas geeignet</th>
-                        <f:if condition="{productSet.filterMaterialGlas}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
+                    </p>
 
-                    <tr>
-                        <th scope="row">bauseitige Verblendung</th>
-                        <f:if condition="{productSet.filterDesignCustomer}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
 
-                    <tr>
-                        <th scope="row">Alu Verblendung</th>
-                        <f:if condition="{productSet.filterDesignAlu}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
+                    <div class="ml-auto skin-black">
+                        <f:link.page pageUid="{productSet.pages.uid}">
+                            <button type="button"
+                                    class="btn btn-tiger-primary float-right m-0 waves-effect waves-light">
+                                Zum Produkt
+                            </button>
+                        </f:link.page>
+                    </div>
 
-                    <tr>
-                        <th scope="row">Design-Beschlag</th>
-                        <f:if condition="{productSet.filterDesignDesign}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">Dämpfung</th>
-                        <f:if condition="{productSet.filterSoftClose}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">Automatik</th>
-                        <f:if condition="{productSet.filterEt3}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">T-FOLD</th>
-                        <f:if condition="{productSet.filterTfold}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">Synchron</th>
-                        <f:if condition="{productSet.filterSynchron}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">Teleskop 2fach</th>
-                        <f:if condition="{productSet.filterTelescop2}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">Teleskop 3fach</th>
-                        <f:if condition="{productSet.filterTelescop3}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">Wandmontage</th>
-                        <f:if condition="{productSet.filterMontageWall}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">Deckenmontage</th>
-                        <f:if condition="{productSet.filterMontageCeiling}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">Vor der Wand</th>
-                        <f:if condition="{productSet.filterMontageAhead}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">In der Wand</th>
-                        <f:if condition="{productSet.filterMontageIn}">
-                            <f:then>
-                                <td><div class="white-circle"></div></td>
-                                <td></td>
-                            </f:then>
-                            <f:else>
-                                <td></td>
-                                <td><div class="white-circle"></div></td>
-                            </f:else>
-                        </f:if>
-                    </tr>
-
-                    </tbody>
-                </table>
-
-                <div class="clearfix">
-                    <f:link.page pageUid="{productSet.pages.uid}">
-                        <button type="button"
-                                class="btn float-right">
-                            Zum Produkt
-                        </button>
-                    </f:link.page>
 
                 </div>
 
 
+                <f:comment>
+                    <!--erst auf Kundenwunsch wieder rein => scheint mir für die Listenansicht viel zu lang-->
+                    <table class="table productset-configuration">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 70%">Ausstattung</th>
+                            <th scope="col" style="width: 15%">ja</th>
+                            <th scope="col" style="width: 15%">nein</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">Für Holz geeignet</th>
+                            <f:if condition="{productSet.filterMaterialWood}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+                        <tr>
+                            <th scope="row">Für Glas geeignet</th>
+                            <f:if condition="{productSet.filterMaterialGlas}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">bauseitige Verblendung</th>
+                            <f:if condition="{productSet.filterDesignCustomer}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Alu Verblendung</th>
+                            <f:if condition="{productSet.filterDesignAlu}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Design-Beschlag</th>
+                            <f:if condition="{productSet.filterDesignDesign}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Dämpfung</th>
+                            <f:if condition="{productSet.filterSoftClose}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Automatik</th>
+                            <f:if condition="{productSet.filterEt3}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">T-FOLD</th>
+                            <f:if condition="{productSet.filterTfold}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Synchron</th>
+                            <f:if condition="{productSet.filterSynchron}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Teleskop 2fach</th>
+                            <f:if condition="{productSet.filterTelescop2}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Teleskop 3fach</th>
+                            <f:if condition="{productSet.filterTelescop3}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Wandmontage</th>
+                            <f:if condition="{productSet.filterMontageWall}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">Deckenmontage</th>
+                            <f:if condition="{productSet.filterMontageCeiling}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">In der Wand</th>
+                            <f:if condition="{productSet.filterMontageIn}">
+                                <f:then>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                    <td></td>
+                                </f:then>
+                                <f:else>
+                                    <td></td>
+                                    <td>
+                                        <div class="white-circle"></div>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </f:comment>
             </div>
 
         </div>
@@ -351,73 +391,73 @@
                         <div class="col-8 pl-2">
                             <div class="row mb-1">
                                 <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                     <!--title="{f:if(condition: '{productSet.filterMaterialWood}', then: 'für Holz geeignet', else: 'nicht für Holz geeignet')}">-->
-                                    <!--<img class="border-gray-500 mr-1 {f:if(condition: '{productSet.filterMaterialWood}', then: '', else: 'opacity-50')}"-->
-                                         <!--src="fileadmin/user_upload/productgroup/accessory_kit/icon_sidestop_holz_1_1.jpg"-->
-                                         <!--width="45">-->
+                                <!--title="{f:if(condition: '{productSet.filterMaterialWood}', then: 'für Holz geeignet', else: 'nicht für Holz geeignet')}">-->
+                                <!--<img class="border-gray-500 mr-1 {f:if(condition: '{productSet.filterMaterialWood}', then: '', else: 'opacity-50')}"-->
+                                <!--src="fileadmin/user_upload/productgroup/accessory_kit/icon_sidestop_holz_1_1.jpg"-->
+                                <!--width="45">-->
                                 <!--</div>-->
                                 <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                     <!--title="{f:if(condition: '{productSet.filterMaterialGlas}', then: 'für Glas geeignet', else: 'nicht für Glas geeignet')}">-->
-                                    <!--<img class="border-gray-500 mr-3 {f:if(condition: '{productSet.filterMaterialGlas}', then: '', else: 'opacity-50')}"-->
-                                         <!--src="fileadmin/user_upload/productgroup/accessory_kit/icon_glas_1_1.jpg"-->
-                                         <!--width="45">-->
+                                <!--title="{f:if(condition: '{productSet.filterMaterialGlas}', then: 'für Glas geeignet', else: 'nicht für Glas geeignet')}">-->
+                                <!--<img class="border-gray-500 mr-3 {f:if(condition: '{productSet.filterMaterialGlas}', then: '', else: 'opacity-50')}"-->
+                                <!--src="fileadmin/user_upload/productgroup/accessory_kit/icon_glas_1_1.jpg"-->
+                                <!--width="45">-->
                                 <!--</div>-->
                                 <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                     <!--title="{f:if(condition: '{productSet.filterDesignCustomer}', then: 'bauseitige Verblendung: ja', else: 'bauseitige Verblendung: nein')}">-->
-                                    <!--<img class="border-gray-500 mr-1"-->
-                                         <!--src="{f:if(condition: '{productSet.filterDesignCustomer}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                         <!--width="45">-->
+                                <!--title="{f:if(condition: '{productSet.filterDesignCustomer}', then: 'bauseitige Verblendung: ja', else: 'bauseitige Verblendung: nein')}">-->
+                                <!--<img class="border-gray-500 mr-1"-->
+                                <!--src="{f:if(condition: '{productSet.filterDesignCustomer}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
+                                <!--width="45">-->
                                 <!--</div>-->
                                 <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                     <!--title="{f:if(condition: '{productSet.filterDesignAlu}', then: 'Alu-Verblendung: ja', else: 'Alu-Verblendung: nein')}">-->
-                                    <!--<img class="border-gray-500 mr-1"-->
-                                         <!--src="{f:if(condition: '{productSet.filterDesignAlu}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                         <!--width="45">-->
+                                <!--title="{f:if(condition: '{productSet.filterDesignAlu}', then: 'Alu-Verblendung: ja', else: 'Alu-Verblendung: nein')}">-->
+                                <!--<img class="border-gray-500 mr-1"-->
+                                <!--src="{f:if(condition: '{productSet.filterDesignAlu}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
+                                <!--width="45">-->
                                 <!--</div>-->
                                 <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                     <!--title="{f:if(condition: '{productSet.filterDesignDesign}', then: 'Design-Beschlag: ja', else: 'Design-Beschlag: nein')}">-->
-                                    <!--<img class="border-gray-500"-->
-                                         <!--src="{f:if(condition: '{productSet.filterDesignDesign}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                         <!--width="45">-->
+                                <!--title="{f:if(condition: '{productSet.filterDesignDesign}', then: 'Design-Beschlag: ja', else: 'Design-Beschlag: nein')}">-->
+                                <!--<img class="border-gray-500"-->
+                                <!--src="{f:if(condition: '{productSet.filterDesignDesign}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
+                                <!--width="45">-->
                                 <!--</div>-->
                             </div>
 
                             <div class="row mb-1">
                                 <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                     <!--title="{f:if(condition: '{productSet.filterSoftClose}', then: 'Dämpfung: ja', else: 'Dämpfung: nein')}">-->
-                                    <!--<img class="border-gray-500 mr-1"-->
-                                         <!--src="{f:if(condition: '{productSet.filterSoftClose}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                         <!--width="45">-->
+                                <!--title="{f:if(condition: '{productSet.filterSoftClose}', then: 'Dämpfung: ja', else: 'Dämpfung: nein')}">-->
+                                <!--<img class="border-gray-500 mr-1"-->
+                                <!--src="{f:if(condition: '{productSet.filterSoftClose}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
+                                <!--width="45">-->
                                 <!--</div>-->
                                 <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                     <!--title="{f:if(condition: '{productSet.}', then: 'Automatic: ja', else: 'Automatic: nein')}">-->
-                                    <!--<img class="border-gray-500 mr-1"-->
-                                         <!--src="{f:if(condition: '{productSet.filterEt3}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                         <!--width="45">-->
+                                <!--title="{f:if(condition: '{productSet.}', then: 'Automatic: ja', else: 'Automatic: nein')}">-->
+                                <!--<img class="border-gray-500 mr-1"-->
+                                <!--src="{f:if(condition: '{productSet.filterEt3}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
+                                <!--width="45">-->
                                 <!--</div>-->
                                 <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                     <!--title="{f:if(condition: '{productSet.}', then: 'T-FOLD: ja', else: 'T-FOLD: nein')}">-->
-                                    <!--<img class="border-gray-500 mr-1"-->
-                                         <!--src="{f:if(condition: '{productSet.filterTfold}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                         <!--width="45">-->
+                                <!--title="{f:if(condition: '{productSet.}', then: 'T-FOLD: ja', else: 'T-FOLD: nein')}">-->
+                                <!--<img class="border-gray-500 mr-1"-->
+                                <!--src="{f:if(condition: '{productSet.filterTfold}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
+                                <!--width="45">-->
                                 <!--</div>-->
                                 <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                     <!--title="{f:if(condition: '{productSet.}', then: 'Synchron: ja', else: 'Synchron: nein')}">-->
-                                    <!--<img class="border-gray-500 mr-1"-->
-                                         <!--src="{f:if(condition: '{productSet.filterSynchron}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                         <!--width="45">-->
+                                <!--title="{f:if(condition: '{productSet.}', then: 'Synchron: ja', else: 'Synchron: nein')}">-->
+                                <!--<img class="border-gray-500 mr-1"-->
+                                <!--src="{f:if(condition: '{productSet.filterSynchron}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
+                                <!--width="45">-->
                                 <!--</div>-->
                                 <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                     <!--title="{f:if(condition: '{productSet.}', then: 'Teleskop 2-fach: ja', else: 'Teleskop 2-fach: nein')}">-->
-                                    <!--<img class="border-gray-500 mr-1"-->
-                                         <!--src="{f:if(condition: '{productSet.filterTelescop2}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                         <!--width="45">-->
+                                <!--title="{f:if(condition: '{productSet.}', then: 'Teleskop 2-fach: ja', else: 'Teleskop 2-fach: nein')}">-->
+                                <!--<img class="border-gray-500 mr-1"-->
+                                <!--src="{f:if(condition: '{productSet.filterTelescop2}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
+                                <!--width="45">-->
                                 <!--</div>-->
                                 <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                     <!--title="{f:if(condition: '{productSet.filterTelescop3}', then: 'Teleskop 3-fach: ja', else: 'Teleskop 3-fach: nein')}">-->
-                                    <!--<img class="border-gray-500 mr-1"-->
-                                         <!--src="{f:if(condition: '{productSet.filterTelescop3}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                         <!--width="45">-->
+                                <!--title="{f:if(condition: '{productSet.filterTelescop3}', then: 'Teleskop 3-fach: ja', else: 'Teleskop 3-fach: nein')}">-->
+                                <!--<img class="border-gray-500 mr-1"-->
+                                <!--src="{f:if(condition: '{productSet.filterTelescop3}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
+                                <!--width="45">-->
                                 <!--</div>-->
                             </div>
                             <div class="row mb-1">
@@ -431,12 +471,6 @@
                                      title="{f:if(condition: '{productSet.}', then: 'Deckenmontage: ja', else: 'Deckenmontage: nein')}">
                                     <img class="border-gray-500 mr-1"
                                          src="{f:if(condition: '{productSet.filterMontageCeiling}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"
-                                         width="45">
-                                </div>
-                                <div data-toggle="tooltip" data-placement="bottom"
-                                     title="{f:if(condition: '{productSet.}', then: 'Montage vor der Wand: ja', else: 'Montage vor der Wand: nein')}">
-                                    <img class="border-gray-500 mr-1"
-                                         src="{f:if(condition: '{productSet.filterMontageAhead}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"
                                          width="45">
                                 </div>
                                 <div data-toggle="tooltip" data-placement="bottom"
