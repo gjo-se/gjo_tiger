@@ -5,7 +5,6 @@
     <f:layout name="Default"/>
 
     <f:section name="main">
-
         <f:if condition="{productGroup}">
             <div class="product-set-group-teaser">
                 <div class="row">
@@ -48,7 +47,7 @@
                                 <f:link.page pageUid="{productGroup.pages.uid}">
                                     <button type="button"
                                             class="btn btn-tiger-default float-right waves-effect waves-light">
-                                        Zum Produkt
+                                        <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:products.seeProduct"/>
                                     </button>
                                 </f:link.page>
                             </div>

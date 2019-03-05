@@ -33,6 +33,8 @@ class ProductSetRepository extends AbstractRepository
 
     public function findBySearchString($searchString = '', $limit = 0)
     {
+        $GLOBALS['TYPO3_DB']->quoteStr($searchString, 'tx_gjotiger_domain_model_productset');
+
         $query = $this->createQuery();
         $query->getQuerySettings()
               ->setRespectStoragePage(false);
@@ -62,10 +64,13 @@ class ProductSetRepository extends AbstractRepository
             $query->setLimit(intval($limit));
         }
 
+        $sysLanguageUid = $GLOBALS['TSFE']->sys_language_uid;
+        $query->getQuerySettings()->setLanguageUid($sysLanguageUid);
+
         return $query->execute();
     }
 
-    public function findByFilter($productFinderFilter = '', $offset = 0, $limit = 0)
+    public function findByFilter($sysLanguageUid, $productFinderFilter = '', $offset = 0, $limit = 0)
     {
 
         $pluginSignature = 'tx_gjotiger_product[';
@@ -350,8 +355,7 @@ class ProductSetRepository extends AbstractRepository
             )
         );
 
-        //        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($query);
-        //        exit;
+        $query->getQuerySettings()->setLanguageUid($sysLanguageUid);
 
         return $query->execute();
     }

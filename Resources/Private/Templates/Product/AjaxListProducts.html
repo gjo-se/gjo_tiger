@@ -20,8 +20,6 @@
 
     <f:section name="list">
         <f:for each="{productSets}" as="productSet" iteration="iteration">
-
-
             <f:render section="listItem" arguments="{_all}"/>
         </f:for>
     </f:section>
@@ -34,23 +32,38 @@
                 <f:render partial="ContentElements/Media/Type"
                           arguments="{
                                       file: file,
-                                      link: '{productSet.pages.uid}'
+                                      link: '{productSet.pages.uid}',
+                                      linkAdditionalParams:'{L: \'{v:page.language()}\'}'
                                   }"/>
             </f:for>
 
             <div class="card-body pb-8">
 
-                <f:link.page pageUid="{productSet.pages.uid}">
+                <f:link.page pageUid="{productSet.pages.uid}" additionalParams="{L: '{v:page.language()}'}">
                     <h4>{productSet.name}</h4>
                 </f:link.page>
 
+
+
                 <div class="row m-0">
-                    <div class="col-6 p-0 pr-8">Flügel: {productSet.filterWingcount}</div>
-                    <div class="col-6 p-0 pl-8">Breite: {productSet.minimumDoorWidth} - {productSet.maximumDoorWidth} mm</div>
+                    <div class="col-6 p-0 pr-8">
+                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.wings')}:
+                        {productSet.filterWingcount}
+                    </div>
+                    <div class="col-6 p-0 pl-8">
+                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.doorWidth')}:
+                        {productSet.minimumDoorWidth} - {productSet.maximumDoorWidth} mm
+                    </div>
                 </div>
                 <div class="row m-0">
-                    <div class="col-6 p-0 pr-8">Dicke: {productSet.minimumDoorThickness} - {productSet.maximumDoorThickness} mm</div>
-                    <div class="col-6 p-0 pl-8">Gewicht: max. {productSet.maximumDoorWeight} kg</div>
+                    <div class="col-6 p-0 pr-8">
+                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.doorThickness')}:
+                        {productSet.minimumDoorThickness} - {productSet.maximumDoorThickness} mm
+                    </div>
+                    <div class="col-6 p-0 pl-8">
+                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.doorWeight')}:
+                        max. {productSet.maximumDoorWeight} kg
+                    </div>
                 </div>
                 <div class="row m-0 mb-16">
                     <div class="col-6 p-0 pr-8">
@@ -62,26 +75,26 @@
                     <p class="p-0 py-8">
                         <f:if condition="{gjoSe:getLowestPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}')}">
                             <f:then>
-                                ab {gjoSe:feUser.vatPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}',
+                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.price.from')}
+                                {gjoSe:feUser.vatPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}',
                                 lowestPrice: 1) ->
                                 f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
                             </f:then>
                             <f:else>
-                                auf Anfrage
+                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.availableOnRequest')}
                             </f:else>
                         </f:if>
                     </p>
 
 
                     <div class="ml-auto skin-black">
-                        <f:link.page pageUid="{productSet.pages.uid}">
+                        <f:link.page pageUid="{productSet.pages.uid}" additionalParams="{L: '{v:page.language()}'}">
                             <button type="button"
                                     class="btn btn-tiger-primary float-right m-0 waves-effect waves-light">
-                                Zum Produkt
+                                <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:products.seeProduct"/>
                             </button>
                         </f:link.page>
                     </div>
-
 
                 </div>
 

@@ -292,7 +292,9 @@
                 <div class="row justify-content-center">
                     <div class="container px-16 px-xl-20">
 
-                        <h2 class="px-8">Produkte & Technische Zeichnungen</h2>
+                        <h2 class="px-8">
+                            <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSet.productsAndEngineeringDrawing" />
+                        </h2>
 
                     </div>
                 </div>
@@ -335,7 +337,7 @@
                                             {productSet.name}
                                         </h4>
                                         <div class="d-none alert alert-success alert-success-add-to-cart" role="alert">
-                                            Der Artikel wurde erfolgreich in den Warenkorb gelegt.
+                                            <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSet.successfullyAddedToCart" />
                                         </div>
                                         <p class="pb-0">{productSetVariant.name} </p>
                                         <p class="pb-0">
@@ -390,7 +392,7 @@
                                                 <div class="clearfix skin-white">
                                                     <button class="btn btn-tiger-primary add-to-cart-button float-right m-0"
                                                             type="submit">
-                                                        In den Warenkorb
+                                                        <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSet.addToCart" />
                                                     </button>
                                                 </div>
                                             </f:then>
@@ -399,7 +401,7 @@
                                                     <f:link.page pageUid="11"
                                                                  class="btn btn-tiger-primary float-right m-0"
                                                                  additionalParams="{productSetVariantArticleNumber: productSetVariant.articleNumber}">
-                                                        auf Anfrage
+                                                        <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSet.availableOnRequest" />
                                                     </f:link.page>
                                                 </div>
                                             </f:else>
@@ -441,7 +443,8 @@
                                                href="#body-technicalnots-technicalnots"
                                                aria-expanded="false" aria-controls="body-technicalnots-technicalnots">
                                                 <h4 class="pt-16 pb-12">
-                                                    Technische Hinweise <i class="fa fa-angle-down rotate-icon"></i>
+                                                    <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots" />
+                                                    <i class="fa fa-angle-down rotate-icon"></i>
                                                 </h4>
                                             </a>
                                         </div>
@@ -484,7 +487,8 @@
                                                href="#body-technicalnots-invitationToTender" aria-expanded="false"
                                                aria-controls="body-technicalnots-invitationToTender">
                                                 <h4 class="py-12 border-0">
-                                                    Ausschreibungstext <i class="fa fa-angle-down rotate-icon"></i>
+                                                    <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.invitationToTender" />
+                                                    <i class="fa fa-angle-down rotate-icon"></i>
                                                 </h4>
                                             </a>
                                         </div>
@@ -505,7 +509,7 @@
                                     <f:if condition="{productSet.showTechnicalnots}">
                                         <div class="col card p-0 pb-16">
                                             <h4 class="card-header py-16 px-16 border-0">
-                                                Technische Hinweise
+                                                <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.technicalnots" />
                                             </h4>
                                             <div class="card-body p-0 px-16">
                                                 <f:render section="technicalnots-technicalnots-body" arguments="{_all}"/>
@@ -516,7 +520,7 @@
                                     <f:if condition="{productSet.showDin}">
                                         <div class="col card p-0 pb-16">
                                             <h4 class="card-header py-16 px-16 border-0">
-                                                DIN EN 1527
+                                                <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.dinEn1527" />
                                             </h4>
                                             <div class="card-body p-0 px-16 border-left-black">
                                                 <f:render section="technicalnots-din-body" arguments="{_all}"/>
@@ -527,7 +531,7 @@
                                     <f:if condition="{productSet.invitationToTender}">
                                         <div class="col card p-0 pb-16">
                                             <h4 class="card-header py-16 px-16 border-0">
-                                                Ausschreibungstext
+                                                <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.invitationToTender" />
                                             </h4>
                                             <div class="card-body p-0 px-16 border-left-black">
                                                 <f:render section="technicalnots-invitationToTender-body" arguments="{_all}"/>
@@ -764,7 +768,7 @@
                                            href="#body-downloads_engineeringDrawing_{accordionId}" aria-expanded="false"
                                            aria-controls="body-downloads_engineeringDrawing_{accordionId}">
                                             <h4 class="py-12 border-0">
-                                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.downloads.downloadEngineeringDrawing')}
+                                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.downloads.engineeringDrawing')}
                                                 <i class="fa fa-angle-down rotate-icon"></i>
                                             </h4>
                                         </a>
@@ -795,7 +799,7 @@
 
     <f:section name="productGroupLinks">
 
-        <f:if condition="{productGroup.productSetTypes -> f:count()} > 1">
+        <f:if condition="{productGroup.productSetTypes -> f:count()} > 0">
 
             <div class="container-fluid skin-gray">
                 <div class="row justify-content-center">

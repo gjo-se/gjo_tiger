@@ -141,7 +141,7 @@ CREATE TABLE tx_gjotiger_domain_model_product (
   additional_information VARCHAR(150) NOT NULL DEFAULT '',
   image int(11) unsigned NOT NULL default '0',
 
-  product_sub_group int(11) unsigned NOT NULL default '0',
+  product_sub_group int(11) unsigned default 0,
   product_sets int(11) unsigned NOT NULL default '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
