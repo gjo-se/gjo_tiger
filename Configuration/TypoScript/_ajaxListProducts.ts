@@ -32,7 +32,7 @@ plugin.tx_gjotiger {
     settings{
         ajaxListProducts {
             offset = 0
-            limit = 5
+            limit = 6
         }
     }
 }

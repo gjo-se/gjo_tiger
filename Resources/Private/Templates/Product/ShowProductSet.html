@@ -11,10 +11,10 @@
         <div class="product-set">
             <f:render section="startTeaser" arguments="{_all}"/>
             <f:render section="carouselProducts" arguments="{_all}"/>
-            <f:render section="variants" arguments="{_all}"/>
             <f:render section="technicalnots" arguments="{_all}"/>
             <f:render section="downloads" arguments="{productSet: productSet, accordionId: 'productSetaccordion'}"/>
             <f:render section="productGroupLinks" arguments="{_all}"/>
+            <f:render section="variants" arguments="{_all}"/>
         </div>
 
         <f:if condition="{productSet.productSets}">
@@ -205,7 +205,7 @@
                         1: 'loop',
                         2: 'pause',
                         3: 'show_thumbnails',
-                        4: 'ride'
+                        4: 'xxx-ride-xxx'
                     }"/>
         <v:variable.set name="carouselCountItems"
                         value="{
@@ -803,7 +803,7 @@
 
             <div class="container-fluid skin-gray">
                 <div class="row justify-content-center">
-                    <div class="container px-16 px-xl-20">
+                    <div class="container px-16 px-xl-20 pb-32">
 
                         <h2 class="pt-56">
                             {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.productGroupLinks')}

@@ -253,6 +253,10 @@
             <trans-unit id="productFinder.list.price.from" >
                 <source>Price from</source>
             </trans-unit>
+            <trans-unit id="productFinder.list.price.availableOnRequest" >
+                <source>Price on Request</source>
+                <target>Preis auf Anfrage</target>
+            </trans-unit>
 
 
 		</body>

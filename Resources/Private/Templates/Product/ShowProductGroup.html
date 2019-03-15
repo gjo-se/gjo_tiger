@@ -40,35 +40,44 @@
                 </div>
             </div>
 
-            <div>
-                <h2>
-                    <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetGroup.toTheRightProduct" />:
-                </h2>
-            </div>
+            <div class="skin-white">
 
-            <f:for each="{productGroup.productSetTypes}" as="productSetType">
-                <div class="card px-16">
-                    <div class="card-body pt-0 pb-24">
-                        <h4 class="card-title">
-                            {productSetType.name}
-                        </h4>
-                        <ul class="font-size-16">
-                            <f:for each="{productSetType.productSets}" as="productSet" iteration="iteration">
-                                <li>
-                                    <f:link.page pageUid="{productSet.pages.uid}">{productSet.name} <i class="icon-pfeil font-size-12 pl-2 hover-tiger-orange"></i> </f:link.page>
-                                </li>
-                            </f:for>
-                        </ul>
-                    </div>
-
+                <div>
+                    <h2>
+                        <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetGroup.toTheRightProduct"/>
+                        :
+                    </h2>
                 </div>
-            </f:for>
+
+                <div class="row">
+                    <f:for each="{productGroup.productSetTypes}" as="productSetType" iteration="iteration">
+                        <div class="col-md">
+                            <div class="card">
+                                <div class="card-body pt-0 pb-24 px-16">
+                                    <h4 class="card-title">
+                                        {productSetType.name}
+                                    </h4>
+                                    <ul class="font-size-16">
+                                        <f:for each="{productSetType.productSets}" as="productSet" iteration="iteration">
+                                            <li>
+                                                <f:link.page pageUid="{productSet.pages.uid}">{productSet.name} <i
+                                                        class="icon-pfeil font-size-12 pl-2 hover-tiger-orange"></i></f:link.page>
+                                            </li>
+                                        </f:for>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </f:for>
+                </div>
+            </div>
 
             <div>
                 <h2>{productGroup.teaserHeader}</h2>
             </div>
 
-            <div class="card skin-white product-set-group-image-teaser px-24 pb-32">
+            <div class="card product-set-group-image-teaser pb-32">
                 <div class="view pb-24">
                     <f:for each="{productGroup.teaserImage}" as="image" iteration="iteration">
                         <f:if condition="{iteration.cycle} == '1' ">
@@ -89,7 +98,7 @@
                     </f:for>
                 </div>
 
-                <div class="card-body p-0">
+                <div class="card-body p-0 px-16">
                     <f:format.raw>{productGroup.teaserDescription}</f:format.raw>
                 </div>
             </div>
