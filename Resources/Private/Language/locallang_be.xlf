@@ -18,6 +18,10 @@
             <trans-unit id="flexforms.sca.Product.showProductSet" >
                 <source>Product->showProductSet</source>
             </trans-unit>
+            <trans-unit id="flexforms.sca.Product.productFinder" >
+                <source>Product->productFinder</source>
+            </trans-unit>
+
 
 
             ***************************

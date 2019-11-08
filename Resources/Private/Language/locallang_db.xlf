@@ -112,17 +112,24 @@
 
             ### ProductSetVariant ####
 
+            <trans-unit id="tx_gjotiger_domain_model_productsetvariant.tabs.price">
+                <source>Preise</source>
+            </trans-unit>
+
             <trans-unit id="tx_gjotiger_domain_model_productsetvariant">
                 <source>ProductSetVariant</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productsetvariant.name">
                 <source>Name</source>
             </trans-unit>
-            <trans-unit id="tx_gjotiger_domain_model_productsetvariant.system_set">
-                <source>System-Set</source>
-            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productsetvariant.article_number">
                 <source>Artikel-Nummer</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productsetvariant.price" >
+                <source>Preis</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productsetvariant.tax" >
+                <source>MWST-Satz</source>
             </trans-unit>
 
 
@@ -134,8 +141,14 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.name">
                 <source>Name</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.anchor">
+                <source>Anchor-Link / Sprungmarke</source>
+            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.is_accessory_kit">
                 <source>Ist Ergänzungs-Set</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.is_featured">
+                <source>Promo Artikel</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.description">
                 <source>Beschreibung</source>
@@ -149,14 +162,20 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.show_technicalnots">
                 <source>Zeige Technische Hinweise</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.minimum_door_weight">
+                <source>Minimales Türgewicht</source>
+            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.maximum_door_weight">
                 <source>Maximales Türgewicht</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.height">
                 <source>Aufbauhöhe</source>
             </trans-unit>
-            <trans-unit id="tx_gjotiger_domain_model_productset.door_leaf_thickness">
-                <source>Türstärke</source>
+            <trans-unit id="tx_gjotiger_domain_model_productset.minimum_door_thickness">
+                <source>min. Türstärke</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.maximum_door_thickness">
+                <source>max. Türstärke</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.minimum_door_width">
                 <source>Minimale Türbreite</source>
@@ -230,6 +249,57 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.pages" >
                 <source>Seite</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_material_wood" >
+                <source>Holz</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_material_glas" >
+                <source>Glas</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_wingcount" >
+                <source>Mögliche Anzahl Flügel</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_montage_in" >
+                <source>Montage IN der Wand</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_montage_wall" >
+                <source>Wand-Montage</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_montage_ceiling" >
+                <source>Decken-Montage</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_design_customer" >
+                <source>bauseitig</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_design_alu" >
+                <source>Alu Schiene</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_design_design" >
+                <source>Design Beschlag</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_soft_close" >
+                <source>Dämpfung</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_et3" >
+                <source>Automatik</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_tclose" >
+                <source>T-Close</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_tmaster" >
+                <source>T-Master</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_tfold" >
+                <source>T-Fold</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_synchron" >
+                <source>Synchron</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_telescop2" >
+                <source>Teleskop 2</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.filter_telescop3" >
+                <source>Teleskop 3</source>
+            </trans-unit>
 
             <trans-unit id="tx_gjotiger_domain_model_productset.select">
                 <source>Bitte wählen...</source>
@@ -252,8 +322,42 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.tabs.accessory_kit">
                 <source>Ergänzungs-Sets</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.tabs.filter">
+                <source>Filter</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.palettes.material">
+                <source>Material</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.palettes.design">
+                <source>Design</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.palettes.configuration">
+                <source>Ausstattung</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.palettes.montage">
+                <source>Montage</source>
+            </trans-unit>
 
+            ### ProductSpecificMaterial ####
 
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial">
+                <source>Specific Material</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial.description">
+                <source>Beschreibung - intern</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial.material_group">
+                <source>Gruppe (Holz, Glas)</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial.material_weight">
+                <source>Spezifisches Gewicht je cbm</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_specificmaterial.image">
+                <source>Icon</source>
+            </trans-unit>
 
 		</body>
 	</file>

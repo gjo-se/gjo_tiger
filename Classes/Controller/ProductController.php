@@ -28,7 +28,6 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ProductController extends AbstractController
 {
-
     /**
      * return void
      */
@@ -50,12 +49,12 @@ class ProductController extends AbstractController
     {
         $productSet = $this->productSetRepository->findByUid($this->settings['productSet']);
 
-        $productSetTypeUid = $this->productSetTypeRepository->findProductSetTypeUidByProductSetUid($productSet->getUid(), 1);
+        $productSetTypeUid = $this->productSetTypeRepository->findProductSetTypeUidByProductSetUid($this->settings['productSet'], 1);
         $productSetType    = $this->productSetTypeRepository->findByUid($productSetTypeUid);
 
         $productGroup = null;
         if ($productSetType) {
-            $productGroup = $this->productGroupRepository->findByUid($productSetType->getProductGroup());
+            $productGroup = $productSetType->getProductGroup();
         }
 
         $this->view->assignMultiple([
@@ -66,12 +65,36 @@ class ProductController extends AbstractController
 
     public function ajaxProductSetAction()
     {
-        $getParams = GeneralUtility::_GET();
-        $searchString = $getParams['tx_gjotiger']['searchString'];
-        $productSets = $this->productSetRepository->findBySearchString($searchString);
+        $limit = 5;
+        $getParams    = GeneralUtility::_POST();
+        $searchString = $getParams['searchString'];
+        $productSets  = $this->productSetRepository->findBySearchString($searchString, $limit);
 
         $this->view->assign('searchString', $searchString);
         $this->view->assign('productSets', $productSets);
+    }
 
+    public function productFinderAction()
+    {
+        $this->view->assign('sysLanguageUid', $GLOBALS['TSFE']->sys_language_uid);
+    }
+
+    public function ajaxListProductsAction()
+    {
+        $postParams    = GeneralUtility::_POST();
+        $productFinderFilter = $postParams['productFinderFilter'];
+        $sysLanguageUid = $postParams['sysLanguageUid'];
+
+        if($postParams['offset']){
+            $offset = $postParams['offset'];
+        }else{
+            $offset = $this->settings['ajaxListProducts']['offset'];
+        }
+
+        $productSets  = $this->productSetRepository->findByFilter($sysLanguageUid, $productFinderFilter, $offset, $this->settings['ajaxListProducts']['limit']);
+        $productSetsCount  = $this->productSetRepository->findByFilter($sysLanguageUid, $productFinderFilter)->count();
+
+        $this->view->assign('productSets', $productSets);
+        $this->view->assign('productSetsCount', $productSetsCount);
     }
 }

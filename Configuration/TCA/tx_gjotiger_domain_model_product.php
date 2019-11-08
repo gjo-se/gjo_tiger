@@ -63,6 +63,7 @@ return array(
                 'items'               => array(
                     array('-- Bitte wählen --', 0)
                 ),
+                'default' => 0,
             ),
         ),
 
@@ -87,18 +88,26 @@ return array(
             )
         ),
 
-        //        TODO: Array-Schreibweise umstellen auf []
-        //        imageManipulation anpassen - https://docs.typo3.org/typo3cms/TCAReference/ColumnsConfig/Type/ImageManipulation.html
-        'image'                  => array(
+        'image' => [
             'label'  => $lll . $table . '.image',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
-                array(
-                    'maxitems' => 1
-                ),
+                [
+                    'maxitems'         => 1,
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                            --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
+
+                ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
-        ),
+        ],
 
         ###############################################################################
 
@@ -114,6 +123,7 @@ return array(
                     array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1),
                     array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0)
                 ),
+                'default' => 0,
             ),
         ),
         'l10n_parent'      => array(
@@ -129,6 +139,7 @@ return array(
                 'foreign_table'       => $table,
                 'foreign_table_where' => 'AND' . $table . '.pid=###CURRENT_PID### AND ' . $table . '.sys_language_uid IN (-1,0)',
             ),
+            'default' => 0,
         ),
         'l10n_diffsource'  => array(
             'config' => array(

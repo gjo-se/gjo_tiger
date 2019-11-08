@@ -38,6 +38,12 @@
                                         </numIndex>
                                         <numIndex index="1">Product->showProductSet</numIndex>
                                     </numIndex>
+                                    <numIndex index="4">
+                                        <numIndex index="0">
+                                            LLL:EXT:gjo_tiger/Resources/Private/Language/locallang_be.xlf:flexforms.sca.Product.productFinder
+                                        </numIndex>
+                                        <numIndex index="1">Product->productFinder</numIndex>
+                                    </numIndex>
                                 </items>
                             </config>
                         </TCEforms>

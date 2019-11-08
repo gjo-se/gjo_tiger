@@ -24,6 +24,7 @@ use GjoSe\GjoBoilerplate\Controller\AbstractController as GjoBoilerplateAbstract
 use GjoSe\GjoTiger\Domain\Repository\ProductGroupRepository;
 use GjoSe\GjoTiger\Domain\Repository\ProductSetRepository;
 use GjoSe\GjoTiger\Domain\Repository\ProductSetTypeRepository;
+use GjoSe\GjoTiger\Domain\Repository\SpecificMaterialRepository;
 
 /**
  * Class AbstractController
@@ -68,5 +69,18 @@ abstract class AbstractController extends GjoBoilerplateAbstractController
     public function injectProductSetTypeRepository(ProductSetTypeRepository $productSetTypeRepository)
     {
         $this->productSetTypeRepository = $productSetTypeRepository;
+    }
+
+    /**
+     * @var \GjoSe\GjoTiger\Domain\Repository\SpecificMaterialRepository
+     */
+    protected $specificMaterialRepository;
+
+    /**
+     * @param \GjoSe\GjoTiger\Domain\Repository\SpecificMaterialRepository
+     */
+    public function injectSpecificMaterialRepository(SpecificMaterialRepository $specificMaterialRepository)
+    {
+        $this->specificMaterialRepository = $specificMaterialRepository;
     }
 }

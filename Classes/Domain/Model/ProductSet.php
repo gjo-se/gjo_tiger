@@ -53,6 +53,11 @@ class ProductSet extends AbstractModel
     /**
      * @var string
      */
+    protected $anchor = '';
+
+    /**
+     * @var string
+     */
     protected $description = '';
 
     /**
@@ -85,35 +90,45 @@ class ProductSet extends AbstractModel
     /**
      * @var string
      */
-    protected $height = '';
+    protected $minimumDoorWeight = '';
 
     /**
      * @var string
      */
-    protected $doorLeafThickness = '';
+    protected $height = '';
 
     /**
-     * @var string
+     * @var int
+     */
+    protected $minimumDoorThickness = 0;
+
+    /**
+     * @var int
+     */
+    protected $maximumDoorThickness = 0;
+
+    /**
+     * @var integer
      */
     protected $minimumDoorWidth = '';
 
     /**
-     * @var string
+     * @var integer
      */
     protected $minimumDoorWidthSoftClose = '';
 
     /**
-     * @var string
+     * @var integer
      */
     protected $minimumDoorWidthSoftCloseLong = '';
 
     /**
-     * @var string
+     * @var integer
      */
     protected $minimumDoorWidthSoftCloseBoth = '';
 
     /**
-     * @var string
+     * @var integer
      */
     protected $maximumDoorWidth = '';
 
@@ -178,6 +193,26 @@ class ProductSet extends AbstractModel
     protected $invitationToTender = '';
 
     /**
+     * @var bool
+     */
+    protected $isFeatured = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterMaterialWood = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterMaterialGlas = false;
+
+    /**
+     * @var string
+     */
+    protected $filterWingcount = '';
+
+    /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      * @lazy
      */
@@ -195,6 +230,75 @@ class ProductSet extends AbstractModel
      */
     protected $imageEngineeringDrawing = null;
 
+    /**
+     * @var bool
+     */
+    protected $filterDesignCustomer = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterDesignAlu = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterDesignDesign = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterSoftClose = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterEt3 = false;
+
+    /**
+     * @var bool
+     */
+
+    protected $filterTfold = false;
+    /**
+     * @var bool
+     */
+
+    protected $filterTclose = false;
+    /**
+     * @var bool
+     */
+    protected $filterTmaster = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterSynchron = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterTelescop2 = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterTelescop3 = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterMontageIn = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterMontageWall = false;
+
+    /**
+     * @var bool
+     */
+    protected $filterMontageCeiling = false;
 
     public function __construct()
     {
@@ -252,6 +356,14 @@ class ProductSet extends AbstractModel
     /**
      * @return string
      */
+    public function getAnchor(): string
+    {
+        return $this->anchor;
+    }
+
+    /**
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
@@ -292,21 +404,37 @@ class ProductSet extends AbstractModel
     /**
      * @return string
      */
+    public function getMinimumDoorWeight()
+    {
+        return $this->minimumDoorWeight;
+    }
+
+    /**
+     * @return string
+     */
     public function getHeight()
     {
         return $this->height;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getDoorLeafThickness()
+    public function getMinimumDoorThickness()
     {
-        return $this->doorLeafThickness;
+        return $this->minimumDoorThickness;
     }
 
     /**
-     * @return string
+     * @return int
+     */
+    public function getMaximumDoorThickness()
+    {
+        return $this->maximumDoorThickness;
+    }
+
+    /**
+     * @return integer
      */
     public function getMinimumDoorWidth()
     {
@@ -314,7 +442,7 @@ class ProductSet extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getMinimumDoorWidthSoftClose()
     {
@@ -322,7 +450,7 @@ class ProductSet extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getMinimumDoorWidthSoftCloseLong()
     {
@@ -330,7 +458,7 @@ class ProductSet extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getMinimumDoorWidthSoftCloseBoth()
     {
@@ -338,7 +466,7 @@ class ProductSet extends AbstractModel
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getMaximumDoorWidth()
     {
@@ -471,5 +599,189 @@ class ProductSet extends AbstractModel
     public function getImageEngineeringDrawing()
     {
         return $this->imageEngineeringDrawing;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIsFeatured()
+    {
+        return $this->isFeatured;
+    }
+
+    /**
+     * @param bool $isFeatured
+     *
+     * @return void
+     */
+    public function setIsFeatured($isFeatured)
+    {
+        $this->isFeatured = $isFeatured;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterMaterialWood()
+    {
+        return $this->filterMaterialWood;
+    }
+
+    /**
+     * @param bool $filterMaterialWood
+     *
+     * @return void
+     */
+    public function setFilterMaterialWood($filterMaterialWood)
+    {
+        $this->filterMaterialWood = $filterMaterialWood;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterMaterialGlas()
+    {
+        return $this->filterMaterialGlas;
+    }
+
+    /**
+     * @param bool $filterMaterialGlas
+     *
+     * @return void
+     */
+    public function setFilterMaterialGlas($filterMaterialGlas)
+    {
+        $this->filterMaterialGlas = $filterMaterialGlas;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFilterWingcount()
+    {
+        return $this->filterWingcount;
+    }
+
+    /**
+     * @param string $filterWingcount
+     *
+     * @return void
+     */
+    public function setFilterWingcount($filterWingcount)
+    {
+        $this->filterWingcount = $filterWingcount;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterMontageIn()
+    {
+        return $this->filterMontageIn;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterMontageWall()
+    {
+        return $this->filterMontageWall;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterMontageCeiling()
+    {
+        return $this->filterMontageCeiling;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterDesignCustomer()
+    {
+        return $this->filterDesignCustomer;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterDesignAlu()
+    {
+        return $this->filterDesignAlu;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterDesignDesign()
+    {
+        return $this->filterDesignDesign;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterSoftClose()
+    {
+        return $this->filterSoftClose;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterEt3()
+    {
+        return $this->filterEt3;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterTfold()
+    {
+        return $this->filterTfold;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterTclose()
+    {
+        return $this->filterTclose;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterTmaster()
+    {
+        return $this->filterTmaster;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterSynchron()
+    {
+        return $this->filterSynchron;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterTelescop2()
+    {
+        return $this->filterTelescop2;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilterTelescop3()
+    {
+        return $this->filterTelescop3;
     }
 }

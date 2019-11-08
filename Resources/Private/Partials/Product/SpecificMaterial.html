@@ -1,0 +1,70 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:section name="specificMaterial">
+        <f:render section="specificMaterialForm" arguments="{_all}"/>
+    </f:section>
+
+    <f:section name="specificMaterialForm">
+        <f:if condition="{specificMaterial}">
+
+            <div class="specific-material">
+                <div class="d-flex justify-content-around pb-16">
+                    <f:for each="{specificMaterial}" as="specificMaterialItem" iteration="iteration">
+                        <f:if condition="{specificMaterialItem.materialGroup} == '1' ">
+                            <f:if condition="{iteration.cycle} <= 3">
+                                <label>
+                                    <f:form.radio
+                                            class="d-none specificMaterialItemWood {f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: 'default-material')}"
+                                            name="spezificMaterial"
+                                            value="{specificMaterialItem.materialWeight}"
+                                            checked="{f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: '1', else: '0')}"/>
+                                    <f:for each="{specificMaterialItem.image}" as="image">
+                                        <f:image src="{image.uid}"
+                                                 treatIdAsReference="1"
+                                                 width="74"
+                                                 class="{f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: 'border-tiger-orange', else: 'border-gray-300')}"
+                                        />
+                                        <figcaption class="figure-caption pl-4 pt-12">{specificMaterialItem.name}
+                                        </figcaption>
+                                    </f:for>
+                                </label>
+
+                            </f:if>
+                        </f:if>
+
+                    </f:for>
+                </div>
+                <div class="d-flex justify-content-around pb-32">
+                    <f:for each="{specificMaterial}" as="specificMaterialItem" iteration="iteration">
+                        <f:if condition="{specificMaterialItem.materialGroup} == '1' ">
+                            <f:if condition="{iteration.cycle} > 3">
+                                <label>
+                                    <f:form.radio
+                                            class="d-none specificMaterialItemWood {f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: 'default-material')}"
+                                            name="spezificMaterial"
+                                            value="{specificMaterialItem.materialWeight}"
+                                            checked="{f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: '1', else: '0')}"/>
+                                    <f:for each="{specificMaterialItem.image}" as="image">
+                                        <f:image src="{image.uid}"
+                                                 treatIdAsReference="1"
+                                                 width="74"
+                                                 class="{f:if(condition: '{specificMaterialItem.name} == \'Vollspan\'', then: 'border-tiger-orange', else: 'border-gray-300')}"
+                                        />
+                                        <figcaption class="figure-caption pl-4 pt-12">{specificMaterialItem.name}
+                                        </figcaption>
+                                    </f:for>
+                                </label>
+
+                            </f:if>
+                        </f:if>
+
+                    </f:for>
+                </div>
+            </div>
+        </f:if>
+
+    </f:section>
+
+</div>

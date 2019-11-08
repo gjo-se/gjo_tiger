@@ -3,23 +3,326 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="25.09.17T10:10Z" product-name="gjo_tiger">
 		<header/>
 		<body>
+
+            <trans-unit id="products.seeProduct" >
+                <source>See Product</source>
+                <target>zum Produkt</target>
+            </trans-unit>
+
             <trans-unit id="productSetVariantGroup.article_number" >
-                <source>ContactForm</source>
-                <target>Artikelnummer</target>
+                <source>Art.</source>
+                <target>Art.</target>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.variants" >
-                <source>Variants</source>
-                <target>Varianten</target>
+                <source>Variants to order</source>
+                <target>Varianten bestellen</target>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots" >
                 <source>Technical Nots</source>
                 <target>Technische Informationen</target>
             </trans-unit>
+            <trans-unit id="productSetVariantGroup.dinEn1527" >
+                <source>DIN EN 1527</source>
+                <target>DIN EN 1527</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.invitationToTender" >
+                <source>Invitation to tender</source>
+                <target>Ausschreibungstext</target>
+            </trans-unit>
             <trans-unit id="productSetVariantGroup.accessoryKit" >
                 <source>Accessory Kits</source>
                 <target>Ergänzungs Sets</target>
             </trans-unit>
+            <trans-unit id="productSetVariantGroup.price" >
+                <source>Price</source>
+                <target>Preis</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.priceInclVat" >
+                <source>incl. VAT</source>
+                <target>inkl. MWST</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.priceExclVat" >
+                <source>excl. VAT</source>
+                <target>zzgl. MWST</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.add_to_cart" >
+                <source>Add to Cart</source>
+                <target>Bestellen</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.amount" >
+                <source>Amount</source>
+                <target>Menge</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.discount" >
+                <source>Discount</source>
+                <target>Rabatt</target>
+            </trans-unit>
 
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWeight" >
+                <source>minimum doorweight</source>
+                <target>Minimales Türgewicht</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorWeight" >
+                <source>maximum doorweight</source>
+                <target>Maximales Türgewicht</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.height" >
+                <source>height</source>
+                <target>Aufbauhöhe</target>
+            </trans-unit>
+            
+            #############
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorThickness" >
+                <source>minimum doorthickness</source>
+                <target>min. Türblattstärke</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorThickness" >
+                <source>maximum doorthickness</source>
+                <target>max. Türblattstärke</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidth" >
+                <source>minimum doorwidth</source>
+                <target>Minimale Türbreite</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorWidth" >
+                <source>maximum doorwidth</source>
+                <target>Maximale Türbreite</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidthSoftClose" >
+                <source>minimum doorwidth softClose</source>
+                <target>Minimale Türbreite einseitig gedämpft, kurz</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidthSoftCloseLong" >
+                <source>minimum doorwidth SoftClose, long</source>
+                <target>Minimale Türbreite einseitig gedämpft, lang</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidthSoftCloseBoth" >
+                <source>minimum doorwidth SoftClose, both sites</source>
+                <target>Minimale Türbreite beidseitig gedämpft</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorWidth" >
+                <source>maximum doorwidth</source>
+                <target>Maximale Türbreite</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.technicalnots.voltage" >
+                <source>Voltage</source>
+                <target>Betriebsspannung</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.useCategorie" >
+                <source>Use Categorie</source>
+                <target>Nutzungskategorie</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.durability" >
+                <source>Durability</source>
+                <target>Dauer der Funktionsfähigkeit</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.doorWeight" >
+                <source>Door Weight</source>
+                <target>Türmasse</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.fireResistance" >
+                <source>Fire Resistance</source>
+                <target>Feuerbeständigkeit</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.safety" >
+                <source>Safety</source>
+                <target>Sicherheit</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.corrosionResistance" >
+                <source>Corrosion Resistance</source>
+                <target>Korrosionsverhalten</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.security" >
+                <source>Security</source>
+                <target>Schutz</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.doorType" >
+                <source>Door Type</source>
+                <target>Türart</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.din.initialFriction" >
+                <source>Initial Friction</source>
+                <target>Anfangsreibung</target>
+            </trans-unit>
+            
+            <trans-unit id="productSetVariantGroup.downloads.productInformation" >
+                <source>Product Information</source>
+                <target>Produktinformation</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.downloads.engineeringDrawing" >
+                <source>Technical drawings</source>
+                <target>Technische Zeichnungen</target>
+            </trans-unit>
+            <trans-unit id="productSetVariantGroup.productGroupLinks" >
+                <source>More model variants</source>
+                <target>Weitere Modellvarianten</target>
+            </trans-unit>
+            <trans-unit id="productSetGroup.toTheRightProduct" >
+                <source>Immediately to the right product</source>
+                <target>Sofort zum richtigen Produkt</target>
+            </trans-unit>
+
+            <trans-unit id="productSet.productsAndEngineeringDrawing" >
+                <source>Products and Engineering Drawings</source>
+                <target>Produkte und Technische Zeichnungen</target>
+            </trans-unit>
+
+            <trans-unit id="productSet.addToCart" >
+                <source>Add to Cart</source>
+                <target>In den Einkaufswagen</target>
+            </trans-unit>
+            <trans-unit id="productSet.successfullyAddedToCart" >
+                <source>The item has been successfully added to cart.</source>
+                <target>Der Artikel wurde erfolgreich in den Warenkorb gelegt.</target>
+            </trans-unit>
+            <trans-unit id="productSet.availableOnRequest" >
+                <source>available on request</source>
+                <target>auf Anfrage</target>
+            </trans-unit>
+
+            ### ProductFinder ###
+            <trans-unit id="productFinder.filter.deleteAllFilters" >
+                <source>Delete all filters</source>
+                <target>Alle Filter löschen</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.material" >
+                <source>Material</source>
+                <target>Material</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.wood" >
+                <source>Wood</source>
+                <target>Holz</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.glass" >
+                <source>Glass</source>
+                <target>Glas</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.dimension" >
+                <source>Dimension</source>
+                <target>Maße</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.wingCount" >
+                <source>Wing Count</source>
+                <target>Anzahl Flügel</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.doorWidth" >
+                <source>Door Width</source>
+                <target>Tür-Breite</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.doorThickness" >
+                <source>Door Thickness</source>
+                <target>Türblatt-Dicke</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.doorWeight" >
+                <source>Door Weight</source>
+                <target>Tür-Gewicht</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.any" >
+                <source>any</source>
+                <target>beliebig</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.look" >
+                <source>Look</source>
+                <target>Verblendung / Optik</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.byCustomers" >
+                <source>by Customers</source>
+                <target>bauseitig</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.alu" >
+                <source>Alu</source>
+                <target>Alu</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.design" >
+                <source>Design</source>
+                <target>Design</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.configuration" >
+                <source>Configuration</source>
+                <target>Ausstattung</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.damping" >
+                <source>Damping</source>
+                <target>Dämpfung</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.et3" >
+                <source>Automatic ET3</source>
+                <target>Automatik ET3</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.tfold" >
+                <source>Folding Door</source>
+                <target>Falttür T-Fold</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.synchron" >
+                <source>Synchron</source>
+                <target>Synchron</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.tele2" >
+                <source>Telescopic 2</source>
+                <target>Teleskop 2x</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.tele3" >
+                <source>Telescopic 3</source>
+                <target>Teleskop 3x</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.tclose" >
+                <source>T-Close</source>
+                <target>T-Close</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.tmaster" >
+                <source>T-Master</source>
+                <target>T-Master</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.mounting" >
+                <source>Mounting</source>
+                <target>Montage</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.wall" >
+                <source>Wall</source>
+                <target>Wand</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.ceiling" >
+                <source>Ceiling</source>
+                <target>Decke</target>
+            </trans-unit>
+            <trans-unit id="productFinder.filter.wallPocket" >
+                <source>Wall Pocket</source>
+                <target>in der Wand</target>
+            </trans-unit>
+
+            <trans-unit id="productFinder.list.results" >
+                <source>Results</source>
+                <target>Ergebnisse</target>
+            </trans-unit>
+            <trans-unit id="productFinder.list.noResults" >
+                <source>no Results found</source>
+                <target>keine Ergebnisse gefunden</target>
+            </trans-unit>
+
+            <trans-unit id="productFinder.list.wings" >
+                <source>Wings</source>
+                <target>Flügel</target>
+            </trans-unit>
+            <trans-unit id="productFinder.list.doorWidth" >
+                <source>Door Width</source>
+                <target>Tür-Breite</target>
+            </trans-unit>
+            <trans-unit id="productFinder.list.doorThickness" >
+                <source>Door Thickness</source>
+                <target>Türblatt-Dicke</target>
+            </trans-unit>
+            <trans-unit id="productFinder.list.doorWeight" >
+                <source>Door Weight</source>
+                <target>Flügel-Gewicht</target>
+            </trans-unit>
+            <trans-unit id="productFinder.list.price.from" >
+                <source>Price from</source>
+                <target>Preis ab</target>
+            </trans-unit>
+            <trans-unit id="productFinder.list.price.availableOnRequest" >
+                <source>Price on Request</source>
+                <target>Preis auf Anfrage</target>
+            </trans-unit>
 
 		</body>
 	</file>

@@ -29,16 +29,15 @@ $table = 'tx_gjotiger_domain_model_productgroup';
 return array(
 
     'ctrl' => array(
-        'title'           => $lll . $table,
-        'label'           => 'header',
-        'tstamp'          => 'tstamp',
-        'crdate'          => 'crdate',
-        'cruser_id'       => 'cruser_id',
-        'dividers2tabs'   => true,
-        'searchFields'    => 'header',
-        'iconfile'        => 'EXT:' . $ext . '/Resources/Public/Icons/tiger_icon.png',
-        'default_sortby'  => 'ORDER BY header ASC',
-
+        'title'          => $lll . $table,
+        'label'          => 'header',
+        'tstamp'         => 'tstamp',
+        'crdate'         => 'crdate',
+        'cruser_id'      => 'cruser_id',
+        'dividers2tabs'  => true,
+        'searchFields'   => 'header',
+        'iconfile'       => 'EXT:' . $ext . '/Resources/Public/Icons/tiger_icon.png',
+        'default_sortby' => 'ORDER BY header ASC',
 
         'languageField'            => 'sys_language_uid',
         'transOrigPointerField'    => 'l10n_parent',
@@ -53,28 +52,28 @@ return array(
     'columns' => array(
 
         'product_set_types' => array(
-            'label' => $lll . $table . '.product_set_types',
+            'label'  => $lll . $table . '.product_set_types',
             'config' => array(
-                'type' => 'inline',
+                'type'          => 'inline',
                 'foreign_table' => 'tx_gjotiger_domain_model_productsettype',
                 'foreign_field' => 'product_group',
-                'maxitems' => 9999,
-                'appearance' => array(
-                    'collapseAll' => 1,
-                    'expandSingle' => 1,
-                    'levelLinksPosition' => 'top',
-                    'showSynchronizationLink' => 1,
+                'maxitems'      => 9999,
+                'appearance'    => array(
+                    'collapseAll'                     => 1,
+                    'expandSingle'                    => 1,
+                    'levelLinksPosition'              => 'top',
+                    'showSynchronizationLink'         => 1,
                     'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1,
-                    'useSortable' => TRUE,
-                    'enabledControls' => array(
-                        'info' => TRUE,
-                        'new' => TRUE,
-                        'dragdrop' => TRUE,
-                        'sort' => TRUE,
-                        'hide' => TRUE,
-                        'delete' => TRUE,
-                        'localize' => TRUE,
+                    'showAllLocalizationLink'         => 1,
+                    'useSortable'                     => true,
+                    'enabledControls'                 => array(
+                        'info'     => true,
+                        'new'      => true,
+                        'dragdrop' => true,
+                        'sort'     => true,
+                        'hide'     => true,
+                        'delete'   => true,
+                        'localize' => true,
                     ),
                 ),
             ),
@@ -82,14 +81,14 @@ return array(
         ),
 
         'pages' => [
-            'label' => $lll . $table . '.pages',
+            'label'  => $lll . $table . '.pages',
             'config' => [
-                'type' => 'group',
+                'type'          => 'group',
                 'internal_type' => 'db',
-                'allowed' => 'pages',
-                'size' => 1,
-                'maxitems' => 1,
-                'minitems' => 1
+                'allowed'       => 'pages',
+                'size'          => 1,
+                'maxitems'      => 1,
+                'minitems'      => 1
             ]
         ],
 
@@ -110,23 +109,33 @@ return array(
         'description' => array(
             'label'  => $lll . $table . '.description',
             'config' => array(
-                'type' => 'text',
-                'cols' => 40,
-                'rows' => 6,
+                'type'           => 'text',
+                'cols'           => 40,
+                'rows'           => 6,
                 'enableRichtext' => true,
             ),
         ),
 
-        'image' => array(
+        'image' => [
             'label'  => $lll . $table . '.image',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
-                array(
-                    'maxitems' => 2
-                ),
+                [
+                    'maxitems'         => 2,
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                            --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
+
+                ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
-        ),
+        ],
 
         'teaser_header' => array(
             'label'  => $lll . $table . '.teaser_header',
@@ -138,23 +147,34 @@ return array(
         'teaser_description' => array(
             'label'  => $lll . $table . '.teaser_description',
             'config' => array(
-                'type' => 'text',
-                'cols' => 40,
-                'rows' => 6,
+                'type'           => 'text',
+                'cols'           => 40,
+                'rows'           => 6,
                 'enableRichtext' => true
             ),
         ),
 
-        'teaser_image' => array(
+        'teaser_image' => [
             'label'  => $lll . $table . '.teaser_image',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'teaser_image',
-                array(
-                    'maxitems' => 1
-                ),
+                [
+                    'maxitems'         => 2,
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                            --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
+
+                ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
-        ),
+        ],
+
 
         ###############################################################################
 
@@ -221,7 +241,7 @@ return array(
 
     'types' => [
         '1' => [
-            'showitem' => '
+            'showitem'         => '
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, 
                             header,
                             sub_header,
@@ -237,7 +257,7 @@ return array(
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, 
                             hidden,
             ',
-        ]
+        ],
     ],
 
     'palettes' => array(

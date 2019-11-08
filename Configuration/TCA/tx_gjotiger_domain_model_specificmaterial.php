@@ -24,38 +24,32 @@ if (!defined('TYPO3_MODE')) {
 
 $ext   = 'gjo_tiger';
 $lll   = 'LLL:EXT:' . $ext . '/Resources/Private/Language/locallang_db.xlf:';
-$table = 'tx_gjotiger_domain_model_productsetvariant';
+$table = 'tx_gjotiger_domain_model_specificmaterial';
+//        tx_gjotiger_domain_model_productspecificmaterial
 
 return array(
 
     'ctrl' => array(
-        'title'           => $lll . $table,
-        'label'           => 'name',
-        'tstamp'          => 'tstamp',
-        'crdate'          => 'crdate',
-        'cruser_id'       => 'cruser_id',
-        'dividers2tabs'   => true,
-        'searchFields'    => 'name, article_number',
-        'iconfile'        => 'EXT:' . $ext . '/Resources/Public/Icons/tiger_icon.png',
-        'hideTable'        => true,
+        'title'         => $lll . $table,
+        'label'         => 'name',
+        'tstamp'        => 'tstamp',
+        'crdate'        => 'crdate',
+        'cruser_id'     => 'cruser_id',
+        'dividers2tabs' => true,
+        'searchFields'  => 'name',
+        'iconfile'      => 'EXT:' . $ext . '/Resources/Public/Icons/tiger_icon.png',
+        'sortby'        => 'sorting',
 
         'languageField'            => 'sys_language_uid',
         'transOrigPointerField'    => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
 
-        'delete'        => 'deleted',
         'enablecolumns' => array(
             'disabled' => 'hidden'
         ),
     ),
 
     'columns' => array(
-
-        'product_set_variant_group' => array(
-            'config' => array(
-                'type' => 'passthrough',
-            ),
-        ),
 
         'name' => array(
             'label'  => $lll . $table . '.name',
@@ -64,27 +58,45 @@ return array(
             )
         ),
 
-        'article_number' => array(
-            'label'  => $lll . $table . '.article_number',
+        'description' => array(
+            'label'  => $lll . $table . '.description',
+            'config' => array(
+                'type'           => 'text',
+                'cols'           => 40,
+                'rows'           => 6,
+                'enableRichtext' => true
+            ),
+        ),
+
+        'material_group' => [
+            'label'  => $lll . $table . '.material_group',
+            'config' => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'items'      => [
+                    ['Holz', 1],
+                    ['Glas', 2],
+                ],
+            ],
+        ],
+
+        'material_weight' => array(
+            'label'  => $lll . $table . '.material_weight',
             'config' => array(
                 'type' => 'input'
             )
         ),
 
-        'price' => [
-            'label'  => $lll . $table . '.price',
-            'config' => [
-                'type' => 'input',
-                'eval' => 'double2'
-            ]
-        ],
-
-        'tax' => [
-            'label'  => $lll . $table . '.tax',
-            'config' => [
-                'type' => 'input'
-            ]
-        ],
+        'image' => array(
+            'label'  => $lll . $table . '.image',
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+                'image',
+                array(
+                    'maxitems' => 1
+                ),
+                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+            ),
+        ),
 
         ###############################################################################
 
@@ -129,16 +141,15 @@ return array(
                 'type' => 'check',
             ),
         ),
-
     ),
 
     'interface' => array(
         'showRecordFieldList' => '
-            name, 
-            article_number, 
-            price,
-            tax,
-
+            name,
+            description,
+            material_group,
+            material_weight,
+            image,
             sys_language_uid,
             hide
             '
@@ -148,11 +159,11 @@ return array(
         '1' => [
             'showitem' => '
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, 
-                            name, 
-                            article_number, 
-                        --div--;' . $lll . $table . '.tabs.price, 
-                            price,
-                            tax, 
+                                name,
+                                description,
+                                material_group,
+                                material_weight,
+                                image,
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, 
                             hidden,
             ',
