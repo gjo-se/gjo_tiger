@@ -12,7 +12,7 @@
                 <source>Art.</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.variants" >
-                <source>Variants to order</source>
+                <source>Variants</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots" >
                 <source>Technical Nots</source>
@@ -35,6 +35,9 @@
             <trans-unit id="productSetVariantGroup.priceExclVat" >
                 <source>excl. VAT</source>
             </trans-unit>
+            <trans-unit id="productSetVariantGroup.description" >
+                <source>Description</source>
+            </trans-unit>
             <trans-unit id="productSetVariantGroup.add_to_cart" >
                 <source>Add to Cart</source>
             </trans-unit>
@@ -49,37 +52,37 @@
 ##################
 
             <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWeight" >
-                <source>minimum doorweight</source>
+                <source>min. doorweight</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorWeight" >
-                <source>maximum doorweight</source>
+                <source>max. doorweight</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.height" >
                 <source>height</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorThickness" >
-                <source>minimum doorthickness</source>
+                <source>min. doorthickness</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorThickness" >
-                <source>maximum doorthickness</source>
+                <source>max. doorthickness</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidth" >
-                <source>minimum doorwidth</source>
+                <source>min. doorwidth</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorWidth" >
-                <source>maximum doorwidth</source>
+                <source>max. doorwidth</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidthSoftClose" >
-                <source>minimum doorwidth softClose</source>
+                <source>min. doorwidth softClose</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidthSoftCloseLong" >
-                <source>minimum doorwidth SoftClose, long</source>
+                <source>min. doorwidth SoftClose, long</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.minimumDoorWidthSoftCloseBoth" >
-                <source>minimum doorwidth SoftClose, both sites</source>
+                <source>min. doorwidth SoftClose, both sites</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.maximumDoorWidth" >
-                <source>maximum doorwidth</source>
+                <source>max. doorwidth</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots.voltage" >
                 <source>Voltage</source>
@@ -133,9 +136,116 @@
             <trans-unit id="productSet.productsAndEngineeringDrawing" >
                 <source>Products und Engineering Drawings</source>
             </trans-unit>
+            <trans-unit id="productSet.variants.setContent" >
+                <source>Package content</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.itemNo" >
+                <source>Item No.</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter" >
+                <source>Variants Filter</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.material" >
+                <source>Material / Color</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.length" >
+                <source>Length in mm</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version" >
+                <source>Version</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.ev1" >
+                <source>Anodized aluminium, EV1, silver</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.c31" >
+                <source>Anodized aluminium, C31, stainless-steel-look</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.material.ev1" >
+                <source>EV1</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.material.alu" >
+                <source>ALU</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.material.c31" >
+                <source>C31</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.material.black" >
+                <source>Black</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.material.silver" >
+                <source>Silver</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.material.white" >
+                <source>White</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.1-Channel" >
+                <source>1-Channel</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.4-Channel" >
+                <source>4-Channel</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.cleanSwitch" >
+                <source>CleanSwitch</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.pushPlate" >
+                <source>Push Plate</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.button" >
+                <source>Button</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.one-sided" >
+                <source>one-sided</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.one-side-short" >
+                <source>one-sided-short</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.one-side-long" >
+                <source>one-sided-long</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.two-sided" >
+                <source>two-sided</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.fix" >
+                <source>fix</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.adjustable" >
+                <source>adjustable</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.wood" >
+                <source>Wood</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.wood_mx" >
+                <source>Wood MX</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.glass" >
+                <source>Glass</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.et3_wood" >
+                <source>ET3 Wood</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.et3_glass" >
+                <source>ET3 Glass</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.accessoryKit" >
+                <source>Accessory-Kit</source>
+                <target>Ergänzungs-Set</target>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.system-set" >
+                <source>System-Set</source>
+            </trans-unit>
+            <trans-unit id="productSet.variants.variantFilter.version.boxed-set" >
+                <source>Boxed Set</source>
+            </trans-unit>
+
 
             <trans-unit id="productSet.addToCart" >
                 <source>Add to Cart</source>
+            </trans-unit>
+            <trans-unit id="productSet.seeArticleInShop" >
+                <source>Shop</source>
+            </trans-unit>
+            <trans-unit id="productSet.seeArticleTechnic" >
+                <source>See technical details</source>
             </trans-unit>
             <trans-unit id="productSet.successfullyAddedToCart" >
                 <source>The item has been successfully added to cart.</source>
@@ -143,6 +253,10 @@
             <trans-unit id="productSet.availableOnRequest" >
                 <source>available on request</source>
             </trans-unit>
+            <trans-unit id="productSet.variants.shippingCosts" >
+                <source>plus shipping and handling</source>
+            </trans-unit>
+
 
             ### ProductFinder ###
             <trans-unit id="productFinder.filter.deleteAllFilters" >

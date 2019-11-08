@@ -1,4 +1,5 @@
 <?php
+
 namespace GjoSe\GjoTiger\Controller;
 
 /***************************************************************
@@ -28,6 +29,7 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ProductController extends AbstractController
 {
+
     /**
      * return void
      */
@@ -59,19 +61,66 @@ class ProductController extends AbstractController
 
         $this->view->assignMultiple([
             'productSet'   => $productSet,
-            'productGroup' => $productGroup
+            'productGroup' => $productGroup,
+            'is_shop'      => GeneralUtility::_GET()['is_shop'],
+            'pageUid'      => $GLOBALS['TSFE']->id
         ]);
     }
 
     public function ajaxProductSetAction()
     {
-        $limit = 5;
+        $limit        = 0;
         $getParams    = GeneralUtility::_POST();
         $searchString = $getParams['searchString'];
         $productSets  = $this->productSetRepository->findBySearchString($searchString, $limit);
 
+        $productSetsArr = array();
+
+        foreach ($productSets as $productSet) {
+
+            $accessoryKitUids = array();
+            $pageUid          = 0;
+            if ($productSet->getPages()) {
+                $pageUid = $productSet->getPages()->getUid();
+            }
+            $productSetsArr[$productSet->getUid()] = array(
+                'name'    => $productSet->getName(),
+                'pageUid' => $pageUid
+            );
+
+            $accessorykitGroups    = $productSet->getAccessorykitGroups();
+            $accessorykitGroupUids = array();
+            if ($accessorykitGroups) {
+                foreach ($accessorykitGroups as $accessorykitGroup) {
+                    $accessorykitGroupUids[] = $accessorykitGroup->getUid();
+                }
+            }
+
+            if ($accessorykitGroupUids) {
+                $accessorykitUids = array();
+                foreach ($accessorykitGroupUids as $accessorykitGroupUid) {
+                    $accessorykitUids[] = $this->accessorykitGroupRepository->findAccessorykitUidsByAccessorykitGroupUid($accessorykitGroupUid);
+                }
+            }
+
+            if ($accessorykitUids) {
+                $productSetAccessoryKits = $this->productSetRepository->findAccessoryKitByProductSetAndSearchString($accessorykitUids,
+                    $searchString, $limit);
+
+                if ($productSetAccessoryKits) {
+                    foreach ($productSetAccessoryKits as $productSetAccessoryKit) {
+                        $productSetsArr[$productSet->getUid()]['accessoryKits'][$productSetAccessoryKit->getUid()] = array(
+                            'name'   => $productSetAccessoryKit->getName(),
+                            'anchor' => $productSetAccessoryKit->getAnchor()
+                        );
+                    }
+                }
+            }
+        }
+
+
         $this->view->assign('searchString', $searchString);
-        $this->view->assign('productSets', $productSets);
+        $this->view->assign('productSetsArr', $productSetsArr);
     }
 
     public function productFinderAction()
@@ -81,20 +130,90 @@ class ProductController extends AbstractController
 
     public function ajaxListProductsAction()
     {
-        $postParams    = GeneralUtility::_POST();
-        $productFinderFilter = $postParams['productFinderFilter'];
-        $sysLanguageUid = $postParams['sysLanguageUid'];
 
-        if($postParams['offset']){
+        $postParams          = GeneralUtility::_POST();
+        $productFinderFilter = $postParams['productFinderFilter'];
+        $sysLanguageUid      = $postParams['sysLanguageUid'];
+
+        if ($postParams['offset']) {
             $offset = $postParams['offset'];
-        }else{
+        } else {
             $offset = $this->settings['ajaxListProducts']['offset'];
         }
 
-        $productSets  = $this->productSetRepository->findByFilter($sysLanguageUid, $productFinderFilter, $offset, $this->settings['ajaxListProducts']['limit']);
-        $productSetsCount  = $this->productSetRepository->findByFilter($sysLanguageUid, $productFinderFilter)->count();
+        $productSets      = $this->productSetRepository->findByFilter($sysLanguageUid, $productFinderFilter, $offset,
+            $this->settings['ajaxListProducts']['limit']);
+        $productSetsCount = $this->productSetRepository->findByFilter($sysLanguageUid, $productFinderFilter)->count();
 
         $this->view->assign('productSets', $productSets);
         $this->view->assign('productSetsCount', $productSetsCount);
+        $this->view->assign('isShop', (int)$postParams['isShop']);
+    }
+
+    public function ajaxGetProductSetVariantAction()
+    {
+        $json = array();
+
+        $postParams                = GeneralUtility::_POST();
+        $productSetVariantGroupUid = $postParams['productSetVariantGroupUid'];
+        $productSetVariantFilter   = array();
+
+        if ($postParams['productSetVariantFilterTypValueNoFilterTyp']) {
+            $productSetVariantFilter['noFilterTyp'] = $postParams['productSetVariantFilterTypValueNoFilterTyp'];
+        }
+
+        if ($postParams['productSetVariantFilterTypValueLength']) {
+            $productSetVariantFilter['length'] = $postParams['productSetVariantFilterTypValueLength'];
+        }
+
+        if ($postParams['productSetVariantFilterTypValueMaterial']) {
+            $productSetVariantFilter['material'] = $postParams['productSetVariantFilterTypValueMaterial'];
+        }
+
+        if ($postParams['productSetVariantFilterTypValueVersion']) {
+            $productSetVariantFilter['version'] = $postParams['productSetVariantFilterTypValueVersion'];
+        }
+
+        $productSetVariant = $this->productSetVariantRepository->findByProductSetVariantGroupAndFilter($productSetVariantGroupUid,
+            $productSetVariantFilter);
+
+        if ($productSetVariant) {
+
+            $feUserData                 = $GLOBALS['TSFE']->fe_user->user;
+            $feUserObj                  = $this->feUserRepository->findByUid($feUserData['uid']);
+            $feUserDiscount             = 0;
+            $productSetVariantListPrice = $productSetVariant->getPrice() + ($productSetVariant->getPrice() * $productSetVariant->getTax() / 100);
+
+            if ($feUserObj) {
+                $feUserGroupsObj = $feUserObj->getUserGroup();
+
+                $discounts = array();
+                foreach ($feUserGroupsObj as $feUserGroup) {
+
+                    if ($feUserGroup) {
+                        array_push($discounts, $feUserGroup->getTxGjoExtendsFemanagerDiscount());
+                    }
+
+                    if (!$feUserGroup->isTxGjoExtendsFemanagerVatIncl()) {
+                        $productSetVariantListPrice = $productSetVariant->getPrice();
+                    }
+                }
+
+                $feUserDiscount = max($discounts);
+            }
+
+            $json['productSetVariantUid']           = $productSetVariant->getUid();
+            $json['productSetVariantArticleNumber'] = $productSetVariant->getArticleNumber();
+        }
+
+        if ($feUserDiscount) {
+            $productSetVariantBuyPrice         = $productSetVariantListPrice - ($productSetVariantListPrice * $feUserDiscount / 100);
+            $json['productSetVariantBuyPrice'] = number_format($productSetVariantBuyPrice, 2, ',', '.');
+        }
+
+        $json['productSetVariantGroupUid']  = $productSetVariantGroupUid;
+        $json['productSetVariantListPrice'] = number_format($productSetVariantListPrice, 2, ',', '.');
+
+        return json_encode($json);
     }
 }

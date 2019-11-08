@@ -39,14 +39,22 @@ class ProductSetRepository extends AbstractRepository
         $query->getQuerySettings()
               ->setRespectStoragePage(false);
 
+        $searchStringForName = array();
+        $searchStringArr = explode(' ', $searchString);
+        foreach ($searchStringArr as $searchStringArrVal) {
+            $searchStringForName[] = $query->like('name', '%' . $searchStringArrVal . '%');
+        }
+
         $query->matching(
             $query->logicalAnd(
                 $query->logicalOr(
-                    $query->like('name', '%' . $searchString . '%'),
+                    $query->logicalAnd($searchStringForName),
                     $query->like('productSetVariantGroups.productSetVariants.name', '%' . $searchString . '%'),
                     $query->like('productSetVariantGroups.productSetVariants.articleNumber', '%' . $searchString . '%'),
-                    $query->like('products.name', '%' . $searchString . '%'),
-                    $query->like('products.articleNumber', '%' . $searchString . '%')
+                    $query->like('productSetVariantGroups.products.name', '%' . $searchString . '%'),
+                    $query->like('productSetVariantGroups.products.articleNumber', '%' . $searchString . '%'),
+                    $query->like('accessorykitGroups.accessoryKits.productSetVariantGroups.products.name', '%' . $searchString . '%'),
+                    $query->like('accessorykitGroups.accessoryKits.productSetVariantGroups.products.articleNumber', '%' . $searchString . '%')
                 ),
                 $query->equals('is_accessory_kit', 0)
             )
@@ -57,6 +65,41 @@ class ProductSetRepository extends AbstractRepository
             array(
                 'is_featured' => QueryInterface::ORDER_DESCENDING,
                 'name'        => QueryInterface::ORDER_ASCENDING
+            )
+        );
+
+        if ($limit) {
+            $query->setLimit(intval($limit));
+        }
+
+        $sysLanguageUid = $GLOBALS['TSFE']->sys_language_uid;
+        $query->getQuerySettings()->setLanguageUid($sysLanguageUid);
+
+        return $query->execute();
+    }
+
+
+    public function findAccessoryKitByProductSetAndSearchString($accessoryKitUidList, $searchString, $limit)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()
+              ->setRespectStoragePage(false);
+
+        $query->matching(
+            $query->logicalAnd(
+                $query->equals('is_accessory_kit', 1),
+                $query->in('uid', $accessoryKitUidList),
+                $query->logicalOr(
+                    $query->like('productSetVariantGroups.products.name', '%' . $searchString . '%'),
+                    $query->like('productSetVariantGroups.products.articleNumber', '%' . $searchString . '%')
+                )
+            )
+
+        );
+
+        $query->setOrderings(
+            array(
+                'productSetVariantGroups.products.name'        => QueryInterface::ORDER_ASCENDING
             )
         );
 
@@ -387,7 +430,7 @@ class ProductSetRepository extends AbstractRepository
 
                         if ($productSetVariants) {
                             foreach ($productSetVariants as $productSetVariant) {
-                                $productSetWithVariants [$productSetVariant->getArticleNumber()] = $productSet->getName() . ' - ' . $productSetVariant->getName();
+                                $productSetWithVariants [$productSetVariant->getArticleNumber()] = $productSet->getName() . ' - ' . $productSetVariantGroup->getTableHeadline() . ' - ' . $productSetVariant->getName();
                             }
                         }
                     }

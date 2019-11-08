@@ -34,16 +34,15 @@ class ProductSet extends AbstractModel
     protected $productSetVariantGroups = null;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GjoSe\GjoTiger\Domain\Model\Product>
-     * @lazy
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GjoSe\GjoTiger\Domain\Model\AccessorykitGroup>
      */
-    protected $products = null;
+    protected $accessorykitGroups = null;
 
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GjoSe\GjoTiger\Domain\Model\ProductSet>
-     * @lazy
-     */
-    protected $productSets = null;
+//    /**
+//     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GjoSe\GjoTiger\Domain\Model\Product>
+//     * @lazy
+//     */
+//    protected $products = null;
 
     /**
      * @var string
@@ -311,13 +310,12 @@ class ProductSet extends AbstractModel
     protected function initStorageObjects()
     {
         $this->productSetVariantGroups = new ObjectStorage();
-        $this->products = new ObjectStorage();
+        $this->accessorykitGroups = new ObjectStorage();
         $this->image = new ObjectStorage();
         $this->icon = new ObjectStorage();
         $this->download = new ObjectStorage();
         $this->downloadEngineeringDrawing = new ObjectStorage();
         $this->imageEngineeringDrawing = new ObjectStorage();
-        $this->productSets = new ObjectStorage();
         $this->pages = new ObjectStorage();
     }
 
@@ -329,20 +327,21 @@ class ProductSet extends AbstractModel
         return $this->productSetVariantGroups;
     }
 
-    /**
-     * @return ObjectStorage
-     */
-    public function getProducts()
-    {
-        return $this->products;
-    }
+//    /**
+//     * @return ObjectStorage
+//     */
+//    public function getProducts()
+//    {
+//
+//        return $this->products;
+//    }
 
     /**
      * @return ObjectStorage
      */
-    public function getProductSets()
+    public function getAccessorykitGroups()
     {
-        return $this->productSets;
+        return $this->accessorykitGroups;
     }
 
     /**

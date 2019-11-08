@@ -54,15 +54,15 @@ CREATE TABLE tx_gjotiger_domain_model_productset (
   filter_montage_ceiling TINYINT(4) NOT NULL DEFAULT '0',
   filter_montage_in TINYINT(4) NOT NULL DEFAULT '0',
 
-  product_set_variant_groups int(11) unsigned NOT NULL default '0',
-  products int(11) unsigned NOT NULL default '0',
-  product_sets INT(11) unsigned NOT NULL DEFAULT '0',
-  pages INT(11) unsigned NOT NULL DEFAULT '0',
+    product_set_variant_groups int(11) unsigned NOT NULL default '0',
+    accessorykit_groups int(11) unsigned NOT NULL default '0',
+    products int(11) unsigned NOT NULL default '0',
+    pages INT(11) unsigned NOT NULL DEFAULT '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
 	cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
-  deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
+    deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
 
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
@@ -169,6 +169,7 @@ CREATE TABLE tx_gjotiger_domain_model_productsetvariantgroup (
   table_headline VARCHAR(150) NOT NULL DEFAULT '',
 
   product_set int(11) unsigned NOT NULL default '0',
+  products int(11) unsigned NOT NULL default '0',
   product_set_variants int(11) unsigned NOT NULL default '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -186,22 +187,19 @@ CREATE TABLE tx_gjotiger_domain_model_productsetvariantgroup (
 
 );
 
-CREATE TABLE tx_gjotiger_domain_model_productsetvariant (
+CREATE TABLE tx_gjotiger_domain_model_accessorykitgroup (
 
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) DEFAULT '0' NOT NULL,
+    uid int(11) NOT NULL AUTO_INCREMENT,
+    pid int(11) DEFAULT '0' NOT NULL,
 
-  name VARCHAR(200) NOT NULL DEFAULT '',
-  article_number VARCHAR(150) NOT NULL DEFAULT '',
-  price DOUBLE NOT NULL DEFAULT '0',
-  tax TINYINT(4) NOT NULL DEFAULT '0',
+    product_set int(11) unsigned NOT NULL default '0',
+    accessory_kits int(11) unsigned NOT NULL default '0',
+    headline VARCHAR(150) NOT NULL DEFAULT '',
 
-  product_set_variant_group int(11) unsigned NOT NULL default '0',
-
-	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+    tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
 	cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
-  deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
+    deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
 
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
@@ -210,6 +208,36 @@ CREATE TABLE tx_gjotiger_domain_model_productsetvariant (
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)
+
+);
+
+CREATE TABLE tx_gjotiger_domain_model_productsetvariant (
+
+    uid int(11) NOT NULL AUTO_INCREMENT,
+    pid int(11) DEFAULT '0' NOT NULL,
+
+    name VARCHAR(200) NOT NULL DEFAULT '',
+    article_number VARCHAR(150) NOT NULL DEFAULT '',
+    price DOUBLE NOT NULL DEFAULT '0',
+    tax TINYINT(4) NOT NULL DEFAULT '0',
+    material VARCHAR (20) NOT NULL DEFAULT '',
+    length INT(10) NOT NULL DEFAULT '0',
+    version VARCHAR (50) NOT NULL DEFAULT '',
+
+    product_set_variant_group int(11) unsigned NOT NULL default '0',
+
+    tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+    crdate int(11) unsigned DEFAULT '0' NOT NULL,
+    cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+    deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
+    hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+
+    sys_language_uid int(11) DEFAULT '0' NOT NULL,
+    l10n_parent int(11) DEFAULT '0' NOT NULL,
+    l10n_diffsource mediumblob,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid)
 
 );
 
@@ -261,7 +289,18 @@ CREATE TABLE tx_gjotiger_domain_model_specificmaterial (
 
 );
 
-CREATE TABLE tx_gjotiger_product_productset_mm (
+-- TODO: löschen, wurde ersetzt mit tx_gjotiger_product_productsetvariantgroup_mm
+-- CREATE TABLE tx_gjotiger_product_productset_mm (
+--   uid_local int(11) unsigned DEFAULT '0' NOT NULL,
+--   uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+--   sorting int(11) unsigned DEFAULT '0' NOT NULL,
+--   sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
+--
+--   KEY uid_local (uid_local),
+--   KEY uid_foreign (uid_foreign)
+-- );
+
+CREATE TABLE tx_gjotiger_product_productsetvariantgroup_mm (
   uid_local int(11) unsigned DEFAULT '0' NOT NULL,
   uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
   sorting int(11) unsigned DEFAULT '0' NOT NULL,
@@ -271,7 +310,7 @@ CREATE TABLE tx_gjotiger_product_productset_mm (
   KEY uid_foreign (uid_foreign)
 );
 
-CREATE TABLE tx_gjotiger_productset_productset_mm (
+CREATE TABLE tx_gjotiger_productset_accessorykit_mm (
   uid_local int(11) unsigned DEFAULT '0' NOT NULL,
   uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
   sorting int(11) unsigned DEFAULT '0' NOT NULL,

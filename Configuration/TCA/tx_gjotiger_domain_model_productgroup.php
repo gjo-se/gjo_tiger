@@ -121,7 +121,7 @@ return array(
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
                 [
-                    'maxitems'         => 2,
+                    'maxitems'         => 1,
                     'overrideChildTca' => [
                         'types' => [
                             \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
@@ -159,7 +159,7 @@ return array(
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'teaser_image',
                 [
-                    'maxitems'         => 2,
+                    'maxitems'         => 1,
                     'overrideChildTca' => [
                         'types' => [
                             \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [

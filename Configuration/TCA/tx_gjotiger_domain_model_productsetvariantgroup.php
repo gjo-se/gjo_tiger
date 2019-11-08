@@ -109,6 +109,32 @@ return array(
             ]
         ],
 
+//        TODO: MM_opposite_field Nutzung prüfen
+        'products' => [
+            'displayCond' => 'FIELD:sys_language_uid:=:0',
+            'exclude' => 0,
+            'label'   => $lll . $table . '.products',
+            'config'  => [
+                'type'                => 'select',
+                'renderType'          => 'selectMultipleSideBySide',
+                'foreign_table'       => 'tx_gjotiger_domain_model_product',
+                'foreign_table_where' => 'tx_gjotiger_domain_model_product.sys_language_uid = ###REC_FIELD_sys_language_uid### ORDER BY tx_gjotiger_domain_model_product.name, tx_gjotiger_domain_model_product.article_number, tx_gjotiger_domain_model_product.additional_information ASC',
+                'MM_opposite_field'   => 'product_set_variantgroups',
+                'MM'                  => 'tx_gjotiger_product_productsetvariantgroup_mm',
+                'size'                => 10,
+                'autoSizeMax'         => 30,
+                'maxitems'            => 9999,
+                'multiple'            => 0,
+                'fieldControl' => [
+                    'editPopup' => [
+                        'disabled' => false,
+                    ],
+                ],
+                'enableMultiSelectFilterTextfield' => TRUE,
+            ],
+        ],
+
+
         ###############################################################################
 
         'sys_language_uid' => array(
@@ -123,7 +149,9 @@ return array(
                     array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1),
                     array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0)
                 ),
+                'default' => 0,
             ),
+
         ),
         'l10n_parent'      => array(
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -137,7 +165,9 @@ return array(
                 ),
                 'foreign_table'       => $table,
                 'foreign_table_where' => 'AND' . $table . '.pid=###CURRENT_PID### AND ' . $table . '.sys_language_uid IN (-1,0)',
+                'default' => 0,
             ),
+
         ),
         'l10n_diffsource'  => array(
             'config' => array(
@@ -160,6 +190,7 @@ return array(
             headline,
             description,
             table_headline,  
+            products,
 
             sys_language_uid,
             hide
@@ -170,9 +201,8 @@ return array(
         '1' => [
             'showitem' => '
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, 
-                            headline,
-                            description,
                             table_headline, 
+                            products,
                             product_set_variants,
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, 
                             hidden,

@@ -2,9 +2,9 @@
 namespace GjoSe\GjoTiger\Domain\Repository;
 
 /***************************************************************
- *  created: 04.09.17 - 14:48
+ *  created: 21.10.19 - 11:01
  *  Copyright notice
- *  (c) 2017 Gregory Jo Erdmann <gregory.jo@gjo-se.com>
+ *  (c) 2019 Gregory Jo Erdmann <gregory.jo@gjo-se.com>
  *  All rights reserved
  *  This script is part of the TYPO3 project. The TYPO3 project is
  *  free software; you can redistribute it and/or modify
@@ -20,16 +20,32 @@ namespace GjoSe\GjoTiger\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use GjoSe\GjoBoilerplate\Domain\Repository\AbstractRepository as GjoBoilerplateAbstractRepository;
-
 /**
- * Class ProductGroupRepository
+ * Class AccessorykitGroupRepository
  * @package GjoSe\GjoTiger\Domain\Repository
  */
-class ProductGroupRepository extends AbstractRepository
+class AccessorykitGroupRepository extends AbstractRepository
 {
-//    public function findByProductSet($productSet)
-//    {
-//
-//    }
+
+    /**
+     * @return array
+     */
+    public function findAccessorykitUidsByAccessorykitGroupUid($accessorykitGroupUid)
+    {
+        $rows = $this->db->exec_SELECTgetRows(
+            'uid_local',
+            'tx_gjotiger_productset_accessorykit_mm',
+            'uid_foreign=' . $accessorykitGroupUid
+        );
+
+        $accessorykitUids = null;
+        if(count($rows)){
+            foreach ($rows as $row) {
+                $accessorykitUids[] = $row['uid_local'];
+            }
+        }
+
+        return $accessorykitUids;
+    }
+
 }

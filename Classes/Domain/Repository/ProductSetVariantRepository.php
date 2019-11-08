@@ -28,5 +28,30 @@ use GjoSe\GjoBoilerplate\Domain\Repository\AbstractRepository as GjoBoilerplateA
  */
 class ProductSetVariantRepository extends AbstractRepository
 {
-    
+    public function findByProductSetVariantGroupAndFilter($productSetVariantGroupUid, $productSetVariantFilter)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()
+              ->setRespectStoragePage(false);
+
+        $constraints   = array();
+        $constraints[] = $query->equals('product_set_variant_group', $productSetVariantGroupUid );
+
+        if (isset($productSetVariantFilter['noFilterTyp'])) {
+            $constraints[] = $query->like('name', '%%');
+        }
+        if (isset($productSetVariantFilter['length'])) {
+            $constraints[] = $query->equals('length', $productSetVariantFilter['length']);
+        }
+        if (isset($productSetVariantFilter['material'])) {
+            $constraints[] = $query->equals('material', $productSetVariantFilter['material']);
+        }
+        if (isset($productSetVariantFilter['version'])) {
+            $constraints[] = $query->equals('version', $productSetVariantFilter['version']);
+        }
+
+        $query->matching($query->logicalAnd($constraints));
+
+        return $query->execute()->getFirst();
+    }
 }

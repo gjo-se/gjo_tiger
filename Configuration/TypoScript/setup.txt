@@ -1,10 +1,11 @@
 plugin.tx_gjotiger {
     view {
-        layoutRootPath = {$filepaths.layoutRootPath}
-        templateRootPath = {$filepaths.templateRootPath}
+        templateRootPath = {$plugin.tx_gjotiger.view.templateRootPath}
+        layoutRootPath = {$plugin.tx_gjotiger.view.layoutRootPath}
         partialRootPaths {
-            10 = {$filepaths.partialRootPath}
-            20 = EXT:gjo_boilerplate/Resources/Private/Partials/
+            10 = {$plugin.tx_gjotiger.view.partialRootPath}
+            20 = {$plugin.tx_gjoboilerplate.view.partialRootPath}
+            30 = {$plugin.tx_gjointroduction.view.partialRootPath}
         }
     }
 
@@ -26,7 +27,7 @@ plugin.tx_gjotiger {
         }
 
 
-
+        // Konfigurator-Filter-Button Bedingungen
         productset{
             alu-80 {
                 softClose {
@@ -61,10 +62,15 @@ plugin.tx_gjotiger {
             }
 
         }
-        pages {
-            productDetail = 80
-            shop = 99
+        site {
+            pid {
+                shop = {$plugin.tx_gjointroduction.settings.site.pid.shop}
+                shippingCosts = {$plugin.tx_gjointroduction.settings.site.pid.shippingCosts}
+            }
         }
+        #            wird nicht genutzt?!
+        #            pages.productDetail = 80
+
 
     }
 
@@ -83,3 +89,4 @@ config.tx_extbase {
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:gjo_tiger/Configuration/TypoScript/_autocomplete.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:gjo_tiger/Configuration/TypoScript/_ajaxListProducts.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:gjo_tiger/Configuration/TypoScript/_ajaxGetProductSetVariant.ts">

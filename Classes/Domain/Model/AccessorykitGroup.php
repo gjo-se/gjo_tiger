@@ -2,9 +2,9 @@
 namespace GjoSe\GjoTiger\Domain\Model;
 
 /***************************************************************
- *  created: 04.09.17 - 15:45
+ *  created: 21.10.19 - 08:11
  *  Copyright notice
- *  (c) 2017 Gregory Jo Erdmann <gregory.jo@gjo-se.com>
+ *  (c) 2019 Gregory Jo Erdmann <gregory.jo@gjo-se.com>
  *  All rights reserved
  *  This script is part of the TYPO3 project. The TYPO3 project is
  *  free software; you can redistribute it and/or modify
@@ -23,10 +23,10 @@ namespace GjoSe\GjoTiger\Domain\Model;
 use \TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
- * Class ProductSetVariantGroup
+ * Class AccessorykitGroup
  * @package GjoSe\GjoTiger\Domain\Model
  */
-class ProductSetVariantGroup extends AbstractModel
+class AccessorykitGroup extends AbstractModel
 {
     /**
      * @var \GjoSe\GjoTiger\Domain\Model\ProductSet
@@ -34,31 +34,15 @@ class ProductSetVariantGroup extends AbstractModel
     protected $productSet = null;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GjoSe\GjoTiger\Domain\Model\ProductSetVariant>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GjoSe\GjoTiger\Domain\Model\ProductSet>
      * @lazy
      */
-    protected $productSetVariants = null;
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\GjoSe\GjoTiger\Domain\Model\Product>
-     * @lazy
-     */
-    protected $products = null;
+    protected $accessoryKits = null;
 
     /**
      * @var string
      */
     protected $headline = '';
-
-    /**
-     * @var string
-     */
-    protected $description = '';
-
-    /**
-     * @var string
-     */
-    protected $tableHeadline = '';
 
     public function __construct()
     {
@@ -70,8 +54,7 @@ class ProductSetVariantGroup extends AbstractModel
      */
     protected function initStorageObjects()
     {
-        $this->productSetVariants = new ObjectStorage();
-        $this->products = new ObjectStorage();
+        $this->accessoryKits = new ObjectStorage();
     }
 
     /**
@@ -91,34 +74,11 @@ class ProductSetVariantGroup extends AbstractModel
     }
 
     /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTableHeadline()
-    {
-        return $this->tableHeadline;
-    }
-
-    /**
      * @return ObjectStorage
      */
-    public function getProductSetVariants()
+    public function getAccessoryKits()
     {
-        return $this->productSetVariants;
+        return $this->accessoryKits;
     }
 
-    /**
-     * @return ObjectStorage
-     */
-    public function getProducts()
-    {
-        return $this->products;
-    }
 }

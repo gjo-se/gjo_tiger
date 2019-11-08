@@ -25,6 +25,9 @@ use GjoSe\GjoTiger\Domain\Repository\ProductGroupRepository;
 use GjoSe\GjoTiger\Domain\Repository\ProductSetRepository;
 use GjoSe\GjoTiger\Domain\Repository\ProductSetTypeRepository;
 use GjoSe\GjoTiger\Domain\Repository\SpecificMaterialRepository;
+use GjoSe\GjoTiger\Domain\Repository\ProductSetVariantRepository;
+use GjoSe\GjoExtendsFemanager\Domain\Repository\FeUserRepository;
+use GjoSe\GjoTiger\Domain\Repository\AccessorykitGroupRepository;
 
 /**
  * Class AbstractController
@@ -82,5 +85,44 @@ abstract class AbstractController extends GjoBoilerplateAbstractController
     public function injectSpecificMaterialRepository(SpecificMaterialRepository $specificMaterialRepository)
     {
         $this->specificMaterialRepository = $specificMaterialRepository;
+    }
+
+    /**
+     * @var \GjoSe\GjoTiger\Domain\Repository\ProductSetVariantRepository
+     */
+    protected $productSetVariantRepository;
+
+    /**
+     * @param \GjoSe\GjoTiger\Domain\Repository\ProductSetVariantRepository
+     */
+    public function injectProductSetVariantRepository(ProductSetVariantRepository $productSetVariantRepository)
+    {
+        $this->productSetVariantRepository = $productSetVariantRepository;
+    }
+
+    /**
+     * @var \GjoSe\GjoExtendsFemanager\Domain\Repository
+     */
+    protected $feUserRepository;
+
+    /**
+     * @param \GjoSe\GjoExtendsFemanager\Domain\Repository
+     */
+    public function injectFeUserRepository(FeUserRepository $feUserRepository)
+    {
+        $this->feUserRepository = $feUserRepository;
+    }
+
+    /**
+     * @var \GjoSe\GjoTiger\Domain\Repository\AccessorykitGroupRepository
+     */
+    protected $accessorykitGroupRepository;
+
+    /**
+     * @param \GjoSe\GjoTiger\Domain\Repository\AccessorykitGroupRepository
+     */
+    public function injectAccessorykitGroupRepository(AccessorykitGroupRepository $accessorykitGroupRepository)
+    {
+        $this->accessorykitGroupRepository = $accessorykitGroupRepository;
     }
 }

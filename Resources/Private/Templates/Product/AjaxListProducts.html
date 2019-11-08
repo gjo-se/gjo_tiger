@@ -29,13 +29,28 @@
         <div class="{f:if(condition: iteration.isOdd, then:'skin-black', else:'skin-white')}">
             <div class="card px-16 pt-16">
 
-                <f:for each="{productSet.image}" as="file" iteration="iteration">
-                    <f:render partial="ContentElements/Media/Type"
-                              arguments="{
+                <f:if condition="{isShop}">
+                    <f:then>
+                        <f:for each="{productSet.image}" as="file" iteration="iteration">
+                            <f:render partial="ContentElements/Media/Type"
+                                      arguments="{
+                                      file: file,
+                                      link: '{productSet.pages.uid}',
+                                      is_shop: '1'
+                                  }"/>
+                        </f:for>
+                    </f:then>
+                    <f:else>
+                        <f:for each="{productSet.image}" as="file" iteration="iteration">
+                            <f:render partial="ContentElements/Media/Type"
+                                      arguments="{
                                       file: file,
                                       link: '{productSet.pages.uid}'
                                   }"/>
-                </f:for>
+                        </f:for>
+                    </f:else>
+                </f:if>
+
 
                 <div class="card-body pb-8">
 
@@ -63,28 +78,59 @@
                     </div>
                     <div class="row m-0 mb-16">
                         <div class="col-6 p-0 pr-8">
-                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.price')}
-                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.{gjoSe:feUser.vatText()}')}
+                            <f:if condition="{isShop}">
+                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.price')}
+                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.{gjoSe:feUser.vatText()}')}
+                                <f:if condition="{gjoSe:feUser.discount()}">
+                                    |
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.discount')}:
+                                    {gjoSe:feUser.discount() -> f:format.currency(decimalSeparator:',',
+                                    thousandsSeparator: '.',
+                                    currencySign: '%')}
+                                </f:if>
+                            </f:if>
                         </div>
+
                     </div>
                     <div class="d-flex product-set-price">
-                        <p class="p-0 py-8">
-                            <f:if condition="{gjoSe:getLowestPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}')}">
-                                <f:then>
-                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.price.from')}
-                                    {gjoSe:feUser.vatPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}',
-                                    lowestPrice: 1) ->
-                                    f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
-                                </f:then>
-                                <f:else>
-                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.price.availableOnRequest')}
-                                </f:else>
-                            </f:if>
-                        </p>
+
+                        <f:if condition="{isShop}">
+                            <p class="p-0 py-8">
+                                <f:if condition="{gjoSe:getLowestPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}')}">
+                                    <f:then>
+                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.price.from')}
+                                        <f:if condition="{gjoSe:feUser.discount()}">
+                                            <f:then>
+                                                <small class="pr-16">
+                                                    <del>
+                                                        {gjoSe:feUser.vatPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}',
+                                                        lowestPrice: 1) ->
+                                                        f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
+                                                    </del>
+                                                </small>
+                                                <span>
+                                                    {gjoSe:feUser.vatPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}',
+                                                    lowestPrice: 1, feUserDiscount: '{gjoSe:feUser.discount()}') ->
+                                                    f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
+                                                </span>
+                                            </f:then>
+                                            <f:else>
+                                                {gjoSe:feUser.vatPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}',
+                                                lowestPrice: 1) ->
+                                                f:format.currency(decimalSeparator:',', thousandsSeparator: '.', currencySign: '€')}
+                                            </f:else>
+                                        </f:if>
+                                    </f:then>
+                                    <f:else>
+                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.price.availableOnRequest')}
+                                    </f:else>
+                                </f:if>
+                            </p>
+                        </f:if>
 
 
-                        <div class="ml-auto pt-16">
-                            <f:link.page pageUid="{productSet.pages.uid}" additionalParams="{L: '{v:page.language()}'}">
+                        <div class="ml-auto py-16">
+                            <f:link.page pageUid="{productSet.pages.uid}" additionalParams="{L: '{v:page.language()}', is_shop: 1}">
                                 <button type="button"
                                         class="btn btn-tiger-primary float-right m-0 waves-effect waves-light">
                                     <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:products.seeProduct"/>
@@ -367,148 +413,5 @@
         </div>
 
     </f:section>
-
-    <f:section name="listItemOriginal">
-
-        <div class="border-gray-300 p-3 mb-3">
-
-            <div id="productItem_{productSet.uid}" class="row">
-                <div class="col-4">
-
-                    <f:link.page pageUid="{productSet.pages.uid}">
-                        <f:render partial="Utilities/Image"
-                                  section="main"
-                                  arguments="{
-                                      falObject: productSet.image,
-                                      width: '200',
-                                      height: '200c',
-                                      maxWidth: '200'
-                                      class: 'border-gray-300'
-                                      }"/>
-                    </f:link.page>
-
-                </div>
-                <div class="col-8">
-                    <div class="row">
-                        <div class="col-8">
-                        </div>
-                        <div class="col-4">
-
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8 pl-2">
-                            <div class="row mb-1">
-                                <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                <!--title="{f:if(condition: '{productSet.filterMaterialWood}', then: 'für Holz geeignet', else: 'nicht für Holz geeignet')}">-->
-                                <!--<img class="border-gray-500 mr-1 {f:if(condition: '{productSet.filterMaterialWood}', then: '', else: 'opacity-50')}"-->
-                                <!--src="fileadmin/user_upload/productgroup/accessory_kit/icon_sidestop_holz_1_1.jpg"-->
-                                <!--width="45">-->
-                                <!--</div>-->
-                                <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                <!--title="{f:if(condition: '{productSet.filterMaterialGlas}', then: 'für Glas geeignet', else: 'nicht für Glas geeignet')}">-->
-                                <!--<img class="border-gray-500 mr-3 {f:if(condition: '{productSet.filterMaterialGlas}', then: '', else: 'opacity-50')}"-->
-                                <!--src="fileadmin/user_upload/productgroup/accessory_kit/icon_glas_1_1.jpg"-->
-                                <!--width="45">-->
-                                <!--</div>-->
-                                <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                <!--title="{f:if(condition: '{productSet.filterDesignCustomer}', then: 'bauseitige Verblendung: ja', else: 'bauseitige Verblendung: nein')}">-->
-                                <!--<img class="border-gray-500 mr-1"-->
-                                <!--src="{f:if(condition: '{productSet.filterDesignCustomer}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                <!--width="45">-->
-                                <!--</div>-->
-                                <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                <!--title="{f:if(condition: '{productSet.filterDesignAlu}', then: 'Alu-Verblendung: ja', else: 'Alu-Verblendung: nein')}">-->
-                                <!--<img class="border-gray-500 mr-1"-->
-                                <!--src="{f:if(condition: '{productSet.filterDesignAlu}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                <!--width="45">-->
-                                <!--</div>-->
-                                <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                <!--title="{f:if(condition: '{productSet.filterDesignDesign}', then: 'Design-Beschlag: ja', else: 'Design-Beschlag: nein')}">-->
-                                <!--<img class="border-gray-500"-->
-                                <!--src="{f:if(condition: '{productSet.filterDesignDesign}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                <!--width="45">-->
-                                <!--</div>-->
-                            </div>
-
-                            <div class="row mb-1">
-                                <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                <!--title="{f:if(condition: '{productSet.filterSoftClose}', then: 'Dämpfung: ja', else: 'Dämpfung: nein')}">-->
-                                <!--<img class="border-gray-500 mr-1"-->
-                                <!--src="{f:if(condition: '{productSet.filterSoftClose}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                <!--width="45">-->
-                                <!--</div>-->
-                                <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                <!--title="{f:if(condition: '{productSet.}', then: 'Automatic: ja', else: 'Automatic: nein')}">-->
-                                <!--<img class="border-gray-500 mr-1"-->
-                                <!--src="{f:if(condition: '{productSet.filterEt3}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                <!--width="45">-->
-                                <!--</div>-->
-                                <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                <!--title="{f:if(condition: '{productSet.}', then: 'T-FOLD: ja', else: 'T-FOLD: nein')}">-->
-                                <!--<img class="border-gray-500 mr-1"-->
-                                <!--src="{f:if(condition: '{productSet.filterTfold}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                <!--width="45">-->
-                                <!--</div>-->
-                                <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                <!--title="{f:if(condition: '{productSet.}', then: 'Synchron: ja', else: 'Synchron: nein')}">-->
-                                <!--<img class="border-gray-500 mr-1"-->
-                                <!--src="{f:if(condition: '{productSet.filterSynchron}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                <!--width="45">-->
-                                <!--</div>-->
-                                <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                <!--title="{f:if(condition: '{productSet.}', then: 'Teleskop 2-fach: ja', else: 'Teleskop 2-fach: nein')}">-->
-                                <!--<img class="border-gray-500 mr-1"-->
-                                <!--src="{f:if(condition: '{productSet.filterTelescop2}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                <!--width="45">-->
-                                <!--</div>-->
-                                <!--<div data-toggle="tooltip" data-placement="bottom"-->
-                                <!--title="{f:if(condition: '{productSet.filterTelescop3}', then: 'Teleskop 3-fach: ja', else: 'Teleskop 3-fach: nein')}">-->
-                                <!--<img class="border-gray-500 mr-1"-->
-                                <!--src="{f:if(condition: '{productSet.filterTelescop3}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"-->
-                                <!--width="45">-->
-                                <!--</div>-->
-                            </div>
-                            <div class="row mb-1">
-                                <div data-toggle="tooltip" data-placement="bottom"
-                                     title="{f:if(condition: '{productSet.}', then: 'Wandmontage: ja', else: 'Wandmontage: nein')}">
-                                    <img class="border-gray-500 mr-1"
-                                         src="{f:if(condition: '{productSet.filterMontageWall}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"
-                                         width="45">
-                                </div>
-                                <div data-toggle="tooltip" data-placement="bottom"
-                                     title="{f:if(condition: '{productSet.}', then: 'Deckenmontage: ja', else: 'Deckenmontage: nein')}">
-                                    <img class="border-gray-500 mr-1"
-                                         src="{f:if(condition: '{productSet.filterMontageCeiling}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"
-                                         width="45">
-                                </div>
-                                <div data-toggle="tooltip" data-placement="bottom"
-                                     title="{f:if(condition: '{productSet.filterMontageIn}', then: 'Montage in der Wand: ja', else: 'Montage in der Wand: nein')}">
-                                    <img class="border-gray-500 mr-1"
-                                         src="{f:if(condition: '{productSet.}', then: '{settings.placeholder.imageDefault100}', else: '{settings.placeholder.imageDisabled100}')}"
-                                         width="45">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col text-right m-2">
-                            <button type="button" class="btn btn-outline-secondary mx-2">
-                                <f:link.page pageUid="{productSet.pages.uid}">Details</f:link.page>
-
-                            </button>
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-
-
-    </f:section>
-
 
 </div>

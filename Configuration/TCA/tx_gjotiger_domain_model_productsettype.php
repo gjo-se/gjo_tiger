@@ -141,7 +141,6 @@ return array(
     'interface' => array(
         'showRecordFieldList' => '
             name,
-            description,
             product_group,
             product_sets,
 
@@ -156,7 +155,6 @@ return array(
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, 
                             product_group,
                             name,
-                            description,
                             product_sets,
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, 
                             hidden,

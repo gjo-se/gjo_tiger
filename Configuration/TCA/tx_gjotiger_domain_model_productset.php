@@ -79,41 +79,57 @@ return array(
             ],
         ],
 
-        'products' => [
-            'exclude' => 0,
-            'label'   => $lll . $table . '.products',
-            'config'  => [
-                'type'                => 'select',
-                'renderType'          => 'selectMultipleSideBySide',
-                'foreign_table'       => 'tx_gjotiger_domain_model_product',
-                'foreign_table_where' => 'tx_gjotiger_domain_model_product.sys_language_uid = ###REC_FIELD_sys_language_uid### ORDER BY tx_gjotiger_domain_model_product.name, tx_gjotiger_domain_model_product.article_number, tx_gjotiger_domain_model_product.additional_information ASC',
-                'MM_opposite_field'   => 'product_sets',
-                'MM'                  => 'tx_gjotiger_product_productset_mm',
-                'size'                => 10,
-                'autoSizeMax'         => 30,
-                'maxitems'            => 9999,
-                'multiple'            => 0,
+        'accessorykit_groups' => [
+            'label'  => $lll . $table . '.accessorykit_groups',
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
+            'config' => [
+                'type'          => 'inline',
+                'foreign_table' => 'tx_gjotiger_domain_model_accessorykitgroup',
+                'foreign_field' => 'product_set',
+                'maxitems'      => 9999,
+                'appearance'    => [
+                    'collapseAll'                     => 1,
+                    'expandSingle'                    => 1,
+                    'levelLinksPosition'              => 'top',
+                    'showSynchronizationLink'         => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink'         => 1,
+                    'useSortable'                     => true,
+                    'enabledControls'                 => [
+                        'info'     => true,
+                        'new'      => true,
+                        'dragdrop' => true,
+                        'sort'     => true,
+                        'hide'     => true,
+                        'delete'   => true,
+                        'localize' => true,
+                    ],
+                ],
             ],
         ],
 
-        'product_sets' => [
-            'exclude' => 0,
-            'label'   => $lll . $table . '.product_sets',
-            'config'  => [
-                'type'                => 'select',
-                'renderType'          => 'selectMultipleSideBySide',
-                'foreign_table'       => $table,
-                'foreign_table_where' => $table . '.is_accessory_kit = 1 ORDER BY name',
-                'MM'                  => 'tx_gjotiger_productset_productset_mm',
-                'MM_opposite_field'   => 'name',
-                'size'                => 10,
-                'autoSizeMax'         => 30,
-                'maxitems'            => 14,
-                'multiple'            => 0
-            ],
-        ],
+//        TODO: löschen, wurden ersetzt mit productset_variantgroup::products
+//        'products' => [
+//            'exclude' => 0,
+//            'label'   => $lll . $table . '.products',
+//            'config'  => [
+//                'type'                => 'select',
+//                'renderType'          => 'selectMultipleSideBySide',
+//                'foreign_table'       => 'tx_gjotiger_domain_model_product',
+//                'foreign_table_where' => 'tx_gjotiger_domain_model_product.sys_language_uid = ###REC_FIELD_sys_language_uid### ORDER BY tx_gjotiger_domain_model_product.name, tx_gjotiger_domain_model_product.article_number, tx_gjotiger_domain_model_product.additional_information ASC',
+//                'MM_opposite_field'   => 'product_sets',
+//                'MM'                  => 'tx_gjotiger_product_productset_mm',
+//                'size'                => 10,
+//                'autoSizeMax'         => 30,
+//                'maxitems'            => 9999,
+//                'multiple'            => 0,
+//            ],
+//        ],
+
+
 
         'pages' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.pages',
             'config' => [
                 'type'          => 'group',
@@ -121,9 +137,9 @@ return array(
                 'allowed'       => 'pages',
                 'size'          => 1,
                 'maxitems'      => 1,
-                'minitems'      => 0
+                'minitems'      => 0,
+                'default' => 0,
             ],
-            'default' => 0,
         ],
 
         'name' => array(
@@ -135,6 +151,7 @@ return array(
 
         'anchor' => array(
             'label'  => $lll . $table . '.anchor',
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:true',
             'config' => array(
                 'type' => 'input'
             )
@@ -142,6 +159,7 @@ return array(
 
         'is_accessory_kit' => array(
             'label'  => $lll . $table . '.is_accessory_kit',
+            'onChange' => 'reload',
             'config' => array(
                 'type' => 'check',
             ),
@@ -149,6 +167,7 @@ return array(
 
         'is_featured' => array(
             'label'  => $lll . $table . '.is_featured',
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'config' => array(
                 'type' => 'check',
             ),
@@ -186,6 +205,7 @@ return array(
         ],
 
         'icon' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:true',
             'label'  => $lll . $table . '.icon',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'icon',
@@ -439,6 +459,7 @@ return array(
         ],
 
         'filter_montage_wall' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_montage_wall',
             'config' => [
                 'type' => 'check',
@@ -446,6 +467,7 @@ return array(
         ],
 
         'filter_montage_ceiling' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_montage_ceiling',
             'config' => [
                 'type' => 'check',
@@ -453,6 +475,7 @@ return array(
         ],
 
         'filter_montage_in' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_montage_in',
             'config' => [
                 'type' => 'check',
@@ -473,8 +496,8 @@ return array(
                     array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1),
                     array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0)
                 ),
+                'default' => 0,
             ),
-            'default' => 0,
         ),
         'l10n_parent'      => array(
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -488,8 +511,8 @@ return array(
                 ),
                 'foreign_table'       => $table,
                 'foreign_table_where' => 'AND' . $table . '.pid=###CURRENT_PID### AND ' . $table . '.sys_language_uid IN (-1,0)',
+                'default' => 0,
             ),
-            'default' => 0,
         ),
         'l10n_diffsource'  => array(
             'config' => array(
@@ -506,6 +529,7 @@ return array(
         ),
 
         'filter_material_wood' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_material_wood',
             'config' => [
                 'type' => 'check'
@@ -513,6 +537,7 @@ return array(
         ],
 
         'filter_material_glas' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_material_glas',
             'config' => [
                 'type' => 'check',
@@ -520,6 +545,7 @@ return array(
         ],
 
         'filter_wingcount' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_wingcount',
             'config' => [
                 'type'       => 'select',
@@ -533,6 +559,7 @@ return array(
         ],
 
         'filter_design_customer' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_design_customer',
             'config' => [
                 'type' => 'check',
@@ -540,6 +567,7 @@ return array(
         ],
 
         'filter_design_alu' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_design_alu',
             'config' => [
                 'type' => 'check',
@@ -547,6 +575,7 @@ return array(
         ],
 
         'filter_design_design' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_design_design',
             'config' => [
                 'type' => 'check',
@@ -554,6 +583,7 @@ return array(
         ],
 
         'filter_soft_close' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_soft_close',
             'config' => [
                 'type' => 'check',
@@ -561,6 +591,7 @@ return array(
         ],
 
         'filter_et3' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_et3',
             'config' => [
                 'type' => 'check',
@@ -568,6 +599,7 @@ return array(
         ],
 
         'filter_tclose' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_tclose',
             'config' => [
                 'type' => 'check',
@@ -575,6 +607,7 @@ return array(
         ],
 
         'filter_tmaster' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_tmaster',
             'config' => [
                 'type' => 'check',
@@ -582,6 +615,7 @@ return array(
         ],
 
         'filter_tfold' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_tfold',
             'config' => [
                 'type' => 'check',
@@ -589,6 +623,7 @@ return array(
         ],
 
         'filter_synchron' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_synchron',
             'config' => [
                 'type' => 'check',
@@ -596,6 +631,7 @@ return array(
         ],
 
         'filter_telescop2' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_telescop2',
             'config' => [
                 'type' => 'check',
@@ -603,6 +639,7 @@ return array(
         ],
 
         'filter_telescop3' => [
+            'displayCond' => 'FIELD:is_accessory_kit:REQ:false',
             'label'  => $lll . $table . '.filter_telescop3',
             'config' => [
                 'type' => 'check',
@@ -642,7 +679,6 @@ return array(
               download,
               download_engineering_drawing,
               image_engineering_drawing,
-              product_sets,
               filter_material_wood,
               filter_material_glas,
               filter_wingcount,
@@ -663,6 +699,7 @@ return array(
               
             
               product_set_variant_groups,
+              accessorykit_groups,
               products,    
               pages,
             sys_language_uid,
@@ -674,16 +711,14 @@ return array(
         '1' => [
             'showitem' => '
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, 
-                              name,
-                              anchor,
-                              is_accessory_kit,
+                              --palette--;' . $lll . $table . '.palettes.basics;basics,
                               is_featured,
                               description,                                                            
                               image,
                               icon,
                               pages,
-                        --div--;' . $lll . $table . '.tabs.products,  
-                              products,
+                              anchor,
+                        --div--;' . $lll . $table . '.tabs.variants,  
                               product_set_variant_groups,
                         --div--;' . $lll . $table . '.tabs.technicalNotes,
                               show_technicalnots,
@@ -713,11 +748,11 @@ return array(
                         --div--;' . $lll . $table . '.tabs.invitation_to_tender,
                               invitation_to_tender,
                         --div--;' . $lll . $table . '.tabs.downloads,
+                              image_engineering_drawing,
                               download,  
                               download_engineering_drawing,
-                              image_engineering_drawing,
                         --div--;' . $lll . $table . '.tabs.accessory_kit,
-                              product_sets,
+                              accessorykit_groups,
                         --div--;' . $lll . $table . '.tabs.filter,
                               --palette--;' . $lll . $table . '.palettes.material;material,
                               filter_wingcount,
@@ -731,6 +766,12 @@ return array(
     ],
 
     'palettes' => array(
+        'basics'      => array(
+            'showitem' => '
+                name,
+                is_accessory_kit
+        '
+        ),
         'material'      => array(
             'showitem' => '
                 filter_material_wood,

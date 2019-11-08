@@ -24,20 +24,20 @@ if (!defined('TYPO3_MODE')) {
 
 $ext   = 'gjo_tiger';
 $lll   = 'LLL:EXT:' . $ext . '/Resources/Private/Language/locallang_db.xlf:';
-$table = 'tx_gjotiger_domain_model_productsetvariant';
+$table = 'tx_gjotiger_domain_model_accessorykitgroup';
 
 return array(
 
     'ctrl' => array(
-        'title'           => $lll . $table,
-        'label'           => 'name',
-        'tstamp'          => 'tstamp',
-        'crdate'          => 'crdate',
-        'cruser_id'       => 'cruser_id',
-        'dividers2tabs'   => true,
-        'searchFields'    => 'name, article_number',
-        'iconfile'        => 'EXT:' . $ext . '/Resources/Public/Icons/tiger_icon.png',
-        'hideTable'        => true,
+        'title'         => $lll . $table,
+        'label'         => 'headline',
+        'tstamp'        => 'tstamp',
+        'crdate'        => 'crdate',
+        'cruser_id'     => 'cruser_id',
+        'dividers2tabs' => true,
+        'searchFields'  => 'headline',
+        'iconfile'      => 'EXT:' . $ext . '/Resources/Public/Icons/tiger_icon.png',
+        'hideTable'     => true,
 
         'languageField'            => 'sys_language_uid',
         'transOrigPointerField'    => 'l10n_parent',
@@ -51,104 +51,33 @@ return array(
 
     'columns' => array(
 
-        'product_set_variant_group' => array(
+        'product_set' => array(
             'config' => array(
                 'type' => 'passthrough',
             ),
         ),
 
-        'name' => array(
-            'label'  => $lll . $table . '.name',
-            'config' => array(
-                'type' => 'input'
-            )
-        ),
-
-        'article_number' => array(
-            'label'  => $lll . $table . '.article_number',
-            'config' => array(
-                'type' => 'input'
-            )
-        ),
-
-        'price' => [
-            'label'  => $lll . $table . '.price',
-            'config' => [
-                'type' => 'input',
-                'eval' => 'double2'
-            ]
-        ],
-
-        'tax' => [
-            'label'  => $lll . $table . '.tax',
-            'config' => [
-                'type' => 'input',
-                'default' => 0,
-            ]
-        ],
-
-        'material' => [
-            'label'  => $lll . $table . '.material',
-            'config'      => array(
+        'accessory_kits' => [
+            'exclude' => 0,
+            'label'   => $lll . $table . '.accessory_kits',
+            'config'  => [
                 'type'                => 'select',
-                'renderType'          => 'selectSingle',
-                'items'               => array(
-                    array('---', '0'),
-                    array('ALU', 'alu'),
-                    array('EV1', 'ev1'),
-                    array('C31', 'c31'),
-                    array('schwarz', 'black'),
-                    array('silber', 'silver'),
-                    array('weiß', 'white')
-                ),
-                'default' => 0,
-            ),
-
+                'renderType'          => 'selectMultipleSideBySide',
+                'foreign_table'       => 'tx_gjotiger_domain_model_productset',
+                'foreign_table_where' => 'tx_gjotiger_domain_model_productset.is_accessory_kit = 1 ORDER BY name',
+                'MM'                  => 'tx_gjotiger_productset_accessorykit_mm',
+                'MM_opposite_field'   => 'name',
+                'size'                => 10,
+                'autoSizeMax'         => 30,
+                'maxitems'            => 14,
+                'multiple'            => 0
+            ],
         ],
 
-        'length' => [
-            'label'  => $lll . $table . '.length',
+        'headline' => [
+            'label'  => $lll . $table . '.headline',
             'config' => [
-                'type' => 'input',
-                'default' => 0,
-            ]
-        ],
-
-        'version' => [
-            'label'  => $lll . $table . '.version',
-            'config' => [
-                'type'                => 'select',
-                'renderType'          => 'selectSingle',
-                'items'               => array(
-                    array('---', '0'),
-                    array('---ET3-Zubehör---', '---'),
-                    array('1-Kanal', '1-Channel'),
-                    array('4-Kanal', '4-Channel'),
-                    array('CleanSwitch', 'cleanSwitch'),
-                    array('Push Plate', 'pushPlate'),
-                    array('Taster', 'button'),
-                    array('---DÄMPFUNG---', '---'),
-                    array('einseitig', 'one-sided'),
-                    array('einseitig kurz', 'one-side-short'),
-                    array('einseitig lang', 'one-side-long'),
-                    array('zweiseitig', 'two-sided'),
-                    array('---WANDWINKEL---', '---'),
-                    array('fest', 'fix'),
-                    array('verstellbar', 'adjustable'),
-                    array('---ENDKAPPEN FÜR---', '---'),
-                    array('Holz', 'wood'),
-                    array('Holz MX', 'wood_mx'),
-                    array('Glas', 'glass'),
-                    array('ET3 Holz', 'et3_wood'),
-                    array('ET3 Glas', 'et3_glass'),
-                    array('---Sonstiges---', '---'),
-                    array('MX', 'mx'),
-                    array('System-Set', 'system-set'),
-                    array('Ergänzungs-Set', 'accessoryKit'),
-                    array('Kartongarnitur', 'boxed-set'),
-
-                ),
-                'default' => 0,
+                'type' => 'input'
             ]
         ],
 
@@ -168,6 +97,7 @@ return array(
                 ),
                 'default' => 0,
             ),
+
         ),
         'l10n_parent'      => array(
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -183,6 +113,7 @@ return array(
                 'foreign_table_where' => 'AND' . $table . '.pid=###CURRENT_PID### AND ' . $table . '.sys_language_uid IN (-1,0)',
                 'default' => 0,
             ),
+
         ),
         'l10n_diffsource'  => array(
             'config' => array(
@@ -202,10 +133,8 @@ return array(
 
     'interface' => array(
         'showRecordFieldList' => '
-            name, 
-            article_number, 
-            price,
-            tax,
+            headline,
+            accessory_kits,
 
             sys_language_uid,
             hide
@@ -216,14 +145,8 @@ return array(
         '1' => [
             'showitem' => '
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, 
-                            name, 
-                            article_number, 
-                            material,
-                            length,
-                            version,
-                        --div--;' . $lll . $table . '.tabs.price, 
-                            price,
-                            tax, 
+                            headline, 
+                            accessory_kits,
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, 
                             hidden,
             ',

@@ -1,6 +1,6 @@
-autocompleteAjax = PAGE
-autocompleteAjax {
-    typeNum = 901
+ajaxGetProductSetVariant = PAGE
+ajaxGetProductSetVariant {
+    typeNum = 1560268508
     10 = USER
     10 {
         userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
@@ -9,7 +9,7 @@ autocompleteAjax {
         vendorName = GjoSe
         switchableControllerActions {
             Product {
-                1 = ajaxProductSet
+                1 = ajaxGetProductSetVariant
             }
         }
 

@@ -28,17 +28,18 @@ use GjoSe\GjoBoilerplate\Domain\Repository\AbstractRepository as GjoBoilerplateA
  */
 class ProductSetTypeRepository extends AbstractRepository
 {
-    public function findByProductSet($productSet)
-    {
-        $query = $this->createQuery();
-        $query->matching(
-            $query->logicalOr([
-                $query->equals('author.tags.name', 'typo3'),
-                $query->equals('author.tagsSpecial.name', 'typo3')
-            ])
-        );
-        $posts = $query->execute();
-    }
+    // TODO: Verwenung prüfen!
+//    public function findByProductSet($productSet)
+//    {
+//        $query = $this->createQuery();
+//        $query->matching(
+//            $query->logicalOr([
+//                $query->equals('author.tags.name', 'typo3'),
+//                $query->equals('author.tagsSpecial.name', 'typo3')
+//            ])
+//        );
+//        $posts = $query->execute();
+//    }
 
     /**
      * @return array

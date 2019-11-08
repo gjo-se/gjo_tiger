@@ -51,6 +51,21 @@ class ProductSetVariant extends AbstractModel
     protected $price = 0;
 
     /**
+     * @var string
+     */
+    protected $material = '';
+
+    /**
+     * @var int
+     */
+    protected $length = 0;
+
+    /**
+     * @var string
+     */
+    protected $version = '';
+
+    /**
      * @var int
      */
     protected $tax = 0;
@@ -106,5 +121,59 @@ class ProductSetVariant extends AbstractModel
     public function getTax()
     {
         return $this->tax;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMaterial(): string
+    {
+        return $this->material;
+    }
+
+    /**
+     * @param string $material
+     *
+     * @return void
+     */
+    public function setMaterial($material)
+    {
+        $this->material = $material;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLength(): int
+    {
+        return $this->length;
+    }
+
+    /**
+     * @param int $length
+     *
+     * @return void
+     */
+    public function setLength($length)
+    {
+        $this->length = $length;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        return $this->version;
+    }
+
+    /**
+     * @param string $version
+     *
+     * @return void
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
     }
 }

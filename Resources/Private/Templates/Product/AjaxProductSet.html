@@ -6,14 +6,26 @@
 
     <f:section name="main">
 
-        <f:if condition="{productSets}">
+        <f:if condition="{productSetsArr}">
             <f:then>
                 <ul class="productSets px-24 pt-12 pb-32 mb-0">
-                    <f:for each="{productSets}" as="productSet" iteration="iteration">
+                    <f:for each="{productSetsArr}" as="productSet" iteration="iteration">
                         <li>
-                            <f:link.page pageUid="{productSet.pages.uid}">
+                            <f:link.page pageUid="{productSet.pageUid}">
                                 &#8594; {productSet.name}
                             </f:link.page>
+                            <f:if condition="{productSet.accessoryKits}">
+                                <ul>
+                                    <f:for each="{productSet.accessoryKits}" as="accessoryKit">
+                                        <li>
+                                            <f:link.page pageUid="{productSet.pageUid}" section="{accessoryKit.anchor}">
+                                                &#8594; {accessoryKit.name}
+                                            </f:link.page>
+
+                                        </li>
+                                    </f:for>
+                                </ul>
+                            </f:if>
                         </li>
                     </f:for>
                 </ul>

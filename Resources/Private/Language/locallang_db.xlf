@@ -97,7 +97,10 @@
 
 
             <trans-unit id="tx_gjotiger_domain_model_productsetvariantgroup">
-                <source>ProductSetVariant</source>
+                <source>ProductSetVariantGroup</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productsetvariantgroup.product_set_variants">
+                <source>Product-Set-Varianten</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productsetvariantgroup.headline">
                 <source>Überschrift</source>
@@ -106,7 +109,10 @@
                 <source>Beschreibung</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productsetvariantgroup.table_headline">
-                <source>Tabellen-Überschrift</source>
+                <source>Paket-Inhalt Überschrift</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productsetvariantgroup.products">
+                <source>Produkte</source>
             </trans-unit>
 
 
@@ -117,13 +123,22 @@
             </trans-unit>
 
             <trans-unit id="tx_gjotiger_domain_model_productsetvariant">
-                <source>ProductSetVariant</source>
+                <source>Product-Set-Variant</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productsetvariant.name">
                 <source>Name</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productsetvariant.article_number">
                 <source>Artikel-Nummer</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productsetvariant.material">
+                <source>Material, Farbe</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productsetvariant.length">
+                <source>Länge</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productsetvariant.version">
+                <source>Ausführung</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productsetvariant.price" >
                 <source>Preis</source>
@@ -246,6 +261,9 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.products">
                 <source>Products</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.accessorykit_groups">
+                <source>Ergänzungs-Sets</source>
+            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.pages" >
                 <source>Seite</source>
             </trans-unit>
@@ -307,6 +325,9 @@
             <trans-unit id="tx_gjotiger_domain_model_productset.tabs.products">
                 <source>Produkte</source>
             </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.tabs.variants">
+                <source>Varianten</source>
+            </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.tabs.technicalNotes">
                 <source>Technische Hinweise</source>
             </trans-unit>
@@ -324,6 +345,9 @@
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.tabs.filter">
                 <source>Filter</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_productset.palettes.basics">
+                <source>Basics</source>
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_productset.palettes.material">
                 <source>Material</source>
@@ -357,6 +381,19 @@
             </trans-unit>
             <trans-unit id="tx_gjotiger_domain_model_specificmaterial.image">
                 <source>Icon</source>
+            </trans-unit>
+
+
+            ### Productsetaccessorykit ####
+
+            <trans-unit id="tx_gjotiger_domain_model_accessorykitgroup">
+                <source>Ergänzungs-Sets</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_accessorykitgroup.headline">
+                <source>Überschrift</source>
+            </trans-unit>
+            <trans-unit id="tx_gjotiger_domain_model_accessorykitgroup.accessory_kits">
+                <source>Ergänzungs-Sets</source>
             </trans-unit>
 
 		</body>

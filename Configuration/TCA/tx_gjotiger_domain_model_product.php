@@ -138,8 +138,9 @@ return array(
                 ),
                 'foreign_table'       => $table,
                 'foreign_table_where' => 'AND' . $table . '.pid=###CURRENT_PID### AND ' . $table . '.sys_language_uid IN (-1,0)',
+                'default' => 0,
             ),
-            'default' => 0,
+
         ),
         'l10n_diffsource'  => array(
             'config' => array(
@@ -173,7 +174,6 @@ return array(
         '1' => [
             'showitem' => '
                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general, 
-                            product_sub_group,
                             name, 
                             article_number, 
                             additional_information,

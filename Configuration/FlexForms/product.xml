@@ -98,6 +98,18 @@
                         </TCEforms>
                     </settings.productSet>
 
+                    <settings.isShop>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:gjo_tiger/Resources/Private/Language/locallang_be.xlf:flexforms.settings.isShop
+                            </label>
+                            <displayCond>FIELD:switchableControllerActions:=:Product->productFinder</displayCond>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.isShop>
+
 
                 </el>
             </ROOT>
