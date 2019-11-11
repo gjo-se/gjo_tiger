@@ -8,5 +8,10 @@
   "replace": {
     "gjo_tiger": "self.version",
     "gjose/gjo-tiger": "self.version"
+  },
+  "autoload": {
+    "psr-4": {
+      "GjoSe\\GjoTiger\\": "Classes/"
+    }
   }
 }
