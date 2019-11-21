@@ -1,0 +1,17 @@
+{
+  "name": "gjo/gjo-tiger",
+  "type": "typo3-cms-extension",
+  "description": "Tiger Products",
+  "require": {
+    "typo3/cms": "^8.7"
+  },
+  "replace": {
+    "gjo_tiger": "self.version",
+    "gjose/gjo-tiger": "self.version"
+  },
+  "autoload": {
+    "psr-4": {
+      "GjoSe\\GjoTiger\\": "Classes/"
+    }
+  }
+}
