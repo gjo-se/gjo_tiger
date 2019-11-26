@@ -362,6 +362,13 @@
                 <source>Montage</source>
             </trans-unit>
 
+            ### ProductSet-Accessorykit ####
+
+            <trans-unit id="tx_gjotiger_domain_model_productsetaccessorykit">
+                <source>ProductSet-Accessorykit</source>
+            </trans-unit>
+
+
             ### ProductSpecificMaterial ####
 
             <trans-unit id="tx_gjotiger_domain_model_specificmaterial">

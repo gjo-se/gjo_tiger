@@ -18,7 +18,7 @@
                 <target>Varianten</target>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots" >
-                <source>Technical Nots</source>
+                <source>Technical Notes</source>
                 <target>Technische Informationen</target>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.dinEn1527" >
