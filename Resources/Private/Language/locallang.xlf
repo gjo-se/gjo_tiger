@@ -15,7 +15,7 @@
                 <source>Variants</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.technicalnots" >
-                <source>Technical Nots</source>
+                <source>Technical Notes</source>
             </trans-unit>
             <trans-unit id="productSetVariantGroup.dinEn1527" >
                 <source>DIN EN 1527</source>
@@ -134,7 +134,7 @@
             </trans-unit>
 
             <trans-unit id="productSet.productsAndEngineeringDrawing" >
-                <source>Products und Engineering Drawings</source>
+                <source>Products and Engineering Drawings</source>
             </trans-unit>
             <trans-unit id="productSet.variants.setContent" >
                 <source>Package content</source>
