@@ -807,7 +807,7 @@
                 <f:then>
                     <div class="d-flex flex-wrap btn-group mb-24" data-toggle="buttons">
                         <f:for each="{variantFilterTyp}" as="variantFilter" iteration="iteration">
-                            <label class="btn btn-sm btn-tiger-light-orange mr-8 mb-8 form-check-label {f:if(condition: '{iteration.cycle} == 1', then:' active')}">
+                            <label class="btn btn-sm btn-tiger-light-orange mr-8 mb-8 ml-0 mt-0 form-check-label {f:if(condition: '{iteration.cycle} == 1', then:' active')}">
                                 <f:form.radio class="form-check-input"
                                               name="variantFilterTyp_{filterTyp}_{productSetVariantGroup.uid}"
                                               value="{variantFilter}"
