@@ -22,6 +22,7 @@ namespace GjoSe\GjoTiger\Controller;
  ***************************************************************/
 
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Class ProductController
@@ -29,6 +30,10 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ProductController extends AbstractController
 {
+    /**
+     * @var LanguageService
+     */
+    protected $languageService;
 
     /**
      * return void
@@ -118,7 +123,6 @@ class ProductController extends AbstractController
             }
         }
 
-
         $this->view->assign('searchString', $searchString);
         $this->view->assign('productSetsArr', $productSetsArr);
     }
@@ -126,6 +130,7 @@ class ProductController extends AbstractController
     public function productFinderAction()
     {
         $this->view->assign('sysLanguageUid', $GLOBALS['TSFE']->sys_language_uid);
+        $this->view->assign('sysLanguage', $GLOBALS['TSFE']->lang);
     }
 
     public function ajaxListProductsAction()
@@ -134,6 +139,8 @@ class ProductController extends AbstractController
         $postParams          = GeneralUtility::_POST();
         $productFinderFilter = $postParams['productFinderFilter'];
         $sysLanguageUid      = $postParams['sysLanguageUid'];
+        $this->languageService = GeneralUtility::makeInstance(LanguageService::class);
+        $this->languageService->init(trim($postParams['sysLanguage']));
 
         if ($postParams['offset']) {
             $offset = $postParams['offset'];
@@ -145,9 +152,48 @@ class ProductController extends AbstractController
             $this->settings['ajaxListProducts']['limit']);
         $productSetsCount = $this->productSetRepository->findByFilter($sysLanguageUid, $productFinderFilter)->count();
 
+        $vatTextTranslationKey = 'priceInclVat';
+
+        $feUserData = $GLOBALS['TSFE']->fe_user->user;
+        $feUserObj = $this->feUserRepository->findByUid($feUserData['uid']);
+
+        if($feUserObj){
+            $feUserGroupsObj = $feUserObj->getUserGroup();
+
+            foreach ($feUserGroupsObj as $feUserGroup) {
+                if(!$feUserGroup->isTxGjoExtendsFemanagerVatIncl()){
+                    $vatTextTranslationKey = 'priceExclVat';
+                }
+            }
+        }
+
+        $this->view->assign('sysLanguageUid', $sysLanguageUid);
+        $this->view->assign('productFinderListWings', $this->translate('productFinder.list.wings'));
+        $this->view->assign('productFinderListDoorWidth', $this->translate('productFinder.list.doorWidth'));
+        $this->view->assign('productFinderListDoorThickness', $this->translate('productFinder.list.doorThickness'));
+        $this->view->assign('productFinderListDoorWeight', $this->translate('productFinder.list.doorWeight'));
+        $this->view->assign('productsSeeProduct', $this->translate('products.seeProduct'));
+        $this->view->assign('productFinderListPriceFrom', $this->translate('productFinder.list.price.from'));
+        $this->view->assign('productFinderListPriceAvailableOnRequest', $this->translate('productFinder.list.price.availableOnRequest'));
+        $this->view->assign('productSetVariantGroupPrice', $this->translate('productSetVariantGroup.price'));
+        $this->view->assign('productSetVariantGroupDiscount', $this->translate('productSetVariantGroup.discount'));
+        $this->view->assign('productSetVariantGroupVatText', $this->translate('productSetVariantGroup.' . $vatTextTranslationKey));
+
+
         $this->view->assign('productSets', $productSets);
         $this->view->assign('productSetsCount', $productSetsCount);
         $this->view->assign('isShop', (int)$postParams['isShop']);
+    }
+
+    /**
+     * Returns the translation of $key
+     *
+     * @param string $key
+     * @return string
+     */
+    protected function translate($key)
+    {
+        return $this->languageService->sL('LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:' . $key);
     }
 
     public function ajaxGetProductSetVariantAction()
