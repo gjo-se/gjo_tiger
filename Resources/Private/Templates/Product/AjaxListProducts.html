@@ -36,6 +36,7 @@
                                       arguments="{
                                       file: file,
                                       link: '{productSet.pages.uid}',
+                                      L: '{sysLanguageUid}',
                                       is_shop: '1'
                                   }"/>
                         </f:for>
@@ -45,7 +46,8 @@
                             <f:render partial="ContentElements/Media/Type"
                                       arguments="{
                                       file: file,
-                                      link: '{productSet.pages.uid}'
+                                      link: '{productSet.pages.uid}',
+                                      L: '{sysLanguageUid}'
                                   }"/>
                         </f:for>
                     </f:else>
@@ -58,32 +60,81 @@
 
                     <div class="row m-0">
                         <div class="col-6 p-0 pr-8">
-                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.wings')}:
+                            <f:if condition="{productFinderListWings}">
+                                <f:then>
+                                    {productFinderListWings}:
+                                </f:then>
+                                <f:else>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.wings')}:
+                                </f:else>
+                            </f:if>
                             {productSet.filterWingcount}
                         </div>
                         <div class="col-6 p-0 pl-8">
-                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.doorWidth')}:
+                            <f:if condition="{productFinderListDoorWidth}">
+                                <f:then>
+                                    {productFinderListDoorWidth}:
+                                </f:then>
+                                <f:else>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.doorWidth')}:
+                                </f:else>
+                            </f:if>
                             {productSet.minimumDoorWidth} - {productSet.maximumDoorWidth} mm
                         </div>
                     </div>
                     <div class="row m-0">
                         <div class="col-6 p-0 pr-8">
-                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.doorThickness')}:
+                            <f:if condition="{productFinderListDoorThickness}">
+                                <f:then>
+                                    {productFinderListDoorThickness}:
+                                </f:then>
+                                <f:else>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.doorThickness')}:
+                                </f:else>
+                            </f:if>
                             {productSet.minimumDoorThickness} - {productSet.maximumDoorThickness} mm
                         </div>
                         <div class="col-6 p-0 pl-8">
-                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.doorWeight')}:
+                            <f:if condition="{productFinderListDoorWeight}">
+                                <f:then>
+                                    {productFinderListDoorWeight}:
+                                </f:then>
+                                <f:else>
+                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.doorWeight')}:
+                                </f:else>
+                            </f:if>
                             max. {productSet.maximumDoorWeight} kg
                         </div>
                     </div>
                     <div class="row m-0 mb-16">
                         <div class="col-6 p-0 pr-8">
                             <f:if condition="{isShop}">
-                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.price')}
-                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.{gjoSe:feUser.vatText()}')}
+                                <f:if condition="{productSetVariantGroupPrice}">
+                                    <f:then>
+                                        {productSetVariantGroupPrice}:
+                                    </f:then>
+                                    <f:else>
+                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.price')}
+                                    </f:else>
+                                </f:if>
+                                <f:if condition="{productSetVariantGroupVatText}">
+                                    <f:then>
+                                        {productSetVariantGroupVatText}
+                                    </f:then>
+                                    <f:else>
+                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.{gjoSe:feUser.vatText()}')}
+                                    </f:else>
+                                </f:if>
                                 <f:if condition="{gjoSe:feUser.discount()}">
                                     |
-                                    {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.discount')}:
+                                    <f:if condition="{productSetVariantGroupDiscount}">
+                                        <f:then>
+                                            {productSetVariantGroupDiscount}:
+                                        </f:then>
+                                        <f:else>
+                                            {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productSetVariantGroup.discount')}:
+                                        </f:else>
+                                    </f:if>
                                     {gjoSe:feUser.discount() -> f:format.currency(decimalSeparator:',',
                                     thousandsSeparator: '.',
                                     currencySign: '%')}
@@ -98,7 +149,14 @@
                             <p class="p-0 py-8">
                                 <f:if condition="{gjoSe:getLowestPrice(productSetVariantGroups: '{productSet.productSetVariantGroups}')}">
                                     <f:then>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.price.from')}
+                                        <f:if condition="{productFinderListPriceFrom}">
+                                            <f:then>
+                                                {productFinderListPriceFrom}
+                                            </f:then>
+                                            <f:else>
+                                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.price.from')}
+                                            </f:else>
+                                        </f:if>
                                         <f:if condition="{gjoSe:feUser.discount()}">
                                             <f:then>
                                                 <small class="pr-16">
@@ -122,20 +180,52 @@
                                         </f:if>
                                     </f:then>
                                     <f:else>
-                                        {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.price.availableOnRequest')}
+                                        <f:if condition="{productFinderListPriceAvailableOnRequest}">
+                                            <f:then>
+                                                {productFinderListPriceAvailableOnRequest}
+                                            </f:then>
+                                            <f:else>
+                                                {f:translate(key:'LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:productFinder.list.price.availableOnRequest')}
+                                            </f:else>
+                                        </f:if>
                                     </f:else>
                                 </f:if>
                             </p>
                         </f:if>
 
-
                         <div class="ml-auto py-16">
-                            <f:link.page pageUid="{productSet.pages.uid}" additionalParams="{L: '{v:page.language()}', is_shop: 1}">
-                                <button type="button"
-                                        class="btn btn-tiger-primary float-right m-0 waves-effect waves-light">
-                                    <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:products.seeProduct"/>
-                                </button>
-                            </f:link.page>
+                            <f:if condition="{isShop}">
+                                <f:then>
+                                    <f:link.page pageUid="{productSet.pages.uid}" additionalParams="{L: '{sysLanguageUid}', is_shop: 1}">
+                                        <button type="button"
+                                                class="btn btn-tiger-primary float-right m-0 waves-effect waves-light">
+                                            <f:if condition="{productsSeeProduct}">
+                                                <f:then>
+                                                    {productsSeeProduct}
+                                                </f:then>
+                                                <f:else>
+                                                    <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:products.seeProduct"/>
+                                                </f:else>
+                                            </f:if>
+                                        </button>
+                                    </f:link.page>
+                                </f:then>
+                                <f:else>
+                                    <f:link.page pageUid="{productSet.pages.uid}" additionalParams="{L: '{sysLanguageUid}'}">
+                                        <button type="button"
+                                                class="btn btn-tiger-primary float-right m-0 waves-effect waves-light">
+                                            <f:if condition="{productsSeeProduct}">
+                                                <f:then>
+                                                    {productsSeeProduct}
+                                                </f:then>
+                                                <f:else>
+                                                    <f:translate key="LLL:EXT:gjo_tiger/Resources/Private/Language/locallang.xlf:products.seeProduct"/>
+                                                </f:else>
+                                            </f:if>
+                                        </button>
+                                    </f:link.page>
+                                </f:else>
+                            </f:if>
                         </div>
 
                     </div>
